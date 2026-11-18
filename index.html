@@ -2510,7 +2510,7 @@ route();
    затем ещё несколько спокойных кадров, чтобы раскладка и слои успели собраться. Минимум ~1 с — знак успевает
    зажечься; если что-то зависло — не дольше 8 с. */
 const pre = $('#pre'), preN = $('#preN'), preV0 = window.__pre ? (window.__pre.on = false, Math.floor(window.__pre.v)) : 0;
-let preState = pre ? 1 : 0, preShown = preV0, preDone = 0, preVal = preV0, preT0 = 0, preCalm = 0, preAll = 0, preOk = 0;
+let preState = pre ? 1 : 0, preShown = preV0, preDone = 0, preVal = preV0, preT0 = 0, prePrevT = 0, preCalm = 0, preAll = 0, preOk = 0;
 const preTask = pr => { preAll++; Promise.resolve(pr).catch(() => {}).then(() => { preOk++; }); };
 if (pre) {
   preTask(document.fonts ? document.fonts.ready : null);
@@ -2523,10 +2523,11 @@ if (pre) {
 const preFrame = nowT => {
   if (preState !== 1) return;
   if (!preT0) preT0 = nowT;
-  const real = preAll ? preOk / preAll : 1;
+  const real = preAll ? preOk / preAll : 1, dtF = clamp((nowT - (prePrevT || nowT - 16.7)) / 16.7, .25, 8); prePrevT = nowT;
   if (real >= 1) preCalm++;
-  const target = real >= 1 && preCalm > 4 ? 100 : preV0 + (99 - preV0) * real * .97;
-  preVal += (target - preVal) * (RM ? 1 : .16); if (target === 100 && preVal > 99.4) preVal = 100;
+  // счётчик догоняет реальный прогресс по времени, а не по кадрам: на слабом устройстве он не «залипает» у 99
+  const target = real >= 1 && preCalm > 2 ? 100 : preV0 + (99 - preV0) * real * .97;
+  preVal += (target - preVal) * (RM ? 1 : 1 - Math.pow(.84, dtF)); if (target === 100 && preVal > 99.4) preVal = 100;
   const n = Math.floor(preVal); if (n !== preShown) { preShown = n; preN.innerHTML = ledHTML(String(n).padStart(3, '0')); }
   // минимум 1,3 с от начала загрузки страницы (знак успевает зажечься); если что-то зависло — не дольше 6 с после старта скрипта
   if ((preVal < 100 || nowT < (RM ? 200 : 1300)) && nowT - preT0 < 6000) return;

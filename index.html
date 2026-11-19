@@ -154,6 +154,9 @@ html{background:#0c0c0b}
 .pre-n .led{display:flex;gap:.12em;height:1em}.pre-n .led svg{height:100%;width:auto;flex:none}.pre-n .l{fill:currentColor}.pre-n .o{fill:currentColor;fill-opacity:.08}
 @media(prefers-reduced-motion:reduce){.pre-m i.l{background:#f4f1ea}.pre-m i.a{background:#ff6b1a}.pre{transition:opacity .3s}.pre.out{transform:none;opacity:0}}
 </style>
+<!-- без JavaScript (часть поисковиков, превью): прелоадер не держит экран, блоки с анимацией появления видны сразу —
+     тексты вписаны в HTML при сборке (scripts/build.py) -->
+<noscript><style>.pre{display:none!important}html.pre-on{overflow:auto}html body .rv,html.pre-on body .hero .rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <div class="pre" id="pre" aria-hidden="true"><div class="pre-in"><div class="pre-m"><i></i><i></i><i class="l" style="--d:825ms"></i><i class="l" style="--d:0ms"></i><i class="l" style="--d:55ms"></i><i></i><i></i><i></i><i class="l" style="--d:770ms"></i><i></i><i></i><i></i><i class="l" style="--d:110ms"></i><i></i><i class="l" style="--d:715ms"></i><i></i><i></i><i></i><i></i><i></i><i class="l" style="--d:165ms"></i><i class="l" style="--d:660ms"></i><i></i><i></i><i class="l" style="--d:940ms"></i><i></i><i></i><i class="l" style="--d:220ms"></i><i class="l" style="--d:605ms"></i><i></i><i></i><i></i><i></i><i></i><i class="l" style="--d:275ms"></i><i></i><i class="l" style="--d:550ms"></i><i></i><i></i><i></i><i class="l" style="--d:330ms"></i><i></i><i></i><i></i><i class="l" style="--d:495ms"></i><i class="l" style="--d:440ms"></i><i class="l" style="--d:385ms"></i><i></i><i class="l a" style="--d:1100ms"></i></div><div class="pre-n" id="preN"></div></div></div>
@@ -1113,25 +1116,25 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 </svg>
 
 <header class="hdr" id="hdr">
-  <a href="#top" class="mark" data-ta="aTop"><span class="pm" data-mark></span><span data-wmk></span></a>
+  <a href="#top" class="mark" data-ta="aTop" aria-label="Singlet — наверх"><span class="pm" data-mark></span><span data-wmk></span></a>
   <div class="tools">
-    <div class="lang" id="lang" role="group" data-ta="aLang"><span class="kn"></span><button type="button" data-l="ru" aria-pressed="true">RU</button><button type="button" data-l="en" aria-pressed="false">EN</button></div>
-    <button class="ib acc" data-modal data-ta="pilot"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h12a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5H9l-4 3v-3H4A1.5 1.5 0 0 1 2.5 13V6A1.5 1.5 0 0 1 4 4.5z"/><path d="M7 9.5h.01M10 9.5h.01M13 9.5h.01" stroke-width="2.4"/></svg><span class="tt" data-t="pilot"></span></button>
-    <button class="ib" id="menuBtn" aria-expanded="false" aria-controls="menu" data-ta="aMenu"></button>
+    <div class="lang" id="lang" role="group" data-ta="aLang" aria-label="Язык сайта"><span class="kn"></span><button type="button" data-l="ru" aria-pressed="true">RU</button><button type="button" data-l="en" aria-pressed="false">EN</button></div>
+    <button class="ib acc" data-modal data-ta="pilot" aria-label="Обсудить пилот"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h12a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5H9l-4 3v-3H4A1.5 1.5 0 0 1 2.5 13V6A1.5 1.5 0 0 1 4 4.5z"/><path d="M7 9.5h.01M10 9.5h.01M13 9.5h.01" stroke-width="2.4"/></svg><span class="tt" data-t="pilot">Обсудить пилот</span></button>
+    <button class="ib" id="menuBtn" aria-expanded="false" aria-controls="menu" data-ta="aMenu" aria-label="Меню"></button>
   </div>
 </header>
 
 <div class="menu" id="menu" inert aria-hidden="true">
   <div class="menu-col">
   <nav>
-    <a href="#demo" style="--i:0" data-t="nDemo"></a>
-    <a href="#features" style="--i:1" data-t="nFeat"></a>
-    <a href="#process" style="--i:2" data-t="nProc"></a>
-    <a href="#cases" style="--i:3" data-t="nCases"></a>
-    <a href="#apply" style="--i:4" data-t="nApply"></a>
-    <a href="#faq" style="--i:5" data-t="nFaq"></a>
+    <a href="#demo" style="--i:0" data-t="nDemo">Демо</a>
+    <a href="#features" style="--i:1" data-t="nFeat">Возможности</a>
+    <a href="#process" style="--i:2" data-t="nProc">Запуск</a>
+    <a href="#cases" style="--i:3" data-t="nCases">Кейсы</a>
+    <a href="#apply" style="--i:4" data-t="nApply">Заявка</a>
+    <a href="#faq" style="--i:5" data-t="nFaq">Вопросы</a>
   </nav></div>
-  <a class="menu-all" href="#all-cases"><span class="stk" aria-hidden="true"><i style="background-image:var(--im-salon)"></i><i style="background-image:var(--im-frx)"></i><i style="background-image:var(--im-green)"></i></span><span class="tx"><b data-t="cpBack"></b><small data-mall></small></span><span class="ar"><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></span></a>
+  <a class="menu-all" href="#all-cases"><span class="stk" aria-hidden="true"><i style="background-image:var(--im-salon)"></i><i style="background-image:var(--im-frx)"></i><i style="background-image:var(--im-green)"></i></span><span class="tx"><b data-t="cpBack">Все кейсы</b><small data-mall>11 внедрений Singlet</small></span><span class="ar"><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></span></a>
 </div>
 
 <main>
@@ -1139,13 +1142,13 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <section class="sec hero" id="top" data-tone="dark">
   <div class="wrap hero-g">
     <div class="glass rv" data-frost><canvas class="frost" aria-hidden="true"></canvas>
-      <h1 class="ws" data-t="heroH"></h1>
+      <h1 class="ws" data-t="heroH">ИИ-сотрудник для вашего бизнеса. <span class="dim">Берёт на&nbsp;себя работу, на&nbsp;которую команда тратила часы.</span></h1>
       <div class="g-mid">
-        <div class="big247"><span class="reels px" data-reel="24/7" data-n="8" data-dur="1.9s" data-stg=".12s" aria-label="24/7"></span><small data-t="hero247"></small></div>
-        <div class="chips" data-t="heroChips"></div>
+        <div class="big247"><span class="reels px" data-reel="24/7" data-n="8" data-dur="1.9s" data-stg=".12s" aria-label="24/7"></span><small data-t="hero247">На смене<br>без выходных</small></div>
+        <div class="chips" data-t="heroChips"><span class="chip"><i></i>Мессенджеры</span><span class="chip"><i></i>Почта</span><span class="chip"><i></i>Телефония</span><span class="chip"><i></i>CRM</span><span class="chip"><i></i>Ваши системы</span></div>
       </div>
       <div class="cta-row">
-        <button class="btn b-acc" data-modal><span class="lb"><span data-t="pilot"></span><small data-t="pilotSub"></small></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
+        <button class="btn b-acc" data-modal><span class="lb"><span data-t="pilot">Обсудить пилот</span><small data-t="pilotSub">Созвон без обязательств</small></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
       </div>
     </div>
   </div>
@@ -1156,13 +1159,13 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <section class="sec demo" id="demo" data-tone="light">
   <div class="wrap">
     <div class="demo-head">
-      <h2 class="h2 ws" data-t="demoH"></h2>
+      <h2 class="h2 ws" data-t="demoH">Посмотрите. <span class="dim">Как он работает.</span></h2>
       <div>
-        <div class="seg rv" role="tablist" data-ta="aScen" id="seg">
+        <div class="seg rv" role="tablist" data-ta="aScen" id="seg" aria-label="Сценарий">
           <span class="kn"></span>
-          <button role="tab" aria-selected="true" data-sc="salon" data-t="scSalon"></button>
-          <button role="tab" aria-selected="false" data-sc="rest" data-t="scRest"></button>
-          <button role="tab" aria-selected="false" data-sc="crm" data-t="scCrm"></button>
+          <button role="tab" aria-selected="true" data-sc="salon" data-t="scSalon">Салон</button>
+          <button role="tab" aria-selected="false" data-sc="rest" data-t="scRest">Ресторан</button>
+          <button role="tab" aria-selected="false" data-sc="crm" data-t="scCrm">Продажи</button>
         </div>
       </div>
     </div>
@@ -1172,7 +1175,7 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
         <div class="chat-b" id="chatB" aria-live="polite"></div>
       </div>
       <div class="dk log spot rv" style="--d:.1s">
-        <div class="log-h"><b data-t="logH"></b><span data-t="logSub"></span></div>
+        <div class="log-h"><b data-t="logH">Внутри</b><span data-t="logSub">что он делает за кадром</span></div>
         <div class="log-v"><canvas id="logCv"></canvas></div>
         <div class="log-l" id="logL"></div>
       </div>
@@ -1186,18 +1189,18 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
     <div class="fg">
       <div class="dk fg-l spot rv">
         <span class="pm" data-mark></span>
-        <h3 class="h3" data-t="fH"></h3>
-        <details class="mobile-details" data-mobile-details><summary data-t="featMore"></summary><p data-t="fP"></p><div class="tags" data-t="fTags"></div></details>
+        <h3 class="h3" data-t="fH">Самостоятельный сотрудник. <span class="dim">Не&nbsp;уходит домой и&nbsp;ничего не&nbsp;забывает.</span></h3>
+        <details class="mobile-details" data-mobile-details><summary data-t="featMore">Подробнее о сотруднике</summary><p data-t="fP">Общается с&nbsp;вами и&nbsp;вашими клиентами там, где удобно, выполняет задачи, прислушивается к&nbsp;команде и&nbsp;доводит работу до&nbsp;результата. Для малого, среднего и&nbsp;крупного бизнеса.</p><div class="tags" data-t="fTags"><span class="chip"><i></i>Клиентский сервис</span><span class="chip"><i></i>Продажи</span><span class="chip"><i></i>Операции</span><span class="chip"><i></i>Маркетинг</span><span class="chip"><i></i>Аналитика</span></div></details>
         <div class="sp"></div>
-        <button class="btn b-lit" data-modal><span class="lb" data-t="pilot"></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
+        <button class="btn b-lit" data-modal><span class="lb" data-t="pilot">Обсудить пилот</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
       </div>
-      <div class="fg-r" id="featureRail" data-ta="nFeat" tabindex="0">
-        <div class="dk fc spot rv"><div class="tx"><b data-t="f1"></b><span data-t="f1s"></span></div><div class="cv"><canvas data-dot="type"></canvas></div></div>
-        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f2"></b><span data-t="f2s"></span></div><div class="cv"><canvas data-dot="cal"></canvas></div></div>
-        <div class="dk fc spot rv"><div class="tx"><b data-t="f3"></b><span data-t="f3s"></span></div><div class="cv"><canvas data-dot="mem"></canvas></div></div>
-        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f4"></b><span data-t="f4s"></span></div><div class="cv"><canvas data-dot="hand"></canvas></div></div>
-        <div class="dk fc spot rv"><div class="tx"><b data-t="f5"></b><span data-t="f5s"></span></div><div class="cv"><canvas data-dot="eq"></canvas></div></div>
-        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f6"></b><span data-t="f6s"></span></div><div class="cv"><canvas data-dot="flow"></canvas></div></div>
+      <div class="fg-r" id="featureRail" data-ta="nFeat" tabindex="0" aria-label="Возможности">
+        <div class="dk fc spot rv"><div class="tx"><b data-t="f1">Понимает.</b><span data-t="f1s">Погружается в&nbsp;контекст вашего бизнеса через базу знаний и&nbsp;понимает свою роль в&nbsp;работе.</span></div><div class="cv"><canvas data-dot="type"></canvas></div></div>
+        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f2">Работает.</b><span data-t="f2s">Самостоятельно выполняет действия во&nbsp;внутренних и&nbsp;внешних системах.</span></div><div class="cv"><canvas data-dot="cal"></canvas></div></div>
+        <div class="dk fc spot rv"><div class="tx"><b data-t="f3">Помнит.</b><span data-t="f3s">Каждого клиента, каждое взаимодействие, каждое сообщение.</span></div><div class="cv"><canvas data-dot="mem"></canvas></div></div>
+        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f4">Зовёт человека.</b><span data-t="f4s">Когда нужен живой ответ, совет или помощь. Вместе с&nbsp;историей.</span></div><div class="cv"><canvas data-dot="hand"></canvas></div></div>
+        <div class="dk fc spot rv"><div class="tx"><b data-t="f5">Слышит.</b><span data-t="f5s">Расшифровывает голосовые и&nbsp;говорит голосом — в&nbsp;том числе по&nbsp;телефону.</span></div><div class="cv"><canvas data-dot="eq"></canvas></div></div>
+        <div class="dk fc spot rv" style="--d:.06s"><div class="tx"><b data-t="f6">Везде.</b><span data-t="f6s">Поддерживает любой канал связи. Одна память и&nbsp;одна база.</span></div><div class="cv"><canvas data-dot="flow"></canvas></div></div>
       </div>
       <div class="rail-bar mobile-only" data-bar="featureRail" aria-hidden="true"></div>
     </div>
@@ -1209,11 +1212,11 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
   <div class="proc-s">
     <div class="proc-v" aria-hidden="true"></div>
     <div class="proc-t">
-      <div class="ps on"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st1"></span><h2 class="h2" data-t="p1"></h2><p data-t="p1s"></p></div>
-      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st2"></span><h2 class="h2" data-t="p2"></h2><p data-t="p2s"></p></div>
-      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st3"></span><h2 class="h2" data-t="p3"></h2><p data-t="p3s"></p></div>
-      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st4"></span><h2 class="h2" data-t="p4"></h2><p data-t="p4s"></p></div>
-      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st5"></span><h2 class="h2" data-t="p5"></h2><p data-t="p5s"></p></div>
+      <div class="ps on"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st1">Шаг 1 из 5</span><h2 class="h2" data-t="p1">Вы рассказываете о&nbsp;процессах.</h2><p data-t="p1s">Короткий созвон: обсудим ваши бизнес-процессы и&nbsp;найдём точки автоматизации.</p></div>
+      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st2">Шаг 2 из 5</span><h2 class="h2" data-t="p2">Мы собираем базу знаний.</h2><p data-t="p2s">Всё, что известно о&nbsp;вашем бизнесе: физическое — адреса, сотрудники, услуги, регламенты — и&nbsp;цифровое: всё, что о&nbsp;вас есть в&nbsp;интернете и&nbsp;ваших системах.</p></div>
+      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st3">Шаг 3 из 5</span><h2 class="h2" data-t="p3">Обучаем и&nbsp;настраиваем.</h2><p data-t="p3s">Встраиваем сотрудника в&nbsp;ваши бизнес-процессы: объясняем роль и&nbsp;задачи, проверяем, как он их выполняет.</p></div>
+      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st4">Шаг 4 из 5</span><h2 class="h2" data-t="p4">Проверяем на&nbsp;ваших сценариях.</h2><p data-t="p4s">Выводим сотрудника на&nbsp;тестовый период и&nbsp;докручиваем до&nbsp;полноценной работы в&nbsp;продакшене.</p></div>
+      <div class="ps"><div class="ps-v" aria-hidden="true"></div><span class="stp" data-t="st5">Шаг 5 из 5</span><h2 class="h2" data-t="p5">Singlet выходит на&nbsp;смену.</h2><p data-t="p5s">Работает в&nbsp;ваших каналах и&nbsp;системах, а&nbsp;вы видите каждое его действие и&nbsp;результат в&nbsp;панели управления.</p></div>
       <div class="psteps" id="psteps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     </div>
   </div>
@@ -1221,19 +1224,19 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 
 <!-- ЗАЯВЛЕНИЕ -->
 <section class="sec stm" id="stm" data-tone="dark">
-  <div class="stm-s"><p id="stmP" data-t="stm"></p></div>
+  <div class="stm-s"><p id="stmP" data-t="stm">Запуск — только первый шаг. Дальше Singlet разбирает каждый диалог, пополняет базу знаний и&nbsp;с&nbsp;каждой неделей становится <span class="o">полезнее</span>.</p></div>
 </section>
 
 <!-- КЕЙСЫ -->
 <section class="sec cases" id="cases" data-tone="dark">
   <div class="cz-stage" id="czStage">
     <div class="wrap cz-top">
-      <h2 class="h2" data-t="casesH"></h2>
-      <div class="cz-r"><a class="btn b-ghost sm cz-all desktop-only" href="#all-cases"><span class="lb" data-czall></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a><div class="cz-cnt"><b id="czN">01</b><span id="czOf"></span></div></div>
+      <h2 class="h2" data-t="casesH">Уже на смене. <span class="dim">Кейс за кейсом.</span></h2>
+      <div class="cz-r"><a class="btn b-ghost sm cz-all desktop-only" href="#all-cases"><span class="lb" data-czall>Все 11 кейсов</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a><div class="cz-cnt"><b id="czN">01</b><span id="czOf">из 6</span></div></div>
     </div>
-    <div class="cz-scene"><div class="cz-ring" id="czRing" data-ta="nCases" tabindex="0"></div></div>
-    <div class="wrap cz-nav"><div class="cz-bar" id="czBar"></div><div class="cz-arr desktop-only"><button class="ib" type="button" id="czPrev" data-ta="cpPrev"><svg viewBox="0 0 15 15"><use href="#pa"/></svg></button><button class="ib" type="button" id="czNext" data-ta="cpNext"><svg viewBox="0 0 15 15"><use href="#pa"/></svg></button></div></div>
-    <div class="wrap mobile-only cz-allm"><a class="btn b-ghost full cz-all" href="#all-cases"><span class="lb" data-czall></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a></div>
+    <div class="cz-scene"><div class="cz-ring" id="czRing" data-ta="nCases" tabindex="0" aria-label="Кейсы"><article class="cz" data-i="0"><div class="cz-img" style="background-image:var(--im-green)"><span class="logo">Супра</span><div class="met"><div class="led" role="img" aria-label="2437"></div><p>заявок на бронь за месяц — без оператора</p></div></div><div class="cz-tx"><h3>Гоги</h3><p class="role">Голосовой ИИ-администратор ресторанной сети: принимает звонки и выполняет типовые операции без участия сотрудника.</p><div class="ba"><div><span>Раньше</span><p>Каждый звонок принимали сотрудники: уточняли детали, проверяли время и вручную вносили бронь.</p></div><div><span>Теперь</span><p>Гоги берёт четверть входящих звонков: бронирует, меняет брони и ставит гостей в живую очередь.</p></div></div><a class="btn b-ghost sm go" href="#case-gogi"><span class="lb">Открыть кейс</span></a></div></article><article class="cz" data-i="1"><div class="cz-img" style="background-image:var(--im-salon)"><span class="logo">Kate Studio</span><div class="met"><div class="led" role="img" aria-label="85%"></div><p>диалогов и операций с записью — без администратора</p></div></div><div class="cz-tx"><h3>Алина</h3><p class="role">ИИ-администратор салона красоты: консультирует клиентов и управляет записями в YCLIENTS.</p><div class="ba"><div><span>Раньше</span><p>Вечерние сообщения ждали утра, а администраторы часами подбирали окна и отвечали на одни и те же вопросы.</p></div><div><span>Теперь</span><p>Алина отвечает круглосуточно, сама записывает, переносит и отменяет визиты и заполняет освободившиеся окна.</p></div></div><a class="btn b-ghost sm go" href="#case-alina"><span class="lb">Открыть кейс</span></a></div></article><article class="cz" data-i="2"><div class="cz-img" style="background-image:var(--im-frx)"><span class="logo">Fora</span><div class="met"><div class="led" role="img" aria-label="30→2"></div><p>минут на отчёт по воронке — было и стало</p></div></div><div class="cz-tx"><h3>ИИ-ассистент по сделкам</h3><p class="role">Текстовый и голосовой ассистент для работы со сделками и воронкой продаж.</p><div class="ba"><div><span>Раньше</span><p>Чтобы найти сделку, поменять статус или собрать отчёт, менеджеры открывали CRM и копались в фильтрах.</p></div><div><span>Теперь</span><p>Ассистент находит сделки, вносит изменения и собирает отчёты по обычному сообщению — текстом или голосом.</p></div></div><a class="btn b-ghost sm go" href="#case-fora"><span class="lb">Открыть кейс</span></a></div></article><article class="cz" data-i="3"><div class="cz-img" style="background-image:var(--im-melon)"><span class="logo">MelonPanda</span><div class="met"><div class="led" role="img" aria-label="+15%"></div><p>конверсии из консультации в добавление в корзину</p></div></div><div class="cz-tx"><h3>ИИ-консультант магазина</h3><p class="role">Подбирает японскую косметику под особенности и запрос покупателя.</p><div class="ba"><div><span>Раньше</span><p>Консультант вручную выяснял потребности и проверял состав, цену и наличие — покупатели ждали в очереди чатов.</p></div><div><span>Теперь</span><p>ИИ-консультант за минуты собирает подборку из доступных товаров и объясняет, чем они отличаются.</p></div></div><a class="btn b-ghost sm go" href="#case-melonpanda"><span class="lb">Открыть кейс</span></a></div></article><article class="cz" data-i="4"><div class="cz-img" style="background-image:var(--im-meet)"><span class="logo">TeamGroup</span><div class="met"><div class="led" role="img" aria-label="60→7"></div><p>минут на разбор часовой встречи — было и стало</p></div></div><div class="cz-tx"><h3>ИИ-аналитик встреч</h3><p class="role">Разбирает записи встреч отдела продаж и оценивает работу менеджеров.</p><div class="ba"><div><span>Раньше</span><p>Руководитель прослушивал записи целиком и оценивал менеджеров субъективно.</p></div><div><span>Теперь</span><p>Аналитик сам готовит резюме каждой встречи и оценивает всех менеджеров по одной методике.</p></div></div><a class="btn b-ghost sm go" href="#case-teamgroup-meetings"><span class="lb">Открыть кейс</span></a></div></article><article class="cz" data-i="5"><div class="cz-img" style="background-image:var(--im-vsn)"><span class="logo">Al Falasi / Harb Legal</span><div class="met"><div class="led" role="img" aria-label="20→1"></div><p>минут до первого ответа клиенту — было и стало</p></div></div><div class="cz-tx"><h3>ИИ-координатор первой линии</h3><p class="role">Принимает обращения в юридическую фирму и передаёт юристу уже подготовленную заявку.</p><div class="ba"><div><span>Раньше</span><p>Обращения приходили без важных деталей, и сотрудники вручную уточняли суть, срочность и юрисдикцию.</p></div><div><span>Теперь</span><p>Координатор сам задаёт уточняющие вопросы, заполняет карточку и направляет заявку нужному юристу.</p></div></div><a class="btn b-ghost sm go" href="#case-harb-legal"><span class="lb">Открыть кейс</span></a></div></article></div></div>
+    <div class="wrap cz-nav"><div class="cz-bar" id="czBar"></div><div class="cz-arr desktop-only"><button class="ib" type="button" id="czPrev" data-ta="cpPrev" aria-label="Предыдущий кейс"><svg viewBox="0 0 15 15"><use href="#pa"/></svg></button><button class="ib" type="button" id="czNext" data-ta="cpNext" aria-label="Следующий кейс"><svg viewBox="0 0 15 15"><use href="#pa"/></svg></button></div></div>
+    <div class="wrap mobile-only cz-allm"><a class="btn b-ghost full cz-all" href="#all-cases"><span class="lb" data-czall>Все 11 кейсов</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a></div>
   </div>
 </section>
 
@@ -1245,30 +1248,30 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <!-- ЗАЯВКА -->
 <section class="sec apply" id="apply" data-tone="light">
   <div class="wrap">
-    <h2 class="h2 ws" data-t="applyH"></h2>
+    <h2 class="h2 ws" data-t="applyH">Расскажите. <span class="dim">Что хотите автоматизировать.</span></h2>
     <div class="apply-g">
-      <aside class="wh nx rv"><h3 class="desktop-only" data-t="nxH"></h3><details class="mobile-details" data-mobile-details>
-        <summary data-t="nxH"></summary>
+      <aside class="wh nx rv"><h3 class="desktop-only" data-t="nxH">Что будет дальше</h3><details class="mobile-details" data-mobile-details>
+        <summary data-t="nxH">Что будет дальше</summary>
         <ol class="next">
-          <li><span>1</span><div data-t="nx1"></div></li>
-          <li><span>2</span><div data-t="nx2"></div></li>
-          <li><span>3</span><div data-t="nx3"></div></li>
+          <li><span>1</span><div data-t="nx1">Напишем вам и&nbsp;договоримся о&nbsp;коротком созвоне.</div></li>
+          <li><span>2</span><div data-t="nx2">Разберём ваши процессы и&nbsp;найдём, что можно автоматизировать.</div></li>
+          <li><span>3</span><div data-t="nx3">Предложим, каким будет ваш ИИ-сотрудник и&nbsp;с&nbsp;чего начать.</div></li>
         </ol>
-        <p class="note" data-t="nxNote"></p></details>
+        <p class="note" data-t="nxNote">Без обязательств: на созвоне просто разберёмся, будет ли польза.</p></details>
       </aside>
       <div class="wh fcard rv" style="--d:.1s">
         <form class="js-form" id="mainForm" novalidate>
           <div class="form-body">
             <div class="fgrid">
-              <div class="f" data-v="name"><input class="f__in" id="fName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="fName-m" autocomplete="name" required><label class="f__lb" for="fName"><span class="f__name" data-t="fWho"></span><span class="f__msg" id="fName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-              <div class="f f--area" data-v="req"><textarea class="f__in" id="fMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="fMsg-m" required></textarea><label class="f__lb" for="fMsg"><span class="f__name" data-t="fWhat"></span><span class="f__msg" id="fMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-              <div class="f" data-v="contact"><input class="f__in" id="fCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="fCt-m" autocapitalize="off" spellcheck="false" autocomplete="email" required><label class="f__lb" for="fCt"><span class="f__name" data-t="fHow"></span><span class="f__msg" id="fCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-              <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd"></span></label>
+              <div class="f" data-v="name"><input class="f__in" id="fName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="fName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="fName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="fName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+              <div class="f f--area" data-v="req"><textarea class="f__in" id="fMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="fMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="fMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="fMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+              <div class="f" data-v="contact"><input class="f__in" id="fCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="fCt-m" autocapitalize="off" spellcheck="false" autocomplete="email" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="fCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="fCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+              <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd">Согласен на обработку персональных данных</span></label>
             </div>
-            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send"></button><p class="form-note" data-t="sendNote"></p></div>
+            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send">Отправить заявку</button><p class="form-note" data-t="sendNote">Напишем, чтобы договориться о&nbsp;времени созвона</p></div>
             <div class="sr" role="status" aria-live="polite"></div>
           </div>
-          <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT"></h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone"></button></div>
+          <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Заявка отправлена</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
         </form>
       </div>
     </div>
@@ -1278,16 +1281,16 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <!-- ВОПРОСЫ -->
 <section class="sec faq" id="faq" data-tone="dark">
   <div class="wrap">
-    <h2 class="h2 ws" data-t="faqH"></h2>
+    <h2 class="h2 ws" data-t="faqH">Вопросы. <span class="dim">И&nbsp;ответы.</span></h2>
     <div class="faq-g">
-      <div id="faqList"></div>
-      <aside class="wh direct rv" style="--d:.1s"><details class="mobile-details" data-mobile-details><summary data-t="directMore"></summary>
+      <div id="faqList"><div class="card qcat rv"><small>Запуск</small><div class="q"><button type="button" aria-expanded="false">Что нужно от нас для старта?<span class="cv"></span></button><div class="an"><div><p>Короткий созвон и доступы к системам, с которыми сотрудник будет работать. Базу знаний о вашем бизнесе мы соберём сами — вам останется её проверить.</p></div></div></div><div class="q"><button type="button" aria-expanded="false">С какими системами он работает?<span class="cv"></span></button><div class="an"><div><p>С теми, где уже идёт ваша работа: мессенджеры, почта, телефония, CRM, системы записи и бронирования, рекламные кабинеты, системы управления проектами. Если готовой интеграции нет — подключаем через API и собственный MCP Singlet.</p></div></div></div><div class="q"><button type="button" aria-expanded="false">Сколько длится запуск?<span class="cv"></span></button><div class="an"><div><p>Зависит от задач и числа систем. Сначала — тестовый период на ваших сценариях, затем полноценная работа.</p></div></div></div></div><div class="card qcat rv"><small>Работа</small><div class="q"><button type="button" aria-expanded="false">Он заменит сотрудников?<span class="cv"></span></button><div class="an"><div><p>Он забирает рутину — повторяющиеся задачи, на которые команда тратила часы. Люди остаются там, где нужны решения, доверие и нестандартные случаи.</p></div></div></div><div class="q"><button type="button" aria-expanded="false">Что, если он не знает ответа?<span class="cv"></span></button><div class="an"><div><p>Он опирается на вашу базу знаний и не придумывает. Если ответа нет или нужен человек — передаёт задачу сотруднику вместе с историей.</p></div></div></div><div class="q"><button type="button" aria-expanded="false">Кто управляет его знаниями и правилами?<span class="cv"></span></button><div class="an"><div><p>Вы — через панель управления: знания, инструкции, цели и задачи. Все изменения видны в истории.</p></div></div></div></div></div>
+      <aside class="wh direct rv" style="--d:.1s"><details class="mobile-details" data-mobile-details><summary data-t="directMore">Написать напрямую</summary>
         <span class="av"><span data-mark style="display:block;width:28px;height:28px;color:var(--lit)"></span></span>
-        <h3 data-t="dH"></h3>
-        <p data-t="dP"></p>
+        <h3 data-t="dH">Не нашли ответ?</h3>
+        <p data-t="dP">Напишите нам напрямую — ответит человек из команды Singlet.</p>
         <div class="row">
-          <a class="btn b-acc full" href="#" data-todo="telegram"><span class="lb" data-t="dTg"></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
-          <a class="btn b-line full" href="#" data-todo="email"><span class="lb" data-t="dMail"></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
+          <a class="btn b-acc full" href="#" data-todo="telegram"><span class="lb" data-t="dTg">Написать в Telegram</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
+          <a class="btn b-line full" href="#" data-todo="email"><span class="lb" data-t="dMail">Написать на почту</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
         </div></details>
       </aside>
     </div>
@@ -1298,13 +1301,13 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <footer class="sec foot" data-tone="dark">
   <div class="wrap">
     <div class="foot-g">
-      <h2 class="h2 ws" data-t="footH"></h2>
+      <h2 class="h2 ws" data-t="footH">Наймите сотрудника, <span class="dim">который выходит на&nbsp;смену сегодня.</span></h2>
       <div class="foot-r rv">
-        <button class="btn b-acc" data-modal><span class="lb"><span data-t="pilot"></span><small data-t="pilotSub"></small></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
-        <nav class="foot-l"><a class="ul" href="#demo" data-t="nDemo"></a><a class="ul" href="#features" data-t="nFeat"></a><a class="ul" href="#process" data-t="nProc"></a><a class="ul" href="#cases" data-t="nCases"></a><a class="ul" href="#faq" data-t="nFaq"></a></nav>
+        <button class="btn b-acc" data-modal><span class="lb"><span data-t="pilot">Обсудить пилот</span><small data-t="pilotSub">Созвон без обязательств</small></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
+        <nav class="foot-l"><a class="ul" href="#demo" data-t="nDemo">Демо</a><a class="ul" href="#features" data-t="nFeat">Возможности</a><a class="ul" href="#process" data-t="nProc">Запуск</a><a class="ul" href="#cases" data-t="nCases">Кейсы</a><a class="ul" href="#faq" data-t="nFaq">Вопросы</a></nav>
       </div>
     </div>
-    <div class="foot-b"><span data-t="footBy"></span><span>© 2026</span></div>
+    <div class="foot-b"><span data-t="footBy">Singlet — продукт FEIP</span><span>© 2026</span></div>
     <div class="reels px" id="wmFoot" data-reel="SINGLET" data-n="9" data-dur="2.2s" data-stg=".1s" aria-hidden="true"></div>
   </div>
 </footer>
@@ -1313,27 +1316,27 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <div class="cpage" id="cpage" inert role="region" aria-hidden="true"><div class="cp-in" id="cpIn"></div></div>
 
 <!-- «ОСТРОВ» НА СТРАНИЦЕ КЕЙСА: капсула внизу раскрывается в список всех кейсов -->
-<div class="isl" id="isl"><div class="isl-bd" data-isl-close></div><div class="isl-box"><div class="isl-panel" inert><div class="isl-h"><b data-t="cpBack"></b><span id="islC"></span><button class="isl-x" type="button" data-isl-close data-ta="aClose"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div><div class="isl-l"></div></div><button class="isl-pill" type="button" aria-expanded="false" data-ta="aIsl"><span class="th"></span><span class="tx"><small id="islN"></small><b id="islT"></b></span><span class="ic"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1.4"/><rect x="12" y="3" width="5" height="5" rx="1.4"/><rect x="3" y="12" width="5" height="5" rx="1.4"/><rect x="12" y="12" width="5" height="5" rx="1.4"/></svg></span></button></div></div>
+<div class="isl" id="isl"><div class="isl-bd" data-isl-close></div><div class="isl-box"><div class="isl-panel" inert><div class="isl-h"><b data-t="cpBack">Все кейсы</b><span id="islC"></span><button class="isl-x" type="button" data-isl-close data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div><div class="isl-l"></div></div><button class="isl-pill" type="button" aria-expanded="false" data-ta="aIsl" aria-label="Список кейсов"><span class="th"></span><span class="tx"><small id="islN"></small><b id="islT"></b></span><span class="ic"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1.4"/><rect x="12" y="3" width="5" height="5" rx="1.4"/><rect x="3" y="12" width="5" height="5" rx="1.4"/><rect x="12" y="12" width="5" height="5" rx="1.4"/></svg></span></button></div></div>
 
 <div class="ov" id="ov"></div>
 <div class="modal" id="modal" inert aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mT" tabindex="-1">
-  <button class="grab" id="grab" type="button" data-ta="sheetHandle"></button>
-  <div class="mh"><h3 id="mT" data-t="pilot"></h3><button class="mx" id="mx" data-ta="aClose"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
+  <button class="grab" id="grab" type="button" data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
+  <div class="mh"><h3 id="mT" data-t="pilot">Обсудить пилот</h3><button class="mx" id="mx" data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
   <form class="js-form" id="mForm" novalidate style="display:contents">
     <div class="mb" id="mBody">
       <div class="form-body">
-        <p class="lead2" data-t="mLead"></p>
+        <p class="lead2" data-t="mLead">Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.</p>
         <div style="display:grid;gap:var(--gap)">
-          <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required><label class="f__lb" for="mName"><span class="f__name" data-t="fWho"></span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat"></span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow"></span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd"></span></label>
+          <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="mName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+          <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+          <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd">Согласен на обработку персональных данных</span></label>
         </div>
         <div class="sr" role="status" aria-live="polite"></div>
       </div>
-      <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT"></h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone"></button></div>
+      <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Заявка отправлена</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
     </div>
-    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send"></button><p class="form-note" data-t="sendNote"></p></div>
+    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send">Отправить заявку</button><p class="form-note" data-t="sendNote">Напишем, чтобы договориться о&nbsp;времени созвона</p></div>
   </form>
 </div>
 <script>window.__pre&&(__pre.cap=94)</script>
@@ -2604,6 +2607,7 @@ const applyLang = first => {
   if (cpOpen) { const y = cpage.scrollTop; if (cpOpen === 'all') openAll(); else openCase(cpOpen); cpage.scrollTop = y; } else document.title = tt('title');
   if (!first) { requestAnimationFrame(() => setSeg(segActive())); if (demoOn) startSc(curSc); scrollDirty = true; }
   try { localStorage.setItem('sg-lang', LANG); } catch (e) {}
+  partShapes();  // фигуры частиц — по готовой вёрстке: высота текстов зависит от языка
 };
 $$('button', langEl).forEach(b => b.addEventListener('click', () => { if (b.dataset.l === LANG) return; LANG = b.dataset.l; applyLang(false);
   // ссылка отражает язык — ей можно поделиться, и поисковик видит английскую версию по ?lang=en
@@ -2614,7 +2618,7 @@ let scrollDirty = true, lastScrollT = -1e9;
 applyLang(true);
 $$('.rv,.ws').forEach(el => io.observe(el));
 czSize(); addEventListener('resize', () => { czSize(); czLC = -1; });
-requestAnimationFrame(() => setSeg(sbt[0])); document.fonts && document.fonts.ready.then(() => setSeg(segActive()));
+requestAnimationFrame(() => setSeg(sbt[0])); document.fonts && document.fonts.ready.then(() => { setSeg(segActive()); partShapes(); });
 route();
 
 /* ═════════ ЕДИНЫЙ ЦИКЛ ═════════ */

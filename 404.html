@@ -133,7 +133,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   --ink-soft:#64615b;
   --f:"Onest",sans-serif;
   --ease:cubic-bezier(.2,.8,.2,1); --ease2:cubic-bezier(.65,0,.35,1); --reel:cubic-bezier(.15,.85,.12,1);
-  --pad:clamp(16px,2.6vw,44px); --t:.9s;
+  --pad:max(clamp(16px,2.6vw,44px),env(safe-area-inset-left),env(safe-area-inset-right)); --t:.9s;
   /* смена темы: фон, текст, шапка и элементы перетекают одновременно — одна длительность и кривая (в JS — THEME_MS) */
   --tt:.45s; --te:cubic-bezier(.45,0,.25,1);
   --dots-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='.8' fill='%23f4f1ea' fill-opacity='.08'/%3E%3C/svg%3E");
@@ -310,8 +310,8 @@ main,footer{position:relative;z-index:1}
 .chat-h small{font-size:13px;color:var(--ink-soft)}
 .chat-h .chn{margin-left:auto;height:32px;padding:0 14px;border-radius:999px;background:var(--fill);font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
 /* лента чата: прижата к низу, история уходит вверх под мягкий край; на мыши — листается колесом */
-.chat-b{flex:1;min-height:0;display:flex;flex-direction:column-reverse;padding:8px 10px 8px;overflow:hidden;overflow-anchor:none;-webkit-mask-image:linear-gradient(transparent,#000 40px);mask-image:linear-gradient(transparent,#000 40px);transition:opacity .3s}
-@media(hover:hover) and (pointer:fine){.chat-b{overflow-y:auto;scrollbar-width:none}.chat-b::-webkit-scrollbar{display:none}}
+.chat-b{flex:1;min-height:0;display:flex;flex-direction:column-reverse;padding:8px 10px 8px;overflow-x:hidden;overflow-y:auto;overflow-anchor:none;scrollbar-width:thin;transition:opacity .3s}
+.chat-b>.inline-event{display:none}
 .chat-b.clr,.log-l.clr{opacity:0}
 .mr{flex:none;display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
 .mr.open{grid-template-rows:1fr}
@@ -324,8 +324,8 @@ main,footer{position:relative;z-index:1}
 .m.h em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px}
 .m.sys{align-self:center;background:none;font-size:13px;color:var(--ink-soft);padding:4px 10px}
 .m.v{display:flex;align-items:center;gap:12px}
-.m.v .plb{width:34px;height:34px;border-radius:50%;background:var(--ink);flex:none;position:relative}
-.m.v .plb:after{content:"";position:absolute;left:13px;top:11px;border-left:10px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.voice-note{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--lit);flex:none;display:grid;place-items:center}
+.voice-note svg{width:18px;height:18px}
 .m.v .wv{display:flex;gap:2px;align-items:center;height:24px}
 .m.v .wv i{width:3px;border-radius:2px;background:#8c8a86}
 .m .tr{display:block;margin-top:6px;font-size:13px;color:var(--ink-soft)}
@@ -432,6 +432,7 @@ main,footer{position:relative;z-index:1}
 .tv .cz-cnt b{transition:color var(--tt) var(--te)}
 .cz-scene{position:absolute;inset:0;z-index:1}
 .cz-ring{position:absolute;left:50%;top:56%;width:0;height:0;--k:1}
+.cz-item{display:contents}
 .cz{position:absolute;will-change:transform;left:calc(var(--cw)/-2);top:calc(var(--ch)/-2);width:var(--cw);height:var(--ch);border-radius:28px;background:#171715;color:var(--lit);box-shadow:inset 0 0 0 1px rgba(244,241,234,.09);display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:calc(26px*var(--k));padding:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;cursor:pointer}
 .cz-dim{position:absolute;inset:0;border-radius:inherit;background:#0c0c0b;pointer-events:none;will-change:opacity;z-index:5}
 .cz-img{position:relative;border-radius:18px;background-size:cover;background-position:center;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:14px}
@@ -472,7 +473,7 @@ main,footer{position:relative;z-index:1}
 #czPrev svg{transform:scaleX(-1)}
 @media(hover:hover){#czPrev:not(:disabled):hover svg{transform:scaleX(-1) scale(1.1)}}
 /* ── «СЛЕДУЮЩИЙ КЕЙС — ВАШ»: карточка наплывает снизу вверх и раскрывается на весь экран ── */
-.you{height:calc(var(--vh,1vh)*250)}
+#you{height:calc(var(--vh,1vh)*250)}
 .you-st{position:sticky;top:0;height:100vh;height:calc(var(--vh,1vh)*100);overflow:hidden}
 .you-c .you-in{width:min(1000px,calc(100vw - 48px))}
 .you-c{position:absolute;inset:-48px;border-radius:40px;background:var(--paper) var(--dots-d);color:var(--ink);display:grid;place-items:center;text-align:center;transform-origin:50% 50%;will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:perspective(1600px) translate3d(0,58vh,0) rotateX(16deg) scale(.7);opacity:.5}
@@ -487,9 +488,9 @@ main,footer{position:relative;z-index:1}
 .you-in .b-ghost:before{background:radial-gradient(120px circle at var(--bx,50%) var(--by,50%),rgba(18,18,17,.06),transparent 70%)}
 @media(max-width:860px){
   .cases{height:auto!important;padding:100px 0 40px}
-  .cz-stage{position:relative;height:auto;overflow:visible}
+  .cz-stage{position:relative;height:auto;min-height:0;overflow:visible}
   .cz-top{position:relative;top:0;padding:0 var(--pad);display:block}.cz-cnt{display:none}
-  .cz-scene{position:relative;inset:auto}
+  .cz-scene{position:relative;inset:auto;touch-action:auto}
   .cz-ring{position:relative;left:auto;top:auto;width:auto;height:auto;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:24px var(--pad) 16px;scroll-padding:0 var(--pad);scrollbar-width:none;--k:1}
   .cz-ring::-webkit-scrollbar{display:none}
   .cz{position:relative;left:auto;top:auto;flex:0 0 86%;width:auto;height:auto;grid-template-columns:1fr;visibility:visible!important;scroll-snap-align:start;gap:14px}
@@ -690,7 +691,7 @@ main,footer{position:relative;z-index:1}
 @media(max-width:900px){.foot-g{grid-template-columns:1fr}.foot-r{align-items:flex-start}}
 
 /* ── МЕНЮ ── */
-.menu{position:fixed;inset:0;z-index:90;background:#0c0c0b var(--dots-l);color:var(--lit);display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:center;align-items:end;column-gap:48px;row-gap:36px;padding:96px var(--pad) 48px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
+.menu{position:fixed;inset:0;z-index:90;background:#0c0c0b var(--dots-l);color:var(--lit);display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:center;align-content:safe center;align-items:end;column-gap:48px;row-gap:36px;padding:96px var(--pad) calc(48px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
 .menu.open{opacity:1;pointer-events:auto}
 .menu nav{display:flex;flex-direction:column}
 .menu nav a{--dl:calc(var(--i)*50ms);align-self:flex-start;font-weight:500;font-size:clamp(40px,6vw,92px);letter-spacing:-.03em;line-height:1.12;color:rgba(244,241,234,.42);transform:translateY(30px);opacity:0;transition:color .2s,translate .3s var(--ease),transform .7s var(--ease) var(--dl),opacity .6s var(--dl)}
@@ -720,7 +721,7 @@ main,footer{position:relative;z-index:1}
 .menu-all .tx{padding-right:56px}
 
 /* ── МОДАЛКА / ШТОРКА ── */
-.ov{position:fixed;inset:0;z-index:200;background:rgba(12,12,11,.6);opacity:0;pointer-events:none;transition:opacity .35s}
+.ov{position:fixed;inset:0;z-index:200;background:rgba(12,12,11,.6);opacity:0;pointer-events:none;touch-action:none;transition:opacity .35s}
 .ov.open{opacity:1;pointer-events:auto}
 .modal{position:fixed;z-index:210;left:50%;top:50%;width:min(520px,calc(100% - 32px));max-height:calc(100vh - 48px);display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border-radius:28px;opacity:0;pointer-events:none;transform:translate(-50%,-46%) scale(.98);transition:opacity .35s,transform .5s var(--ease);outline:none}
 .modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
@@ -737,13 +738,6 @@ main,footer{position:relative;z-index:1}
 .mf:before{content:"";position:absolute;left:0;right:0;bottom:100%;height:32px;background:linear-gradient(transparent,var(--surface));opacity:var(--fade,0);pointer-events:none}
 .modal.done .mh h3{visibility:hidden}
 .modal.done .mf{display:none}
-@media(max-width:700px){
-  .modal{left:0;right:0;top:auto;bottom:0;width:100%;height:95vh;height:95svh;max-height:none;border-radius:28px 28px 0 0;transform:translateY(100%);opacity:1}
-  .modal.open{transform:translateY(var(--dy,0px))}
-  .modal.drag{transition:none}
-  .modal .grab{display:block;width:44px;height:5px;border-radius:9px;background:#d4d1c9;margin:10px auto 0}
-  .mh{padding-top:12px}
-}
 /* Компактные мобильные сцены. Подробности раскрываются без потери контекста. */
 .mobile-only{display:none}
 .mobile-details>summary{display:none}
@@ -754,7 +748,7 @@ main,footer{position:relative;z-index:1}
 .modal .mh,.modal .mf,.modal .grab{flex-shrink:0}
 .f.is-err .f__ic:before,.f.is-warn .f__ic:before{font-family:var(--f)}
 @media(max-width:860px){
-  :root{--pad:16px}
+  :root{--pad:max(16px,env(safe-area-inset-left),env(safe-area-inset-right))}
   html{scroll-padding-top:0}
   body{font-size:16px}
   .sec{scroll-margin-top:76px}
@@ -765,10 +759,11 @@ main,footer{position:relative;z-index:1}
   .hdr:before{inset:0 0 -12px}
   .wh,.dk,.card{border-radius:24px}
   .rv{transition-delay:0s}
+  .sec:not(.hero) .rv,.sec:not(.hero) .ws .w{opacity:1;transform:none}
   .mobile-details>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;font-size:16px}
   .mobile-details>summary:after{content:'+';font-size:24px;line-height:1;font-weight:400;flex:none}
   .mobile-details[open]>summary:after{content:'−'}
-  .hero{min-height:calc(var(--vh,1vh)*100);padding-top:226px;justify-content:space-between}
+  .hero{min-height:calc(var(--vh,1vh)*100);padding-top:clamp(108px,calc(var(--vh,1vh)*38 - 95px),226px);justify-content:space-between}
   .hero-g{flex:1;align-items:flex-end;width:100%;padding-bottom:12px}
   .glass{padding:24px 20px;border-radius:26px}
   .hero h1{font-size:clamp(28px,7.5vw,38px);letter-spacing:-.028em;margin-bottom:24px}
@@ -788,9 +783,10 @@ main,footer{position:relative;z-index:1}
   .seg button{flex:1;min-width:0;padding:0 8px;font-size:14px}
   .demo-g{display:block}
   .log{display:none}
-  .chat{height:clamp(420px,122vw,520px);padding:6px}
+  .chat{height:clamp(330px,min(122vw,calc(var(--vh,1vh)*100 - 176px)),520px);padding:6px}
   .chat-h{padding:10px 10px 12px}
   .chat-b{padding:6px 6px 6px}
+  .chat-b>.inline-event{display:grid}
   .chat-b .mi{padding-top:6px}
   .m{max-width:86%;padding:10px 14px;border-radius:20px;font-size:14.5px;line-height:1.42}
   .m.in{align-self:center;max-width:100%;display:flex;align-items:baseline;gap:8px;padding:1px 8px;border-radius:0;background:none;font-size:12.5px;line-height:1.35;color:var(--ink-soft)}
@@ -822,7 +818,6 @@ main,footer{position:relative;z-index:1}
   .fg-r::-webkit-scrollbar{display:none}
   .fc{flex:0 0 calc(100% - 24px);min-width:0;display:flex;flex-direction:column;gap:0;padding:20px;min-height:0;scroll-snap-align:start}
   .fc .tx{justify-content:flex-start;gap:6px;padding:0;margin-bottom:20px}
-  .fg-r:has(.rv.in) .rv{opacity:1;transform:none}
   .fc b{font-size:20px}
   .fc .tx span{font-size:14px;line-height:1.4}
   .fc .cv{flex:none;height:150px;min-height:0;margin-top:auto;border-radius:16px}
@@ -833,12 +828,12 @@ main,footer{position:relative;z-index:1}
 .tv .rail-bar button:before,.tv .rail-bar button:after{transition:background-color var(--tt) var(--te)}
   .rail-bar button:after{background:var(--fg);transform-origin:0 50%;transform:scaleX(var(--p,0))}
 .tv .rail-bar button:after{transition:background-color var(--tt) var(--te)}
-  .proc{height:auto;padding:32px 0}
+  .proc{height:auto;padding:32px 0;overflow-x:clip}
   .proc-s{position:relative;top:auto;height:auto;display:block;overflow:visible;padding:0}
   .proc-v{display:none}
   .proc-t{height:auto;margin:0 var(--pad);padding:0;display:flex;flex-direction:column;gap:4px}
-  .ps,.ps.on,.ps.out{position:relative;inset:auto;height:calc(var(--vh,1vh)*100 - 96px);min-height:540px;display:flex;flex-direction:column;justify-content:flex-start;padding:22px 20px 24px;border-radius:24px;box-shadow:inset 0 0 0 1px var(--line2);opacity:1;transform:none;transition:none;pointer-events:auto;will-change:transform}
-  .ps-v{display:block;flex:1;min-height:0;margin-bottom:18px}
+  .ps,.ps.on,.ps.out{position:relative;inset:auto;height:calc(var(--vh,1vh)*100 - 96px);min-height:min-content;display:flex;flex-direction:column;justify-content:flex-start;padding:22px 20px 24px;border-radius:24px;box-shadow:inset 0 0 0 1px var(--line2);opacity:1;transform:none;transition:none;pointer-events:auto;will-change:transform}
+  .ps-v{display:block;flex:1;min-height:120px;margin-bottom:18px}
   .ps .stp{font-size:14px}
   .ps .h2{font-size:30px;margin:10px 0 12px}
   .ps p{font-size:16px}
@@ -854,7 +849,9 @@ main,footer{position:relative;z-index:1}
   .cz-top .h2{font-size:32px}
   /* карточка кейса — на всю ширину сетки (как заголовок и кнопка «Все кейсы»), соседние выглядывают в полях по краям */
   .cz-ring{gap:6px;padding:20px var(--pad) 8px;scroll-padding:0 var(--pad);align-items:stretch;visibility:visible!important;overscroll-behavior-x:contain}
-  .cz{flex-basis:100%;min-width:0;gap:0;padding:10px;border-radius:24px;will-change:auto;cursor:default;grid-template-rows:214px 1fr;scroll-snap-align:center}
+  .cz{flex-basis:100%;min-width:0;gap:0;padding:10px;border-radius:24px;will-change:auto;cursor:default;grid-template-rows:clamp(170px,calc(var(--vh,1vh)*32),214px) 1fr;scroll-snap-align:center}
+  .cz-item{display:grid;flex:0 0 100%;min-width:0;scroll-snap-align:center}
+  .cz-item .cz{scroll-snap-align:none}
   .cz-img{aspect-ratio:auto;padding:12px}
   .cz-img .met{padding:0}
   .cz-img .led{font-size:40px}
@@ -869,7 +866,7 @@ main,footer{position:relative;z-index:1}
   .cz-tx .role{font-size:14px;line-height:1.4;margin:8px 0 18px}
   .cz-tx .ba,.cz-tx .sk,.cz-tx .kp{display:none}
   .cz-tx .go{height:56px;width:100%;margin-top:auto;justify-content:space-between;background:var(--lit);color:var(--ink);box-shadow:none}
-  .you{height:calc(var(--vh,1vh)*220)}
+  #you{height:calc(var(--vh,1vh)*220)}
   .you-c{border-radius:46px}
   .you-in{padding:0 6px}
   .you-in .pm{width:40px;height:40px;margin-bottom:22px}
@@ -907,7 +904,7 @@ main,footer{position:relative;z-index:1}
   .foot-l{gap:8px 20px}
   .foot-l a{display:flex;align-items:center;min-height:48px}
   .foot-b{margin-top:24px;font-size:12px}
-  .cp-in{padding:88px var(--pad) 104px}
+  .cp-in{padding:88px var(--pad) calc(104px + env(safe-area-inset-bottom))}
   .cp-back{margin-bottom:16px;gap:10px}
   .cp-back>span{font-size:13px}
   .cp-id{padding:22px}
@@ -930,7 +927,9 @@ main,footer{position:relative;z-index:1}
   .cp-sec>div{min-width:0}
   .cp-cta{padding:24px;gap:20px}
   .cp-cta .btn{width:100%}
-      .modal{left:0;right:0;top:auto;bottom:0;width:100%;height:95vh;height:min(95dvh,calc(var(--sheet-visible,100dvh) - 12px));bottom:var(--sheet-bottom,0px);max-height:calc(100dvh - env(safe-area-inset-top) - 12px);border-radius:26px 26px 0 0;transform:translateY(100%);opacity:1;padding-bottom:env(safe-area-inset-bottom);transition:transform .35s var(--ease),visibility .35s}
+}
+@media(max-width:860px), (orientation:landscape) and (max-height:500px) and (any-pointer:coarse){
+  .modal{left:0;right:0;top:auto;bottom:var(--sheet-bottom,0px);width:100%;height:95vh;height:min(95svh,calc(var(--sheet-visible,100dvh) - max(12px,env(safe-area-inset-top))));max-height:none;border-radius:26px 26px 0 0;transform:translateY(100%);opacity:1;padding-bottom:max(0px,calc(env(safe-area-inset-bottom) - var(--sheet-bottom,0px)));transition:transform .35s var(--ease),visibility .35s}
   .modal.open{transform:translateY(var(--dy,0px));visibility:visible;transition:transform .35s var(--ease)}
   .modal.drag{transition:none;user-select:none}
   .modal .grab{display:grid;place-items:center;width:100%;height:48px;margin:0;background:none;border-radius:26px 26px 0 0;touch-action:none;cursor:grab}
@@ -945,6 +944,15 @@ main,footer{position:relative;z-index:1}
   .ok-screen{padding:16px 0}
   .ok-ic{width:64px;height:64px;margin-bottom:16px}
   .ok-sum{margin:18px 0}
+  .modal[data-compact] .grab{display:none}
+  .modal[data-compact] .mh,.modal[data-compact] .mf{padding-block:6px}
+  .modal[data-compact] .mf .btn{height:var(--ctl-sm)}
+  .modal[data-compact] .mf .form-note{display:none}
+}
+@media(orientation:landscape) and (max-height:500px) and (any-pointer:coarse){
+  .modal .mh,.modal .mb,.modal .mf{padding-inline:max(20px,var(--pad),calc((100% - 620px) / 2))}
+}
+@media(max-width:860px){
   .menu nav a{font-size:36px;min-height:52px;display:flex;align-items:center}
   .menu{grid-template-columns:1fr;align-content:start;padding-top:96px;row-gap:28px}
   .menu-all{width:100%;flex-direction:row;align-items:center;gap:16px;padding:12px}
@@ -961,16 +969,21 @@ main,footer{position:relative;z-index:1}
   .cp-nav-c b{font-size:18px}
 }
 @media(max-width:380px){
-  .glass{padding:20px 16px}
-  .hero h1{font-size:27px}
+  .glass{padding:18px 16px}
+  .hero h1{font-size:clamp(25px,7.1vw,27px);margin-bottom:16px}
+  .hero .g-mid{gap:14px}
+  .hero .cta-row{margin-top:18px}
   .hero .chips{gap:4px}
+  .hero .chip{height:26px;padding-inline:8px}
+  .cz-tx h3{font-size:24px}
+  .cz-tx .role{margin-block:6px 12px}
   .hero .chip{padding-inline:8px}
   .fc{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);padding:18px;gap:8px}
 }
 @media(prefers-reduced-motion:reduce){.done .ok-ic svg{stroke-dashoffset:0}}
 
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv,.ws .w{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.you{height:auto;padding:24px var(--pad) 48px}.you-st{position:relative;height:auto;overflow:visible}.you-c{position:relative;inset:auto;transform:none!important;opacity:1!important;border-radius:28px;padding:80px 24px}}
+@media (prefers-reduced-motion:reduce){#you{height:auto;padding:24px var(--pad) 48px}.you-st{position:relative;height:auto;overflow:visible}.you-c{position:relative;inset:auto;transform:none!important;opacity:1!important;border-radius:28px;padding:80px 24px}}
 @media(max-width:860px) and (prefers-reduced-motion:reduce){.stm{height:auto;padding:56px 0}.stm-s{position:relative;height:auto;perspective:none;-webkit-mask-image:none;mask-image:none}.stm p{position:relative;left:auto;right:auto;padding:0 var(--pad);font-size:32px;text-align:left;transform:none}}
 
 /* ── ПРЕЛОАДЕР: знак табло зажигается по кругу, счётчик до 100, экран уезжает вверх ── */
@@ -999,11 +1012,13 @@ html.pre-on .hero .rv{opacity:0!important;transform:translateY(24px)!important}
 /* ── «ОСТРОВ» НА СТРАНИЦЕ КЕЙСА: капсула внизу, по клику пружинисто раскрывается в список кейсов ── */
 .isl{position:fixed;inset:0;z-index:96;pointer-events:none;visibility:hidden}
 .isl.on{visibility:visible}
-.isl-bd{position:absolute;inset:0;background:rgba(12,12,11,.32);opacity:0;transition:opacity .45s var(--ease)}
+.isl-bd{position:absolute;inset:0;background:rgba(12,12,11,.32);opacity:0;touch-action:none;transition:opacity .45s var(--ease)}
 .isl.open .isl-bd{opacity:1;pointer-events:auto}
-.isl-box{--ew:min(560px,calc(100vw - 16px));--eh:min(600px,calc(var(--vh,1vh)*74));position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));width:min(330px,calc(100vw - 32px));height:60px;border-radius:30px;background:#0c0c0b;color:var(--lit);overflow:hidden;contain:layout paint;pointer-events:auto;box-shadow:0 20px 50px -14px rgba(12,12,11,.6),inset 0 0 0 1px rgba(244,241,234,.09);transform:translate(-50%,160%);transition:width .62s cubic-bezier(.32,.72,0,1),height .62s cubic-bezier(.32,.72,0,1),border-radius .62s cubic-bezier(.32,.72,0,1),transform .8s cubic-bezier(.32,.72,0,1)}
+.isl-box{--ew:min(560px,calc(100vw - 16px));--isl-bottom:calc(18px + env(safe-area-inset-bottom));--isl-space:calc(100vh - var(--isl-bottom) - max(16px,env(safe-area-inset-top)));--eh:min(600px,calc(var(--vh,1vh)*74),var(--isl-space));position:absolute;left:50%;bottom:var(--isl-bottom);width:min(330px,calc(100vw - 32px));height:60px;border-radius:30px;background:#0c0c0b;color:var(--lit);overflow:hidden;contain:layout paint;pointer-events:auto;box-shadow:0 20px 50px -14px rgba(12,12,11,.6),inset 0 0 0 1px rgba(244,241,234,.09);transform:translate(-50%,160%);transition:width .62s cubic-bezier(.32,.72,0,1),height .62s cubic-bezier(.32,.72,0,1),border-radius .62s cubic-bezier(.32,.72,0,1),transform .8s cubic-bezier(.32,.72,0,1)}
+@supports(height:100dvh){.isl-box{--isl-space:calc(100dvh - var(--isl-bottom) - max(16px,env(safe-area-inset-top)))}}
 .isl.on .isl-box{transform:translate(-50%,0);transition-delay:0s,0s,0s,.25s}
 .isl.open .isl-box{width:var(--ew);height:var(--eh);border-radius:32px;transition-delay:0s}
+.isl-box,.isl-panel{max-height:var(--isl-space)}
 .isl-pill{position:absolute;left:0;right:0;bottom:0;height:60px;display:flex;align-items:center;gap:12px;padding:0 10px;text-align:left;color:inherit;transition:opacity .25s}
 .isl.open .isl-pill{opacity:0;pointer-events:none}
 .isl-pill .th{flex:none;width:40px;height:40px;border-radius:50%;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(244,241,234,.12)}
@@ -1037,7 +1052,7 @@ html.pre-on .hero .rv{opacity:0!important;transform:translateY(24px)!important}
 
 /* типографика: без одиноких слов в последней строке */
 p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
-@media(max-width:860px){.isl-box{--eh:calc(var(--vh,1vh)*95 - 18px - env(safe-area-inset-bottom))}}
+@media(max-width:860px){.isl-box{--eh:min(calc(var(--vh,1vh)*95 - var(--isl-bottom)),var(--isl-space))}}
 
 .not-found {
   color-scheme: dark;
@@ -1055,6 +1070,7 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 .nf-stage {
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
   display: grid;
   grid-template-columns: minmax(0, .81fr) minmax(0, 1.19fr);
   align-items: center;
@@ -1333,7 +1349,7 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <div class="modal" id="modal" inert aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mT" tabindex="-1">
   <button class="grab" id="grab" type="button" data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
   <div class="mh"><h3 id="mT" data-t="pilot">Обсудить пилот</h3><button class="mx" id="mx" data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
-  <form class="js-form" id="mForm" novalidate style="display:contents">
+  <form class="js-form" id="mForm" novalidate inert style="display:contents">
     <div class="mb" id="mBody">
       <div class="form-body">
         <p class="lead2" data-t="mLead">Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.</p>
@@ -1345,13 +1361,13 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
         </div>
         <div class="sr" role="status" aria-live="polite"></div>
       </div>
-      <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Заявка отправлена</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
+      <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
     </div>
-    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send">Отправить заявку</button><p class="form-note" data-t="sendNote">Напишем, чтобы договориться о&nbsp;времени созвона</p></div>
+    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Здесь можно проверить данные заявки.</p></div>
   </form>
 </div>
 <script>
-const NOT_FOUND = {"ru": {"sheetHandle": "Потяните вниз или нажмите, чтобы закрыть", "title": "Страница не найдена — Singlet", "aTop": "Singlet — на главную", "aLang": "Язык сайта", "aMenu": "Меню", "aClose": "Закрыть", "pilot": "Обсудить пилот", "pilotSub": "Созвон без обязательств", "nDemo": "Демо", "nFeat": "Возможности", "nProc": "Запуск", "nCases": "Кейсы", "nApply": "Заявка", "nFaq": "Вопросы", "fWho": "Кто вы — имя и компания", "fWhat": "Что хотите автоматизировать", "fHow": "Telegram, почта или телефон", "fPd": "Согласен на обработку персональных данных", "send": "Отправить заявку", "sendNote": "Напишем, чтобы договориться о&nbsp;времени созвона", "okT": "Заявка отправлена", "okDone": "Готово", "okThanks": "Спасибо, {name}. Напишем {how} и договоримся о созвоне.", "okThanks0": "Спасибо! Напишем {how} и договоримся о созвоне.", "howTg": "в Telegram {v}", "howMail": "на почту {v}", "howPhone": "по номеру {v}", "rWho": "Кто вы", "rHow": "Контакт", "rWhat": "Задача", "mLead": "Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.", "footH": "Наймите сотрудника, \u003cspan class=\"dim\">который выходит на&nbsp;смену сегодня.\u003c/span>", "footBy": "Singlet — продукт FEIP", "cpBack": "Все кейсы", "mAllSub": "11 внедрений Singlet", "vNameE": "Представьтесь", "vNameS": "Слишком коротко", "vReq": "Опишите задачу", "vCt": "Укажите контакт", "vMail": "Проверьте почту", "vMaybe": "Может, {d}?", "vPhone": "Проверьте номер", "vNickCyr": "Ник — латиницей", "vNickLen": "Ник — от 5 символов", "vNickFirst": "Ник — с буквы", "vNickSym": "Ник — без символов", "vNickEnd": "Ник — не на «_»", "vCheck": "Проверьте поля: ", "vConsent": "Согласие", "heading": "Страница взяла \u003cspan class=\"dim\">выходной.\u003c/span>", "lead": "Singlet всё ещё на смене и ловит баги. Поможете?", "home": "На главную", "cases": "Все кейсы", "game": "Охота на баги", "arena": "Игровое поле «Охота на баги»", "readyTitle": "Баги вышли на смену", "goal": "Гигабаг ждёт на пятой волне.", "start": "Начать смену", "wave": "Волна", "score": "Очки", "best": "Рекорд", "lives": "Жизни", "move": "Движение", "space": "Пробел", "shoot": "Огонь", "touch": "Ведите самолёт пальцем. Огонь автоматический.", "pause": "Пауза", "resume": "Продолжить", "restart": "Заново", "gameOver": "Смена окончена", "retry": "Ещё смена", "victory": "Смена спасена", "victoryNote": "Гигабаг побеждён. Можно играть дальше на новых волнах.", "endless": "Играть дальше", "noJs": "Игра доступна при включённом JavaScript.", "weapon": "Оружие", "single": "Пульс", "spread": "Тройной залп", "beam": "Луч", "fanBeam": "Веер лучей", "overclock": "Разгон", "drone": "Дроны", "shield": "Щит", "magnet": "Магнит", "repair": "Ремонт", "burst": "Ядерный патч", "cleared": "Волна {wave} пройдена", "nextWave": "Волна {wave}", "seconds": "{n} с", "damage": "Самолёт задет", "shieldHit": "Щит поглотил удар", "finalScore": "Ваш результат: {score} очков.", "boss": "Гигабаг", "bossHealth": "Здоровье Гигабага", "bossPhase": "Фаза {n} из 3", "bossArrives": "Ядро Гигабага открывается после удара щупальцами.", "coreOpen": "Ядро открыто. Огонь!", "bossWarning": "Уйдите с отмеченных полос", "bossDefeated": "Гигабаг побеждён", "powerups": "Бонусы и сочетания", "comboHint": "Бонусы работают вместе. Луч и тройной залп дают веер сквозных лучей, а разгон ускоряет его стрельбу.", "legendSpread": "Тройной залп — три выстрела веером", "legendBeam": "Луч — пробивает несколько целей", "legendOverclock": "Разгон — увеличивает скорострельность", "legendDrone": "Дроны — стреляют с двух сторон", "legendShield": "Щит — поглощает один удар", "legendMagnet": "Магнит — подтягивает бонусы", "legendRepair": "Ремонт — возвращает одну жизнь", "legendBurst": "Ядерный патч — очищает поле и ранит босса"}, "en": {"sheetHandle": "Drag down or press to close", "title": "Page not found — Singlet", "aTop": "Singlet — home", "aLang": "Site language", "aMenu": "Menu", "aClose": "Close", "pilot": "Discuss a pilot", "pilotSub": "A no-obligation call", "nDemo": "Demo", "nFeat": "Capabilities", "nProc": "Launch", "nCases": "Cases", "nApply": "Get in touch", "nFaq": "FAQ", "fWho": "Who you are — name and company", "fWhat": "What you want to automate", "fHow": "Telegram, email or phone", "fPd": "I agree to the processing of my personal data", "send": "Send request", "sendNote": "We’ll reach out to schedule a call", "okT": "Request sent", "okDone": "Done", "okThanks": "Thank you, {name}. We’ll contact you {how} to schedule a call.", "okThanks0": "Thank you! We’ll contact you {how} to schedule a call.", "howTg": "on Telegram {v}", "howMail": "at {v}", "howPhone": "at {v}", "rWho": "Who you are", "rHow": "Contact", "rWhat": "Task", "mLead": "Tell us about the task — we’ll get in touch and set up a short call.", "footH": "Hire an employee \u003cspan class=\"dim\">who starts the shift today.\u003c/span>", "footBy": "Singlet is a product by FEIP", "cpBack": "All cases", "mAllSub": "11 Singlet deployments", "vNameE": "Tell us who you are", "vNameS": "Too short", "vReq": "Describe the task", "vCt": "Enter a contact", "vMail": "Check the email", "vMaybe": "Did you mean {d}?", "vPhone": "Check the number", "vNickCyr": "Username: Latin letters only", "vNickLen": "Username: 5+ characters", "vNickFirst": "Username: start with a letter", "vNickSym": "Username: letters, digits, _", "vNickEnd": "Username can’t end with _", "vCheck": "Please check: ", "vConsent": "Consent", "heading": "This page took \u003cspan class=\"dim\">the day off.\u003c/span>", "lead": "Singlet is still on shift, catching bugs. Want in?", "home": "Back home", "cases": "All cases", "game": "Bug hunt", "arena": "Bug hunt playfield", "readyTitle": "The bugs are on shift", "goal": "Gigabug is waiting on wave five.", "start": "Start shift", "wave": "Wave", "score": "Score", "best": "Best", "lives": "Lives", "move": "Move", "space": "Space", "shoot": "Fire", "touch": "Drag to fly. Your plane fires automatically.", "pause": "Pause", "resume": "Resume", "restart": "Restart", "gameOver": "Shift over", "retry": "Play again", "victory": "Shift saved", "victoryNote": "Gigabug is down. Keep playing through new waves.", "endless": "Keep playing", "noJs": "Enable JavaScript to play.", "weapon": "Weapon", "single": "Pulse", "spread": "Triple shot", "beam": "Beam", "fanBeam": "Fan of beams", "overclock": "Overclock", "drone": "Drones", "shield": "Shield", "magnet": "Magnet", "repair": "Repair", "burst": "Nuclear patch", "cleared": "Wave {wave} cleared", "nextWave": "Wave {wave}", "seconds": "{n}s", "damage": "Plane hit", "shieldHit": "Shield absorbed the hit", "finalScore": "Your score: {score}.", "boss": "Gigabug", "bossHealth": "Gigabug health", "bossPhase": "Phase {n} of 3", "bossArrives": "Gigabug exposes its core after each strike.", "coreOpen": "Core exposed. Fire!", "bossWarning": "Move out of the marked lanes", "bossDefeated": "Gigabug defeated", "powerups": "Power-ups and combos", "comboHint": "Power-ups stack. Beam and triple shot give you a fan of piercing beams. Overclock makes it fire faster.", "legendSpread": "Triple shot — fires in three directions", "legendBeam": "Beam — pierces multiple targets", "legendOverclock": "Overclock — increases your fire rate", "legendDrone": "Drones — fire from both sides", "legendShield": "Shield — absorbs one hit", "legendMagnet": "Magnet — pulls power-ups towards you", "legendRepair": "Repair — restores one life", "legendBurst": "Nuclear patch — clears the field and damages the boss"}};
+const NOT_FOUND = {"ru": {"sheetHandle": "Потяните вниз или нажмите, чтобы закрыть", "title": "Страница не найдена — Singlet", "aTop": "Singlet — на главную", "aLang": "Язык сайта", "aMenu": "Меню", "aClose": "Закрыть", "pilot": "Обсудить пилот", "pilotSub": "Созвон без обязательств", "nDemo": "Демо", "nFeat": "Возможности", "nProc": "Запуск", "nCases": "Кейсы", "nApply": "Заявка", "nFaq": "Вопросы", "fWho": "Кто вы — имя и компания", "fWhat": "Что хотите автоматизировать", "fHow": "Telegram, почта или телефон", "fPd": "Согласен на обработку персональных данных", "send": "Проверить заявку", "sendNote": "Демо формы. Здесь можно проверить данные заявки.", "okT": "Данные проверены", "okDone": "Готово", "okThanks": "{name}, в рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "okThanks0": "В рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "howTg": "в Telegram {v}", "howMail": "на почту {v}", "howPhone": "по номеру {v}", "rWho": "Кто вы", "rHow": "Контакт", "rWhat": "Задача", "mLead": "Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.", "footH": "Наймите сотрудника, \u003cspan class=\"dim\">который выходит на&nbsp;смену сегодня.\u003c/span>", "footBy": "Singlet — продукт FEIP", "cpBack": "Все кейсы", "mAllSub": "11 внедрений Singlet", "vNameE": "Представьтесь", "vNameS": "Слишком коротко", "vReq": "Опишите задачу", "vCt": "Укажите контакт", "vMail": "Проверьте почту", "vMaybe": "Может, {d}?", "vPhone": "Проверьте номер", "vNickCyr": "Ник — латиницей", "vNickLen": "Ник — от 5 символов", "vNickFirst": "Ник — с буквы", "vNickSym": "Ник — без символов", "vNickEnd": "Ник — не на «_»", "vCheck": "Проверьте поля: ", "vConsent": "Согласие", "heading": "Страница взяла \u003cspan class=\"dim\">выходной.\u003c/span>", "lead": "Singlet всё ещё на смене и ловит баги. Поможете?", "home": "На главную", "cases": "Все кейсы", "game": "Охота на баги", "arena": "Игровое поле «Охота на баги»", "readyTitle": "Баги вышли на смену", "goal": "Гигабаг ждёт на пятой волне.", "start": "Начать смену", "wave": "Волна", "score": "Очки", "best": "Рекорд", "lives": "Жизни", "move": "Движение", "space": "Пробел", "shoot": "Огонь", "touch": "Ведите самолёт пальцем. Огонь автоматический.", "pause": "Пауза", "resume": "Продолжить", "restart": "Заново", "gameOver": "Смена окончена", "retry": "Ещё смена", "victory": "Смена спасена", "victoryNote": "Гигабаг побеждён. Можно играть дальше на новых волнах.", "endless": "Играть дальше", "noJs": "Игра доступна при включённом JavaScript.", "weapon": "Оружие", "single": "Пульс", "spread": "Тройной залп", "beam": "Луч", "fanBeam": "Веер лучей", "overclock": "Разгон", "drone": "Дроны", "shield": "Щит", "magnet": "Магнит", "repair": "Ремонт", "burst": "Ядерный патч", "cleared": "Волна {wave} пройдена", "nextWave": "Волна {wave}", "seconds": "{n} с", "damage": "Самолёт задет", "shieldHit": "Щит поглотил удар", "finalScore": "Ваш результат: {score} очков.", "boss": "Гигабаг", "bossHealth": "Здоровье Гигабага", "bossPhase": "Фаза {n} из 3", "bossArrives": "Ядро Гигабага открывается после удара щупальцами.", "coreOpen": "Ядро открыто. Огонь!", "bossWarning": "Уйдите с отмеченных полос", "bossDefeated": "Гигабаг побеждён", "powerups": "Бонусы и сочетания", "comboHint": "Бонусы работают вместе. Луч и тройной залп дают веер сквозных лучей, а разгон ускоряет его стрельбу.", "legendSpread": "Тройной залп — три выстрела веером", "legendBeam": "Луч — пробивает несколько целей", "legendOverclock": "Разгон — увеличивает скорострельность", "legendDrone": "Дроны — стреляют с двух сторон", "legendShield": "Щит — поглощает один удар", "legendMagnet": "Магнит — подтягивает бонусы", "legendRepair": "Ремонт — возвращает одну жизнь", "legendBurst": "Ядерный патч — очищает поле и ранит босса"}, "en": {"sheetHandle": "Drag down or press to close", "title": "Page not found — Singlet", "aTop": "Singlet — home", "aLang": "Site language", "aMenu": "Menu", "aClose": "Close", "pilot": "Discuss a pilot", "pilotSub": "A no-obligation call", "nDemo": "Demo", "nFeat": "Capabilities", "nProc": "Launch", "nCases": "Cases", "nApply": "Get in touch", "nFaq": "FAQ", "fWho": "Who you are — name and company", "fWhat": "What you want to automate", "fHow": "Telegram, email or phone", "fPd": "I agree to the processing of my personal data", "send": "Check request", "sendNote": "Form preview. Review your request details here.", "okT": "Details checked", "okDone": "Done", "okThanks": "{name}, in the live version we’ll contact you {how} to schedule a call.", "okThanks0": "In the live version we’ll contact you {how} to schedule a call.", "howTg": "on Telegram {v}", "howMail": "at {v}", "howPhone": "at {v}", "rWho": "Who you are", "rHow": "Contact", "rWhat": "Task", "mLead": "Tell us about the task — we’ll get in touch and set up a short call.", "footH": "Hire an employee \u003cspan class=\"dim\">who starts the shift today.\u003c/span>", "footBy": "Singlet is a product by FEIP", "cpBack": "All cases", "mAllSub": "11 Singlet deployments", "vNameE": "Tell us who you are", "vNameS": "Too short", "vReq": "Describe the task", "vCt": "Enter a contact", "vMail": "Check the email", "vMaybe": "Did you mean {d}?", "vPhone": "Check the number", "vNickCyr": "Username: Latin letters only", "vNickLen": "Username: 5+ characters", "vNickFirst": "Username: start with a letter", "vNickSym": "Username: letters, digits, _", "vNickEnd": "Username can’t end with _", "vCheck": "Please check: ", "vConsent": "Consent", "heading": "This page took \u003cspan class=\"dim\">the day off.\u003c/span>", "lead": "Singlet is still on shift, catching bugs. Want in?", "home": "Back home", "cases": "All cases", "game": "Bug hunt", "arena": "Bug hunt playfield", "readyTitle": "The bugs are on shift", "goal": "Gigabug is waiting on wave five.", "start": "Start shift", "wave": "Wave", "score": "Score", "best": "Best", "lives": "Lives", "move": "Move", "space": "Space", "shoot": "Fire", "touch": "Drag to fly. Your plane fires automatically.", "pause": "Pause", "resume": "Resume", "restart": "Restart", "gameOver": "Shift over", "retry": "Play again", "victory": "Shift saved", "victoryNote": "Gigabug is down. Keep playing through new waves.", "endless": "Keep playing", "noJs": "Enable JavaScript to play.", "weapon": "Weapon", "single": "Pulse", "spread": "Triple shot", "beam": "Beam", "fanBeam": "Fan of beams", "overclock": "Overclock", "drone": "Drones", "shield": "Shield", "magnet": "Magnet", "repair": "Repair", "burst": "Nuclear patch", "cleared": "Wave {wave} cleared", "nextWave": "Wave {wave}", "seconds": "{n}s", "damage": "Plane hit", "shieldHit": "Shield absorbed the hit", "finalScore": "Your score: {score}.", "boss": "Gigabug", "bossHealth": "Gigabug health", "bossPhase": "Phase {n} of 3", "bossArrives": "Gigabug exposes its core after each strike.", "coreOpen": "Core exposed. Fire!", "bossWarning": "Move out of the marked lanes", "bossDefeated": "Gigabug defeated", "powerups": "Power-ups and combos", "comboHint": "Power-ups stack. Beam and triple shot give you a fan of piercing beams. Overclock makes it fire faster.", "legendSpread": "Triple shot — fires in three directions", "legendBeam": "Beam — pierces multiple targets", "legendOverclock": "Overclock — increases your fire rate", "legendDrone": "Drones — fire from both sides", "legendShield": "Shield — absorbs one hit", "legendMagnet": "Magnet — pulls power-ups towards you", "legendRepair": "Repair — restores one life", "legendBurst": "Nuclear patch — clears the field and damages the boss"}};
 /* Точечное табло, знаки и иконка меню для всех страниц Singlet. */
 function mountSingletBrand(RM) {
   const $ = (s) => document.querySelector(s);
@@ -1422,10 +1438,11 @@ function singletMenuIcon(open, label) {
 }
 
 /* Общая форма пилота и мобильная шторка (FormStyle). */
-function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
+function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const bottomSheet = matchMedia('(max-width: 860px), (orientation: landscape) and (max-height: 500px) and (any-pointer: coarse)');
 
   /* ═════════ ВАЛИДАЦИЯ (FormStyle §4) ═════════ */
   const DOM = ['gmail.com', 'mail.ru', 'yandex.ru', 'ya.ru', 'bk.ru', 'inbox.ru', 'list.ru', 'rambler.ru', 'icloud.com', 'outlook.com', 'hotmail.com', 'yahoo.com', 'proton.me'];
@@ -1466,9 +1483,17 @@ function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
       const cf = fields.find(f => f.dataset.v === 'contact'), type = cf && cf._type, how = fill(tt(type === 'tg' ? 'howTg' : type === 'mail' ? 'howMail' : 'howPhone'), { v: ct });
       const first2 = name.split(/[\s,]+/)[0];
       $('.okP', form).textContent = first2 ? fill(tt('okThanks'), { name: first2, how }) : fill(tt('okThanks0'), { how });
-      $('.ok-sum', form).innerHTML = [[tt('rWho'), name], [tt('rHow'), ct], [tt('rWhat'), cut(msg, 48)]].filter(r => r[1]).map(r => `<div><span>${r[0]}</span><b>${r[1].replace(/</g, '&lt;')}</b></div>`).join('');
+      const rows = [[tt('rWho'), name], [tt('rHow'), ct], [tt('rWhat'), cut(msg, 48)]].filter(([, value]) => value).map(([label, value]) => {
+        const row = document.createElement('div'), caption = document.createElement('span'), text = document.createElement('b');
+        caption.textContent = label; text.textContent = value; row.append(caption, text);
+        return row;
+      });
+      $('.ok-sum', form).replaceChildren(...rows);
       form.classList.add('done'); const box = form.closest('.modal'); if (box) box.classList.add('done'); $('.ok-screen', form).focus(); });
-    $('.okDone', form).addEventListener('click', () => { form.reset(); form.classList.remove('done'); fields.forEach(f => { setState(f, null); f._warned = null; f.classList.remove('is-err'); }); const box = form.closest('.modal'); if (box) { box.classList.remove('done'); closeModal(); } });
+    $('.okDone', form).addEventListener('click', () => { form.reset(); form.classList.remove('done'); fields.forEach(f => { setState(f, null); f._warned = null; }); const box = form.closest('.modal'); if (box) { box.classList.remove('done'); closeModal(); } else form.focus({ preventScroll: true }); });
+    // Пока обработчика нет, форма остаётся неактивной: браузер не записывает поля в строку адреса.
+    $('[type=submit]', form).disabled = false;
+    form.inert = false;
   });
 
   /* ═════════ МОДАЛКА / ШТОРКА (FormStyle §11) ═════════ */
@@ -1496,22 +1521,50 @@ function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
     modal.inert = false; modal.setAttribute('aria-hidden', 'false'); modal.style.removeProperty('--dy');
     ov.classList.add('open'); modal.classList.add('open'); document.documentElement.classList.add('lock');
     regions.forEach(el => el.inert = true);
-    mBody.scrollTop = 0; requestAnimationFrame(() => { modal.focus({preventScroll:true}); fade(); }); };
+    fitSheet();
+    mBody.scrollTop = 0;
+    requestAnimationFrame(() => {
+      if (!modal.classList.contains('open')) return;
+      if (!modal.contains(document.activeElement)) modal.focus({ preventScroll: true });
+      fade();
+    }); };
   const closeModal = () => {
-    modal.classList.remove('open', 'drag'); ov.classList.remove('open'); modal.inert = true; modal.setAttribute('aria-hidden', 'true');
+    if (!modal.classList.contains('open')) return;
+    resetDrag();
+    modal.classList.remove('open'); ov.classList.remove('open'); modal.inert = true; modal.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.toggle('lock', previousLock);
     regions.forEach((el, i) => el.inert = previousInert[i]);
     if (opener && opener.isConnected) opener.focus({ preventScroll: true });
   };
   new ResizeObserver(fade).observe(mBody);
-  const sheetViewport = () => {
+  let sheetFrame = 0;
+  const fitSheet = () => {
+    sheetFrame = 0;
     const v = window.visualViewport;
-    if (!v || v.scale > 1.05) return;
-    modal.style.setProperty('--sheet-visible', v.height + 'px');
-    modal.style.setProperty('--sheet-bottom', Math.max(0, innerHeight - v.height - v.offsetTop) + 'px');
+    if (!bottomSheet.matches || !modal.classList.contains('open') || v?.scale > 1.05) return;
+    const visibleHeight = Math.floor(v?.height ?? innerHeight);
+    const height = visibleHeight + 'px';
+    const bottom = Math.max(0, Math.round(v ? innerHeight - v.height - v.offsetTop : 0)) + 'px';
+    if (modal.style.getPropertyValue('--sheet-visible') === height && modal.style.getPropertyValue('--sheet-bottom') === bottom) return;
+    modal.style.setProperty('--sheet-visible', height);
+    modal.style.setProperty('--sheet-bottom', bottom);
+    modal.toggleAttribute('data-compact', visibleHeight < 320);
+    // После изменения области просмотра клавиатурой поле может остаться за закреплённой кнопкой.
+    const active = document.activeElement;
+    if (active.matches('.f__in') && mBody.contains(active)) {
+      const field = active.getBoundingClientRect(), body = mBody.getBoundingClientRect();
+      const inset = clamp((body.height - field.height) / 2, 0, 8);
+      const dy = field.height > body.height ? field.top - body.top
+        : field.bottom > body.bottom - inset ? field.bottom - body.bottom + inset
+          : Math.min(0, field.top - body.top - inset);
+      if (dy) mBody.scrollTop += dy;
+    }
   };
-  if (window.visualViewport) { visualViewport.addEventListener('resize', sheetViewport); visualViewport.addEventListener('scroll', sheetViewport); }
-  sheetViewport();
+  const queueSheetFit = () => {
+    if (modal.classList.contains('open') && !sheetFrame) sheetFrame = requestAnimationFrame(fitSheet);
+  };
+  window.visualViewport?.addEventListener('resize', queueSheetFit);
+  window.visualViewport?.addEventListener('scroll', queueSheetFit);
   document.addEventListener('click', e => { const b = e.target.closest('[data-modal]'); if (b) { e.preventDefault(); openModal(b); } });
   ov.addEventListener('click', closeModal); $('#mx').addEventListener('click', closeModal);
   document.addEventListener('keydown', e => {
@@ -1519,11 +1572,21 @@ function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
     if (e.key === 'Tab' && modal.classList.contains('open')) { const fs = focusables(); if (!fs.length) return; const a = fs[0], z = fs[fs.length - 1]; if (e.shiftKey && (document.activeElement === a || document.activeElement === modal)) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
   });
   let sheetDrag = null, suppressGrabClick = false;
-  const resetDrag = () => { sheetDrag = null; modal.classList.remove('drag'); modal.style.removeProperty('--dy'); };
+  const resetDrag = () => {
+    const drag = sheetDrag;
+    sheetDrag = null; modal.classList.remove('drag'); modal.style.removeProperty('--dy');
+    if (drag?.target.hasPointerCapture(drag.id)) drag.target.releasePointerCapture(drag.id);
+  };
+  let sheetWidth = document.documentElement.clientWidth;
+  window.addEventListener('resize', () => {
+    const width = document.documentElement.clientWidth;
+    if (width !== sheetWidth) { sheetWidth = width; resetDrag(); }
+    queueSheetFit();
+  });
   const grabStart = e => {
-    if (!isMob() || !modal.classList.contains('open') || e.button !== 0 || e.target.closest('.mx') || !e.isPrimary) return;
+    if (!bottomSheet.matches || !modal.classList.contains('open') || e.button !== 0 || e.target.closest('.mx') || !e.isPrimary) return;
     suppressGrabClick = false;
-    sheetDrag = { id:e.pointerId, y:e.clientY, lastY:e.clientY, time:performance.now(), velocity:0, dy:0, height:modal.offsetHeight };
+    sheetDrag = { id:e.pointerId, target:e.currentTarget, y:e.clientY, lastY:e.clientY, time:performance.now(), velocity:0, dy:0, height:modal.offsetHeight };
     e.currentTarget.setPointerCapture(e.pointerId); modal.classList.add('drag');
   };
   const grabMove = e => {
@@ -1538,7 +1601,7 @@ function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
     if (!sheetDrag || e.pointerId !== sheetDrag.id) return;
     const d = sheetDrag, velocity = performance.now() - d.time < 120 ? d.velocity : 0;
     if (d.dy > d.height / 4 || (d.dy > 40 && velocity > .6)) closeModal();
-    resetDrag();
+    else resetDrag();
   };
   [$('#grab'), $('.mh', modal)].forEach(el => {
     el.addEventListener('pointerdown', grabStart); el.addEventListener('pointermove', grabMove);
@@ -1547,7 +1610,7 @@ function mountSingletPilot({ tt, fill, isMob, beforeOpen, extraRegions = [] }) {
   });
   $('#grab').addEventListener('click', e => { if (suppressGrabClick && e.detail !== 0) { suppressGrabClick = false; return; } closeModal(); });
 
-  return { modal, closeModal, resetDrag };
+  return { modal, closeModal };
 }
 
 /* Симуляция аркады. Координаты неизменны при смене размера экрана. */
@@ -2354,6 +2417,7 @@ function mountArcadeArt(canvas) {
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
   const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const mobileQuery = matchMedia('(max-width: 860px)');
   const root = document.documentElement;
   const hdr = $('#hdr'), menu = $('#menu'), mBtn = $('#menuBtn'), langBar = $('#lang');
   const main = $('#not-found'), footer = $('.foot');
@@ -2406,6 +2470,7 @@ function mountArcadeArt(canvas) {
     footer.inert = open;
     root.classList.toggle('lock', open);
     menuIcon();
+    if (open) menu.scrollTop = 0;
     if (focus) (open ? $('nav a', menu) : mBtn).focus({ preventScroll: true });
   }
 
@@ -2610,7 +2675,7 @@ function mountArcadeArt(canvas) {
   mBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   $$('#menu a').forEach(link => link.addEventListener('click', () => setMenu(false, false)));
   mountSingletPilot({
-    tt, fill, isMob: () => innerWidth <= 860,
+    tt, fill,
     beforeOpen: () => { setMenu(false, false); pauseGame(false); },
   });
   document.addEventListener('keydown', event => {
@@ -2627,7 +2692,8 @@ function mountArcadeArt(canvas) {
     }
   });
 
-  root.classList.toggle('touch-input', navigator.maxTouchPoints > 0 && (innerWidth <= 860 || matchMedia('(hover: none)').matches));
+  const syncTouchControls = () => root.classList.toggle('touch-input', navigator.maxTouchPoints > 0 && (mobileQuery.matches || matchMedia('(hover: none)').matches));
+  syncTouchControls();
   if (!art) return;
   art(null, motion.matches);
   play.hidden = false;
@@ -2680,7 +2746,14 @@ function mountArcadeArt(canvas) {
   for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) {
     field.addEventListener(name, event => { if (pointer?.id === event.pointerId) pointer = null; });
   }
-  window.addEventListener('resize', clearInput);
+  let fieldWidth = root.clientWidth;
+  window.addEventListener('resize', () => {
+    const width = root.clientWidth;
+    if (width === fieldWidth) return;
+    fieldWidth = width;
+    syncTouchControls();
+    pauseGame(false);
+  });
 })();
 
 </script>

@@ -2410,7 +2410,23 @@ islPill.addEventListener('click', () => islOpen(!isl.classList.contains('open'))
 $$('[data-isl-close]', isl).forEach(b => b.addEventListener('click', () => islOpen(false)));
 islList.addEventListener('click', e => { if (e.target.closest('a')) islOpen(false); });
 
-const route = () => { const h = decodeURIComponent(location.hash.slice(1)); if (h.startsWith('case-') && openCase(h.slice(5))) return; if (h === 'all-cases') { openAll(); return; } if (cpOpen) closeCase(!h || h === 'cases'); };
+const openNotFound = () => {
+  const target = new URL('404.html', location.href);
+  target.searchParams.set('lang', LANG);
+  location.replace(target);
+};
+const route = () => {
+  const fragment = location.hash.slice(1);
+  let h;
+  try { h = decodeURIComponent(fragment); }
+  catch { if (fragment.startsWith('case-')) openNotFound(); return; }
+  if (h.startsWith('case-')) {
+    if (!openCase(h.slice(5))) openNotFound();
+    return;
+  }
+  if (h === 'all-cases') { openAll(); return; }
+  if (cpOpen) closeCase(!h || h === 'cases');
+};
 addEventListener('hashchange', route);
 cpage.addEventListener('click', e => { const b = e.target.closest('[data-back]'); if (!b) return; e.preventDefault(); history.pushState('', document.title, location.pathname + location.search); closeCase(true); });
 

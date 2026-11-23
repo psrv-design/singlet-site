@@ -682,11 +682,9 @@ main,footer{position:relative;z-index:1}
 .next li:first-child{padding-top:0}
 .next li span{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--lit);display:grid;place-items:center;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
 .next li:first-child span{background:var(--acc);color:#fff}
-.nx .note{padding-top:20px;font-size:15px;color:var(--ink-soft)}
 .fcard{padding:30px}
 .fgrid{display:grid;gap:var(--gap)}
 .form-foot{margin-top:var(--gap)}
-.form-note{text-align:center;font-size:14px;color:var(--ink-soft);margin-top:14px}
 .ok-screen{display:none;text-align:center;padding:40px 10px 20px;color:var(--ink)}
 .done .ok-screen{display:block}
 .done .form-body{display:none}
@@ -944,10 +942,8 @@ main,footer{position:relative;z-index:1}
   .fcard{order:-1;padding:16px}
   .nx{padding:0 20px}
   .nx>details{margin-top:0;padding-top:0}
-  .nx .note{padding-top:4px;margin-bottom:20px}
   .next{margin:0}
   .next li{font-size:15px;gap:10px;grid-template-columns:32px 1fr;padding:14px 0}
-  .form-note{font-size:12px;margin-top:12px}
   .f--chk{font-size:13px;gap:10px}
   .faq-g{margin-top:20px;gap:12px}
   .qcat{padding:14px 18px 4px;margin-bottom:8px}
@@ -1010,7 +1006,6 @@ main,footer{position:relative;z-index:1}
   .modal[data-compact] .grab{display:none}
   .modal[data-compact] .mh,.modal[data-compact] .mf{padding-block:6px}
   .modal[data-compact] .mf .btn{height:var(--ctl-sm)}
-  .modal[data-compact] .mf .form-note{display:none}
 }
 @media(orientation:landscape) and (max-height:500px) and (any-pointer:coarse){
   .modal .mh,.modal .mb,.modal .mf{padding-inline:max(20px,var(--pad),calc((100% - 620px) / 2))}
@@ -1125,7 +1120,8 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 .foot-links :is(a,button):hover,.foot-links :is(a,button):focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
 .foot-operator{margin-top:28px;color:var(--fg2);font-size:14px;line-height:1.6}
 .foot-b{margin-top:12px}
-.cpage .foot{--fg:#f4f1ea;--fg2:#b0ada6;--line2:#41403b;background:#0c0c0b;color:var(--fg);padding-bottom:84px}
+.cpage .foot,.legal-page .foot{--fg:#f4f1ea;--fg2:#b0ada6;--line2:#41403b;background:#0c0c0b;color:var(--fg)}
+.cpage .foot{padding-bottom:84px}
 .cpage .foot .rv,.legal-page .foot .rv{opacity:1;transform:none}
 .f--chk a,.cookie-card p a,.legal-copy a{color:inherit;text-decoration:underline;text-underline-offset:.16em}
 .f--chk a:hover,.legal-copy a:hover{color:#8a390a}
@@ -1168,24 +1164,51 @@ html:has(#cookie-dialog[open]){overflow:hidden}
   #cookie-dialog [data-cookie-save]{width:100%;height:56px}
 }
 
-.legal-main{background:var(--paper);color:#171715;padding:clamp(108px,10vw,156px) 0 clamp(68px,8vw,120px)}
-.legal-layout{display:grid;grid-template-columns:minmax(200px,.65fr) minmax(0,2fr);gap:clamp(28px,6vw,100px);align-items:start}
-.legal-index{position:sticky;top:90px;max-width:310px}
-.legal-home{display:inline-flex;align-items:center;gap:8px;color:#534f48;min-height:40px}
-.legal-index details{border-top:1px solid #c6c3ba;margin-top:15px;padding-top:14px}
-.legal-index summary{font-weight:500;cursor:pointer}
-.legal-index .foot-links{margin-top:8px;color:#55524a}
-.legal-index .foot-links a:hover,.legal-index .foot-links [aria-current=page]{color:#1a1916;text-decoration:underline;text-underline-offset:3px}
-.legal-layout article{max-width:800px;min-width:0;overflow-wrap:anywhere}
-.legal-layout h1{font-size:clamp(36px,4.4vw,72px);font-weight:500;letter-spacing:-.028em;line-height:1.04}
-.legal-edition{color:#656159;font-size:15px;margin:18px 0 30px}
-.legal-copy{border-top:1px solid #c6c3ba;padding-top:24px;font-size:clamp(16px,1.25vw,19px);line-height:1.6}
-.legal-copy h2{font-size:clamp(24px,2.25vw,36px);font-weight:500;line-height:1.2;letter-spacing:-.024em;margin:1.45em 0 .55em}
-.legal-copy h2:first-child{margin-top:0}
-.legal-copy p,.legal-copy ul{margin:0 0 .9em}.legal-copy ul{padding-left:1.3em;list-style:disc}.legal-copy li+li{margin-top:.45em}
-@media(max-width:800px){.legal-main{padding-top:83px}.legal-layout{grid-template-columns:1fr;gap:27px}.legal-index{position:static;width:100%;max-width:none}.legal-index details{margin-top:6px;padding-top:10px}.legal-edition{margin:14px 0 22px}}
+/* Страницы документов используют обложку и кнопку «назад» из каталога кейсов. */
+.legal-main{background:var(--paper) var(--dots-d);color:var(--ink)}
+.legal-main .al-head{max-width:1000px}
+.legal-layout{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,2fr);gap:clamp(18px,3vw,48px);align-items:start}
+.legal-index{position:sticky;top:92px}
+.legal-index details,.legal-copy{background:var(--surface);border-radius:24px}
+.legal-index details{padding:10px}
+.legal-index summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 14px;height:48px;font-weight:500;color:var(--ink);cursor:pointer;list-style:none}
+.legal-index summary::-webkit-details-marker{display:none}
+.legal-index summary .pa{transform:rotate(90deg)}
+.legal-index details[open] summary .pa{transform:rotate(-90deg)}
+.legal-index .pa{display:grid;place-items:center;width:15px;height:15px;flex:none}
+.legal-index .pa svg{width:15px;height:15px}.legal-index .pa svg+svg{display:none}
+.legal-index nav{display:grid;gap:3px;border-top:1px solid #e4e1da;padding-top:6px}
+.legal-index nav a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;padding:10px 14px;font-size:15px;line-height:1.35;border-radius:14px;color:#504d47}
+.legal-index nav a:hover{background:var(--fill);color:var(--ink)}
+.legal-index nav [aria-current=page]{background:var(--ink);color:var(--lit)}
+.legal-index nav [aria-current=page]:hover{background:var(--ink);color:var(--lit)}
+.legal-index nav [aria-current=page] .pa{color:var(--acc)}
+.legal-main :focus-visible,.pilot-links a:focus-visible{outline:2px solid #a84510;outline-offset:2px}
+.legal-copy{min-width:0;padding:clamp(24px,3vw,46px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;overflow-wrap:anywhere}
+.legal-copy h2{border-top:1px solid #dfdcd4;padding-top:1em;font-size:clamp(24px,2.25vw,36px);line-height:1.18;font-weight:500;letter-spacing:-.028em;margin:1.25em 0 .55em}
+.legal-copy h2:first-child{padding-top:0;border-top:0;margin-top:0}
+.legal-copy p,.legal-copy ul{margin:0 0 .9em}.legal-copy ul{padding-left:1.3em;list-style:disc}.legal-copy li+li{margin-top:.45em}.legal-copy>:last-child{margin-bottom:0}
+@media(max-width:800px){
+  .legal-layout{grid-template-columns:minmax(0,1fr);gap:12px}
+  .legal-index{position:static}.legal-index details{padding:4px 8px;border-radius:18px}
+  .legal-index nav{padding-bottom:4px}.legal-copy{padding:22px 18px;border-radius:18px}
+}
 
-.form-note a{text-decoration:underline;text-underline-offset:.16em}
+/* Форма и быстрые контакты перемещаются вместе со шторкой. */
+.modal{background:transparent}
+.pilot-panel{display:flex;flex-direction:column;min-height:0;background:var(--surface);border-radius:28px;overflow:hidden}
+.pilot-links{flex:none;display:flex;gap:6px;margin-top:8px;padding:2px}
+.pilot-links .btn{flex:1;gap:7px;min-width:0;padding:0 8px;height:var(--ctl-sm);font-size:14px;box-shadow:none}
+.pilot-links .btn:hover{background:var(--fill)}
+.pilot-links svg{width:17px;height:17px;flex:none}
+.draft-actions{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+@media(max-width:860px), (orientation:landscape) and (max-height:500px) and (any-pointer:coarse){
+  .pilot-panel{flex:1;border-radius:26px}
+  .pilot-links{margin:0;padding:6px max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left));overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+  .pilot-links .btn{flex:1 0 auto;gap:5px;padding:0 8px;font-size:13px}
+  .pilot-links svg{width:16px;height:16px}
+  .modal[data-compact]:has(.f__in:focus) .pilot-links{display:none}
+}
 </style>
 </head>
 
@@ -1345,7 +1368,7 @@ html:has(#cookie-dialog[open]){overflow:hidden}
           <li><span>2</span><div data-t="nx2">Разберём ваши процессы и&nbsp;найдём, что можно автоматизировать.</div></li>
           <li><span>3</span><div data-t="nx3">Предложим, каким будет ваш ИИ-сотрудник и&nbsp;с&nbsp;чего начать.</div></li>
         </ol>
-        <p class="note" data-t="nxNote">Без обязательств: на созвоне просто разберёмся, будет ли польза.</p></details>
+      </details>
       </aside>
       <div class="wh fcard rv" style="--d:.1s">
         <noscript><p data-t="noJsForm">Включите JavaScript, чтобы открыть форму.</p></noscript>
@@ -1358,10 +1381,10 @@ html:has(#cookie-dialog[open]){overflow:hidden}
               <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
               <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
             </div>
-            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.</p></div>
+            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Подготовить заявку</button></div>
             <div class="sr" role="status" aria-live="polite"></div>
           </div>
-          <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
+          <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Письмо готово</h3><p data-t="draftHint">Откройте письмо с деталями заявки и отправьте его команде Singlet.</p><div class="ok-sum"></div><div class="draft-actions"><a class="btn b-acc draft-mail" data-t="draftOpen">Открыть письмо</a><button type="button" class="btn b-line okDone" data-t="okDone">Готово</button></div></div>
         </form>
       </div>
     </div>
@@ -1459,25 +1482,33 @@ html:has(#cookie-dialog[open]){overflow:hidden}
 <!-- shared:pilot -->
 <div class="ov" id="ov"></div>
 <div class="modal" id="modal" inert aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mT" tabindex="-1">
-  <button class="grab" id="grab" type="button" data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
-  <div class="mh"><h3 id="mT" data-t="pilot">Обсудить пилот</h3><button class="mx" id="mx" data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
-  <form class="js-form" id="mForm" novalidate inert style="display:contents">
-    <div class="mb" id="mBody">
-      <div class="form-body">
-        <p class="lead2" data-t="mLead">Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.</p>
-        <div style="display:grid;gap:var(--gap)">
-          <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="mName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
-          <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
+  <div class="pilot-panel">
+    <button class="grab" id="grab" type="button" data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
+    <div class="mh"><h3 id="mT" data-t="pilot">Обсудить пилот</h3><button class="mx" id="mx" data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
+    <form class="js-form" id="mForm" novalidate inert style="display:contents">
+      <div class="mb" id="mBody">
+        <div class="form-body">
+          <p class="lead2" data-t="mLead">Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.</p>
+          <div style="display:grid;gap:var(--gap)">
+            <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="mName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+            <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+            <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
+            <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
+            <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
+          </div>
+          <div class="sr" role="status" aria-live="polite"></div>
         </div>
-        <div class="sr" role="status" aria-live="polite"></div>
+        <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Письмо готово</h3><p data-t="draftHint">Откройте письмо с деталями заявки и отправьте его команде Singlet.</p><div class="ok-sum"></div><div class="draft-actions"><a class="btn b-acc draft-mail" data-t="draftOpen">Открыть письмо</a><button type="button" class="btn b-line okDone" data-t="okDone">Готово</button></div></div>
       </div>
-      <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
-    </div>
-    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.</p></div>
-  </form>
+      <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Подготовить заявку</button></div>
+    </form>
+  </div>
+  <nav class="pilot-links" data-ta="contactTitle" aria-label="Связаться с FEIP">
+    <a class="btn b-line" href="tel:+74232026978"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 3 3.3 3.3-1.7 2.3a14 14 0 0 0 4.8 4.8l2.3-1.7L17 15c-.3 2.4-2.2 3-4.2 2.4A18 18 0 0 1 2.6 7.2C2 5.2 2.6 3.3 5 3Z"/></svg><span data-t="quickCall">Позвонить</span></a>
+    <a class="btn b-line" href="https://t.me/hello_feip_bot" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 9 15-6-3 14-5.2-4.2L7 15v-4.4l7-5.2-8.4 4.8Z"/></svg><span data-t="quickTelegram">Telegram</span></a>
+    <a class="btn b-line" href="https://max.ru/id2540249980_bot" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.2a7 7 0 1 1 3.3 5.9L3 17l.7-3.4a7 7 0 0 1-.7-3.4Z"/><path d="M7 11.9V8l2.8 2.4L12.5 8v3.9"/></svg><span data-t="quickMax">MAX</span></a>
+    <a class="btn b-line" href="mailto:hello@feip.co"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="16" height="11" rx="2.5"/><path d="m3.5 6 6.5 5 6.5-5"/></svg><span data-t="quickEmail">Почта</span></a>
+  </nav>
 </div>
 <!-- /shared:pilot -->
 
@@ -1508,6 +1539,17 @@ html:has(#cookie-dialog[open]){overflow:hidden}
 /* ═════════ ТЕКСТЫ: RU / EN ═════════ */
 const I18N = {
 ru: {
+  "quickCall": "Позвонить",
+  "quickTelegram": "Telegram",
+  "quickMax": "MAX",
+  "quickEmail": "Почта",
+  "draftOpen": "Открыть письмо",
+  "draftHint": "Откройте письмо с деталями заявки и отправьте его команде Singlet.",
+  "draftSubject": "Пилот Singlet",
+  "privacyHeading": "Политика обработки <span class=\"dim\">персональных данных</span>",
+  "eulaHeading": "Пользовательское <span class=\"dim\">соглашение</span>",
+  "agreeHeading": "Согласие на обработку <span class=\"dim\">персональных данных</span>",
+  "cookie-consentHeading": "Согласие на использование <span class=\"dim\">файлов cookie</span>",
   "contactTitle": "Связаться с FEIP",
   "documents": "Документы",
   "privacy": "Политика обработки персональных данных",
@@ -1580,13 +1622,10 @@ ru: {
   nx1: 'Напишем вам и&nbsp;договоримся о&nbsp;коротком созвоне.',
   nx2: 'Разберём ваши процессы и&nbsp;найдём, что можно автоматизировать.',
   nx3: 'Предложим, каким будет ваш ИИ-сотрудник и&nbsp;с&nbsp;чего начать.',
-  nxNote: 'Без обязательств: на созвоне просто разберёмся, будет ли польза.',
   fWho: 'Кто вы — имя и компания', fWhat: 'Что хотите автоматизировать', fHow: 'Telegram, почта или телефон',
-  send: 'Проверить заявку', sendNote: 'Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.',
+  send: 'Подготовить заявку',
   noJsForm: 'Включите JavaScript, чтобы открыть форму.',
-  okT: 'Данные проверены', okDone: 'Готово',
-  okThanks: '{name}, в рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.', okThanks0: 'В рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.',
-  howTg: 'в Telegram {v}', howMail: 'на почту {v}', howPhone: 'по номеру {v}',
+  okT: 'Письмо готово', okDone: 'Готово',
   rWho: 'Кто вы', rHow: 'Контакт', rWhat: 'Задача',
   mLead: 'Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.',
   faqH: 'Вопросы. <span class="dim">И&nbsp;ответы.</span>',
@@ -1603,6 +1642,17 @@ ru: {
   vCheck: 'Проверьте поля: ', vConsent: 'Согласие',
 },
 en: {
+  "quickCall": "Call",
+  "quickTelegram": "Telegram",
+  "quickMax": "MAX",
+  "quickEmail": "Email",
+  "draftOpen": "Open email draft",
+  "draftHint": "Open the email draft with your request details and send it to the Singlet team.",
+  "draftSubject": "Singlet pilot enquiry",
+  "privacyHeading": "Personal data <span class=\"dim\">processing policy</span>",
+  "eulaHeading": "User <span class=\"dim\">agreement</span>",
+  "agreeHeading": "Consent to <span class=\"dim\">personal data processing</span>",
+  "cookie-consentHeading": "Cookie and web <span class=\"dim\">analytics consent</span>",
   "contactTitle": "Contact FEIP",
   "documents": "Documents",
   "privacy": "Personal data processing policy",
@@ -1675,13 +1725,10 @@ en: {
   nx1: 'We get in touch and set up a short call.',
   nx2: 'We go through your processes and find what can be automated.',
   nx3: 'We propose what your AI employee will look like and where to start.',
-  nxNote: 'No obligations: on the call we simply figure out whether it will help.',
   fWho: 'Who you are — name and company', fWhat: 'What you want to automate', fHow: 'Telegram, email or phone',
-  send: 'Check request', sendNote: 'Form preview. To discuss a pilot, email <a href="mailto:hello@feip.co">hello@feip.co</a>.',
+  send: 'Prepare request',
   noJsForm: 'Enable JavaScript to open the form.',
-  okT: 'Details checked', okDone: 'Done',
-  okThanks: '{name}, in the live version we’ll contact you {how} to schedule a call.', okThanks0: 'In the live version we’ll contact you {how} to schedule a call.',
-  howTg: 'on Telegram {v}', howMail: 'at {v}', howPhone: 'at {v}',
+  okT: 'Your draft is ready', okDone: 'Done',
   rWho: 'Who you are', rHow: 'Contact', rWhat: 'Task',
   mLead: 'Tell us about the task — we’ll get in touch and set up a short call.',
   faqH: 'Questions. <span class="dim">And answers.</span>',
@@ -2024,7 +2071,7 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
     if (v === 'name') { const s = inp.value.trim(); if (!s) { setState(f, 'err', tt('vNameE')); return false; } if (s.length < 2) { setState(f, 'err', tt('vNameS')); return false; } setState(f, 'ok'); return true; }
     if (v === 'req') { if (!inp.value.trim()) { setState(f, 'err', tt('vReq')); return false; } setState(f, 'ok'); return true; }
     if (v === 'chk') { const c = $('input', f); setState(f, c.checked ? null : 'err'); return c.checked; }
-    if (v === 'contact') { const r = parseContact(inp.value); if (r.err) { setState(f, 'err', r.err); return false; } inp.value = r.val; f._type = r.type;
+    if (v === 'contact') { const r = parseContact(inp.value); if (r.err) { setState(f, 'err', r.err); return false; } inp.value = r.val;
       if (r.warn && f._warned !== r.val) { if (onSubmit) f._warned = r.val; setState(f, 'warn', r.warn); return !onSubmit; }
       if (f.classList.contains('is-warn') && !onSubmit) return true; setState(f, 'ok'); return true; }
     return true;
@@ -2037,7 +2084,11 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
     const consents = $$('input[type=checkbox][required]', form);
     const syncConsent = () => { submit.disabled = !consents.every(input => input.checked); };
     form.addEventListener('change', syncConsent);
-    form.addEventListener('reset', () => queueMicrotask(syncConsent));
+    form.addEventListener('reset', () => {
+      $('.draft-mail', form).removeAttribute('href');
+      $('.ok-sum', form).replaceChildren();
+      queueMicrotask(syncConsent);
+    });
     window.addEventListener('pageshow', syncConsent);
     fields.forEach(f => { const inp = $('.f__in', f);
       if (inp) { inp.addEventListener('blur', () => { if (inp.value.trim()) check(f); }); inp.addEventListener('input', () => { if (f.classList.contains('is-err') || f.classList.contains('is-warn')) setState(f, null); }); }
@@ -2046,9 +2097,10 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
       fields.forEach(f => { if (!check(f, true)) { bad.push(fieldName(f)); if (!first) first = f; } });
       if (first) { live.textContent = tt('vCheck') + bad.join(', '); first.querySelector('.f__in,input').focus(); return; }
       live.textContent = ''; const fd = new FormData(form), name = (fd.get('name') || '').toString().trim(), ct = (fd.get('contact') || '').toString(), msg = (fd.get('msg') || '').toString().trim();
-      const cf = fields.find(f => f.dataset.v === 'contact'), type = cf && cf._type, how = fill(tt(type === 'tg' ? 'howTg' : type === 'mail' ? 'howMail' : 'howPhone'), { v: ct });
-      const first2 = name.split(/[\s,]+/)[0];
-      $('.okP', form).textContent = first2 ? fill(tt('okThanks'), { name: first2, how }) : fill(tt('okThanks0'), { how });
+      const consentText = consents.map(input => input.closest('label').textContent.trim());
+      const message = [tt('rWho') + ': ' + name, tt('rHow') + ': ' + ct, tt('rWhat') + ': ' + msg, ...consentText]
+        .join('\n\n').replace(/\r?\n/g, '\r\n');
+      $('.draft-mail', form).href = 'mailto:' + tt('mailValue') + '?subject=' + encodeURIComponent(tt('draftSubject')) + '&body=' + encodeURIComponent(message);
       const rows = [[tt('rWho'), name], [tt('rHow'), ct], [tt('rWhat'), cut(msg, 48)]].filter(([, value]) => value).map(([label, value]) => {
         const row = document.createElement('div'), caption = document.createElement('span'), text = document.createElement('b');
         caption.textContent = label; text.textContent = value; row.append(caption, text);

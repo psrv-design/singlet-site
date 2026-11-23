@@ -1116,6 +1116,76 @@ html.pre-on .hero .rv{opacity:0!important;transform:translateY(24px)!important}
 /* типографика: без одиноких слов в последней строке */
 p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 @media(max-width:860px){.isl-box{--eh:min(calc(var(--vh,1vh)*95 - var(--isl-bottom)),var(--isl-space))}}
+
+/* Контакты и документы во всех футерах. */
+.foot-info{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;margin-top:clamp(32px,5vw,72px);padding-top:28px;border-top:1px solid var(--line2)}
+.foot-info h3{font-size:16px;font-weight:500;margin-bottom:12px;color:var(--fg)}
+.foot-links{display:grid;justify-items:start;font-style:normal;color:var(--fg2);font-size:15px;line-height:1.45}
+.foot-links a,.foot-links button{color:inherit;text-align:left;background:none;border:0;font:inherit;padding:6px 0;cursor:pointer}
+.foot-links :is(a,button):hover,.foot-links :is(a,button):focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+.foot-operator{margin-top:28px;color:var(--fg2);font-size:14px;line-height:1.6}
+.foot-b{margin-top:12px}
+.cpage .foot{--fg:#f4f1ea;--fg2:#b0ada6;--line2:#41403b;background:#0c0c0b;color:var(--fg);padding-bottom:84px}
+.cpage .foot .rv,.legal-page .foot .rv{opacity:1;transform:none}
+.f--chk a,.cookie-card p a,.legal-copy a{color:inherit;text-decoration:underline;text-underline-offset:.16em}
+.f--chk a:hover,.legal-copy a:hover{color:#8a390a}
+.js-form button[type=submit]:disabled{background:#75736d;color:white;cursor:not-allowed;transform:none}
+
+.cookie-card{box-sizing:border-box;color:#f4f1ea;background:#1b1b18;border:1px solid #46453e;border-radius:21px;padding:24px;font:400 15px/1.45 var(--f);box-shadow:0 12px 50px #0004}
+.cookie-card h2{font-size:24px;line-height:1.15;letter-spacing:-.028em;font-weight:500}
+.cookie-card p{margin:10px 0 0;color:#d1cec6}
+.cookie-notice{position:fixed;z-index:98;left:var(--pad);bottom:max(16px,env(safe-area-inset-bottom));width:min(530px,calc(100% - 2 * var(--pad)));max-height:65svh;overflow:auto;overscroll-behavior:contain}
+.cookie-notice[hidden],.cookie-card [hidden],.foot [hidden],html.pre-on .cookie-notice,body:has(#modal.open,#menu.open,#isl.open) .cookie-notice{display:none}
+.cookie-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:18px}
+.cookie-card .btn{font-size:14px;height:40px;min-height:40px;padding:0 16px;justify-content:center}
+.cookie-primary{background:#f4f1ea;color:#171715}
+.cookie-secondary{background:#3e3d37;color:white}
+.cookie-link,.cookie-close,.cookie-grip{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.cookie-link{min-height:40px;padding:0 8px;text-decoration:underline;text-underline-offset:3px;margin-left:auto}
+.cookie-card :focus-visible{outline:2px solid #ff965b;outline-offset:2px}
+#cookie-dialog{position:fixed;inset:0;margin:auto;width:min(480px,calc(100% - 32px));max-height:85svh;overflow:auto;overscroll-behavior:contain}
+#cookie-dialog::backdrop{background:#080807b3}
+html:has(#cookie-dialog[open]){overflow:hidden}
+.cookie-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cookie-close{height:40px;width:40px;flex:none;font-size:27px;border:1px solid #56544e;border-radius:50%;line-height:1}
+.cookie-option{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 12px;border-top:1px solid #484740;padding:17px 0}
+.cookie-options{margin:18px 0 10px}
+.cookie-option h3,.cookie-option label{font-size:17px;font-weight:500;cursor:inherit}
+.cookie-option p{grid-column:1/-1;margin:0}
+.cookie-option small{color:#c1beb6;font-size:13px}
+#cookie-analytics{appearance:none;width:44px;height:26px;border:1px solid #88847c;border-radius:14px;background:#46443d;cursor:pointer;position:relative}
+#cookie-analytics:before{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:white}
+#cookie-analytics:checked{background:#b94606}
+#cookie-analytics:checked:before{transform:translateX(18px)}
+.cookie-grip{display:none}
+@media(max-width:700px){
+  .foot-info{grid-template-columns:1fr;gap:22px;padding-top:23px}.foot-info h3{margin-bottom:7px}
+  .cookie-notice{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));width:auto;bottom:max(8px,env(safe-area-inset-bottom));padding:16px;border-radius:16px;font-size:14px}
+  .cookie-notice h2{font-size:20px}.cookie-actions{gap:6px;margin-top:12px}.cookie-card .btn{padding:0 12px}.cookie-link{margin-left:0}
+  #cookie-dialog{inset:auto 0 0;width:100%;max-height:84svh;margin:0;padding:0 max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));border-radius:22px 22px 0 0}
+  .cookie-grip{display:grid;place-items:center;width:100%;height:34px;touch-action:none}
+  .cookie-grip:after{content:'';width:38px;height:4px;border-radius:8px;background:#77746d}
+  #cookie-dialog [data-cookie-save]{width:100%;height:56px}
+}
+
+.legal-main{background:var(--paper);color:#171715;padding:clamp(108px,10vw,156px) 0 clamp(68px,8vw,120px)}
+.legal-layout{display:grid;grid-template-columns:minmax(200px,.65fr) minmax(0,2fr);gap:clamp(28px,6vw,100px);align-items:start}
+.legal-index{position:sticky;top:90px;max-width:310px}
+.legal-home{display:inline-flex;align-items:center;gap:8px;color:#534f48;min-height:40px}
+.legal-index details{border-top:1px solid #c6c3ba;margin-top:15px;padding-top:14px}
+.legal-index summary{font-weight:500;cursor:pointer}
+.legal-index .foot-links{margin-top:8px;color:#55524a}
+.legal-index .foot-links a:hover,.legal-index .foot-links [aria-current=page]{color:#1a1916;text-decoration:underline;text-underline-offset:3px}
+.legal-layout article{max-width:800px;min-width:0;overflow-wrap:anywhere}
+.legal-layout h1{font-size:clamp(36px,4.4vw,72px);font-weight:500;letter-spacing:-.028em;line-height:1.04}
+.legal-edition{color:#656159;font-size:15px;margin:18px 0 30px}
+.legal-copy{border-top:1px solid #c6c3ba;padding-top:24px;font-size:clamp(16px,1.25vw,19px);line-height:1.6}
+.legal-copy h2{font-size:clamp(24px,2.25vw,36px);font-weight:500;line-height:1.2;letter-spacing:-.024em;margin:1.45em 0 .55em}
+.legal-copy h2:first-child{margin-top:0}
+.legal-copy p,.legal-copy ul{margin:0 0 .9em}.legal-copy ul{padding-left:1.3em;list-style:disc}.legal-copy li+li{margin-top:.45em}
+@media(max-width:800px){.legal-main{padding-top:83px}.legal-layout{grid-template-columns:1fr;gap:27px}.legal-index{position:static;width:100%;max-width:none}.legal-index details{margin-top:6px;padding-top:10px}.legal-edition{margin:14px 0 22px}}
+
+.form-note a{text-decoration:underline;text-underline-offset:.16em}
 </style>
 </head>
 
@@ -1285,9 +1355,10 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
               <div class="f" data-v="name"><input class="f__in" id="fName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="fName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="fName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="fName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
               <div class="f f--area" data-v="req"><textarea class="f__in" id="fMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="fMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="fMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="fMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
               <div class="f" data-v="contact"><input class="f__in" id="fCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="fCt-m" autocapitalize="off" spellcheck="false" autocomplete="email" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="fCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="fCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-              <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd">Согласен на обработку персональных данных</span></label>
+              <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
+              <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
             </div>
-            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Здесь можно проверить данные заявки.</p></div>
+            <div class="form-foot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.</p></div>
             <div class="sr" role="status" aria-live="polite"></div>
           </div>
           <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
@@ -1308,8 +1379,8 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
         <h3 data-t="dH">Не нашли ответ?</h3>
         <p data-t="dP">Напишите нам напрямую — ответит человек из команды Singlet.</p>
         <div class="row">
-          <a class="btn b-acc full" href="#" data-todo="telegram"><span class="lb" data-t="dTg">Написать в Telegram</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
-          <a class="btn b-line full" href="#" data-todo="email"><span class="lb" data-t="dMail">Написать на почту</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
+          <a class="btn b-acc full" href="https://t.me/hello_feip_bot"><span class="lb" data-t="dTg">Написать в Telegram</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
+          <a class="btn b-line full" href="mailto:hello@feip.co"><span class="lb" data-t="dMail">Написать на почту</span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></a>
         </div></details>
       </aside>
     </div>
@@ -1327,6 +1398,23 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
         <nav class="foot-l"><a class="ul" href="#demo" data-t="nDemo">Демо</a><a class="ul" href="#features" data-t="nFeat">Возможности</a><a class="ul" href="#process" data-t="nProc">Запуск</a><a class="ul" href="#cases" data-t="nCases">Кейсы</a><a class="ul" href="#faq" data-t="nFaq">Вопросы</a></nav>
       </div>
     </div>
+    <div class="foot-info">
+      <section><h3 data-t="contactTitle">Связаться с FEIP</h3><address class="foot-links">
+          <a href="tel:+74232026978" data-t="phoneValue">+7 (423) 202-69-78</a>
+          <a href="mailto:hello@feip.co" data-t="mailValue">hello@feip.co</a>
+          <a href="https://max.ru/id2540249980_bot" data-t="maxBot">ДВИП Бот в MAX</a>
+          <a href="https://t.me/hello_feip_bot" data-t="tgValue">@hello_feip_bot</a>
+          <a href="https://go.2gis.com/bqpb1" data-t="address">Владивосток, ул. Станюковича, 46, 2 этаж</a>
+      </address></section>
+      <section><h3 data-t="documents">Документы</h3><nav class="foot-links" data-ta="documents" aria-label="Документы">
+          <a href="privacy.html" data-document="privacy" data-t="privacy">Политика обработки персональных данных</a>
+          <a href="agree.html" data-document="agree" data-t="agree">Согласие на обработку персональных данных</a>
+          <a href="eula.html" data-document="eula" data-t="eula">Пользовательское соглашение</a>
+          <a href="cookie-consent.html" data-document="cookie-consent" data-t="cookie-consent">Согласие на использование файлов cookie</a>
+          <button type="button" data-cookie-open data-t="cookieSettings" hidden>Настройки cookie</button>
+      </nav></section>
+    </div>
+    <div class="foot-operator" data-t="operatorLine">ООО «Дальневосточный интеллектуальный потенциал»<br>ИНН 2540249980, ОГРН 1192536008378</div>
     <div class="foot-b"><span data-t="footBy">Singlet — продукт FEIP</span><span>© 2026</span></div>
     <div class="reels px" id="wmFoot" data-reel="SINGLET" data-n="9" data-dur="2.2s" data-stg=".1s" aria-hidden="true"></div>
   </div>
@@ -1334,7 +1422,36 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 <!-- /shared:footer -->
 
 <!-- СТРАНИЦА КЕЙСА (#case-…) -->
-<div class="cpage" id="cpage" inert role="region" aria-hidden="true"><div class="cp-in" id="cpIn"></div></div>
+<div class="cpage" id="cpage" inert role="region" aria-hidden="true"><div class="cp-in" id="cpIn"></div><footer class="sec foot">
+  <div class="wrap">
+    <div class="foot-g">
+      <h2 class="h2" data-t="footH">Наймите сотрудника, <span class="dim">который выходит на&nbsp;смену сегодня.</span></h2>
+      <div class="foot-r rv">
+        <button class="btn b-acc" data-modal><span class="lb"><span data-t="pilot">Обсудить пилот</span><small data-t="pilotSub">Созвон без обязательств</small></span><span class="pa"><svg><use href="#pa"/></svg><svg><use href="#pa"/></svg></span></button>
+        <nav class="foot-l"><a class="ul" href="#demo" data-t="nDemo">Демо</a><a class="ul" href="#features" data-t="nFeat">Возможности</a><a class="ul" href="#process" data-t="nProc">Запуск</a><a class="ul" href="#cases" data-t="nCases">Кейсы</a><a class="ul" href="#faq" data-t="nFaq">Вопросы</a></nav>
+      </div>
+    </div>
+    <div class="foot-info">
+      <section><h3 data-t="contactTitle">Связаться с FEIP</h3><address class="foot-links">
+          <a href="tel:+74232026978" data-t="phoneValue">+7 (423) 202-69-78</a>
+          <a href="mailto:hello@feip.co" data-t="mailValue">hello@feip.co</a>
+          <a href="https://max.ru/id2540249980_bot" data-t="maxBot">ДВИП Бот в MAX</a>
+          <a href="https://t.me/hello_feip_bot" data-t="tgValue">@hello_feip_bot</a>
+          <a href="https://go.2gis.com/bqpb1" data-t="address">Владивосток, ул. Станюковича, 46, 2 этаж</a>
+      </address></section>
+      <section><h3 data-t="documents">Документы</h3><nav class="foot-links" data-ta="documents" aria-label="Документы">
+          <a href="privacy.html" data-document="privacy" data-t="privacy">Политика обработки персональных данных</a>
+          <a href="agree.html" data-document="agree" data-t="agree">Согласие на обработку персональных данных</a>
+          <a href="eula.html" data-document="eula" data-t="eula">Пользовательское соглашение</a>
+          <a href="cookie-consent.html" data-document="cookie-consent" data-t="cookie-consent">Согласие на использование файлов cookie</a>
+          <button type="button" data-cookie-open data-t="cookieSettings" hidden>Настройки cookie</button>
+      </nav></section>
+    </div>
+    <div class="foot-operator" data-t="operatorLine">ООО «Дальневосточный интеллектуальный потенциал»<br>ИНН 2540249980, ОГРН 1192536008378</div>
+    <div class="foot-b"><span data-t="footBy">Singlet — продукт FEIP</span><span>© 2026</span></div>
+    <div class="reels px" data-reel="SINGLET" data-n="9" data-dur="2.2s" data-stg=".1s" aria-hidden="true"></div>
+  </div>
+</footer></div>
 
 <!-- «ОСТРОВ» НА СТРАНИЦЕ КЕЙСА: капсула внизу раскрывается в список всех кейсов -->
 <div class="isl" id="isl"><div class="isl-bd" data-isl-close></div><div class="isl-box"><div class="isl-panel" id="casePicker" inert role="dialog" aria-modal="true" aria-labelledby="casePickerTitle"><div class="isl-h"><b id="casePickerTitle" data-t="cpBack">Все кейсы</b><span id="islC"></span><button class="isl-x" type="button" data-isl-close data-ta="aClose" aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div><div class="isl-l"></div></div><button class="isl-pill" type="button" aria-expanded="false" aria-controls="casePicker" data-ta="aIsl" aria-label="Список кейсов"><span class="th"></span><span class="tx"><small id="islN"></small><b id="islT"></b></span><span class="ic"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1.4"/><rect x="12" y="3" width="5" height="5" rx="1.4"/><rect x="3" y="12" width="5" height="5" rx="1.4"/><rect x="12" y="12" width="5" height="5" rx="1.4"/></svg></span></button></div></div>
@@ -1352,23 +1469,75 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
           <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="mName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
           <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
           <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd">Согласен на обработку персональных данных</span></label>
+          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
+          <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
         </div>
         <div class="sr" role="status" aria-live="polite"></div>
       </div>
       <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
     </div>
-    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Здесь можно проверить данные заявки.</p></div>
+    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.</p></div>
   </form>
 </div>
 <!-- /shared:pilot -->
 
 <script>window.__pre&&(__pre.cap=94)</script>
 
+<!-- shared:cookies -->
+<section id="cookie-notice" class="cookie-card cookie-notice" aria-labelledby="cookie-title" hidden>
+  <h2 id="cookie-title" data-t="cookieTitle">Файлы cookie</h2>
+  <p data-t="cookieText">Обязательные файлы cookie и локальные настройки нужны для работы сайта. Аналитические cookie разрешаются только с вашего согласия. Подробнее — в <a href="cookie-consent.html" data-document="cookie-consent">Согласии на использование файлов cookie</a> и <a href="privacy.html" data-document="privacy">Политике обработки персональных данных</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" class="btn cookie-primary" data-cookie-accept data-t="cookieAll">Принять все</button>
+    <button type="button" class="btn cookie-secondary" data-cookie-essential data-t="cookieEssential">Только обязательные</button>
+    <button type="button" class="cookie-link" data-cookie-open data-t="configure">Настроить</button>
+  </div>
+</section>
+<dialog id="cookie-dialog" class="cookie-card" aria-labelledby="cookie-settings-title">
+  <button class="cookie-grip" type="button" data-cookie-close data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
+  <div class="cookie-dialog-head"><h2 id="cookie-settings-title" data-t="cookieSettings">Настройки cookie</h2><button type="button" class="cookie-close" data-cookie-close data-ta="aClose" aria-label="Закрыть">×</button></div>
+  <div class="cookie-options">
+    <div class="cookie-option"><h3 data-t="necessary">Обязательные cookie</h3><small data-t="alwaysOn">Всегда включены</small><p data-t="necessaryDesc">Сохраняют выбор cookie и язык сайта на этом устройстве.</p></div>
+    <div class="cookie-option"><label for="cookie-analytics" data-t="analytics">Аналитические cookie</label><input id="cookie-analytics" type="checkbox" role="switch" aria-describedby="cookie-analytics-desc"><p id="cookie-analytics-desc" data-t="analyticsDesc">Позволяют анализировать посещаемость с вашего согласия. В этой версии сайта счётчики аналитики не подключены.</p></div>
+  </div>
+  <button type="button" class="btn cookie-primary" data-cookie-save data-t="cookieSave">Сохранить настройки</button>
+</dialog>
+<!-- /shared:cookies -->
+
 <script>
 /* ═════════ ТЕКСТЫ: RU / EN ═════════ */
 const I18N = {
 ru: {
+  "contactTitle": "Связаться с FEIP",
+  "documents": "Документы",
+  "privacy": "Политика обработки персональных данных",
+  "eula": "Пользовательское соглашение",
+  "agree": "Согласие на обработку персональных данных",
+  "cookie-consent": "Согласие на использование файлов cookie",
+  "address": "Владивосток, ул. Станюковича, 46, 2 этаж",
+  "maxBot": "ДВИП Бот в MAX",
+  "phoneValue": "+7 (423) 202-69-78",
+  "mailValue": "hello@feip.co",
+  "tgValue": "@hello_feip_bot",
+  "operatorLine": "ООО «Дальневосточный интеллектуальный потенциал»<br>ИНН 2540249980, ОГРН 1192536008378",
+  "privacyCheck": "Согласен на <a href=\"agree.html\" data-document=\"agree\" target=\"_blank\" rel=\"noopener\">обработку персональных данных</a> в соответствии с <a href=\"privacy.html\" data-document=\"privacy\" target=\"_blank\" rel=\"noopener\">Политикой</a>",
+  "termsCheck": "Принимаю условия <a href=\"eula.html\" data-document=\"eula\" target=\"_blank\" rel=\"noopener\">пользовательского соглашения</a>",
+  "cookieTitle": "Файлы cookie",
+  "cookieText": "Обязательные файлы cookie и локальные настройки нужны для работы сайта. Аналитические cookie разрешаются только с вашего согласия. Подробнее — в <a href=\"cookie-consent.html\" data-document=\"cookie-consent\">Согласии на использование файлов cookie</a> и <a href=\"privacy.html\" data-document=\"privacy\">Политике обработки персональных данных</a>.",
+  "cookieAll": "Принять все",
+  "cookieEssential": "Только обязательные",
+  "configure": "Настроить",
+  "cookieSettings": "Настройки cookie",
+  "cookieSave": "Сохранить настройки",
+  "necessary": "Обязательные cookie",
+  "alwaysOn": "Всегда включены",
+  "necessaryDesc": "Сохраняют выбор cookie и язык сайта на этом устройстве.",
+  "analytics": "Аналитические cookie",
+  "analyticsDesc": "Позволяют анализировать посещаемость с вашего согласия. В этой версии сайта счётчики аналитики не подключены.",
+  "legalHome": "На главную",
+  "docVersion": "Редакция для Singlet от 23 ноября 2026 года",
+  "docContents": "Содержание",
+  "nextDocs": "Другие документы",
   featMore: 'Подробнее о сотруднике',
   directMore: 'Написать напрямую', sheetHandle: 'Потяните вниз или нажмите, чтобы закрыть',
   title: 'Singlet — ИИ-сотрудник для вашего бизнеса',
@@ -1413,8 +1582,7 @@ ru: {
   nx3: 'Предложим, каким будет ваш ИИ-сотрудник и&nbsp;с&nbsp;чего начать.',
   nxNote: 'Без обязательств: на созвоне просто разберёмся, будет ли польза.',
   fWho: 'Кто вы — имя и компания', fWhat: 'Что хотите автоматизировать', fHow: 'Telegram, почта или телефон',
-  fPd: 'Согласен на обработку персональных данных',
-  send: 'Проверить заявку', sendNote: 'Демо формы. Здесь можно проверить данные заявки.',
+  send: 'Проверить заявку', sendNote: 'Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.',
   noJsForm: 'Включите JavaScript, чтобы открыть форму.',
   okT: 'Данные проверены', okDone: 'Готово',
   okThanks: '{name}, в рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.', okThanks0: 'В рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.',
@@ -1423,7 +1591,7 @@ ru: {
   mLead: 'Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.',
   faqH: 'Вопросы. <span class="dim">И&nbsp;ответы.</span>',
   dH: 'Не нашли ответ?', dP: 'Напишите нам напрямую — ответит человек из команды Singlet.',
-  dTg: 'Написать в Telegram', dMail: 'Написать на почту', todo: 'Контакт добавим перед публикацией сайта',
+  dTg: 'Написать в Telegram', dMail: 'Написать на почту',
   footH: 'Наймите сотрудника, <span class="dim">который выходит на&nbsp;смену сегодня.</span>',
   footBy: 'Singlet — продукт FEIP',
   cpBack: 'Все кейсы', cpOf: 'Кейс {i} из {n}', cpBefore: 'Как было', cpBeforeS: 'До автоматизации', cpTask: 'Задача', cpDoes: 'Что делает', cpDoesS: 'Конкретные действия сотрудника',
@@ -1435,6 +1603,36 @@ ru: {
   vCheck: 'Проверьте поля: ', vConsent: 'Согласие',
 },
 en: {
+  "contactTitle": "Contact FEIP",
+  "documents": "Documents",
+  "privacy": "Personal data processing policy",
+  "eula": "User agreement",
+  "agree": "Consent to personal data processing",
+  "cookie-consent": "Cookie and web analytics consent",
+  "address": "46 Stanyukovicha St, 2nd floor, Vladivostok",
+  "maxBot": "FEIP bot on MAX",
+  "phoneValue": "+7 (423) 202-69-78",
+  "mailValue": "hello@feip.co",
+  "tgValue": "@hello_feip_bot",
+  "operatorLine": "Dalnevostochny Intellektualny Potentsial LLC<br>Tax ID 2540249980, registration no. 1192536008378",
+  "privacyCheck": "I consent to the <a href=\"agree.html\" data-document=\"agree\" target=\"_blank\" rel=\"noopener\">processing of my personal data</a> in accordance with the <a href=\"privacy.html\" data-document=\"privacy\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>",
+  "termsCheck": "I accept the terms of the <a href=\"eula.html\" data-document=\"eula\" target=\"_blank\" rel=\"noopener\">User Agreement</a>",
+  "cookieTitle": "Cookies",
+  "cookieText": "Essential cookies and local preferences help the site work. Analytics cookies require your consent. Read the <a href=\"cookie-consent.html\" data-document=\"cookie-consent\">Cookie Consent</a> and <a href=\"privacy.html\" data-document=\"privacy\">Privacy Policy</a> for details.",
+  "cookieAll": "Accept all",
+  "cookieEssential": "Essential only",
+  "configure": "Customize",
+  "cookieSettings": "Cookie settings",
+  "cookieSave": "Save settings",
+  "necessary": "Essential cookies",
+  "alwaysOn": "Always on",
+  "necessaryDesc": "Keep your cookie preferences and site language on this device.",
+  "analytics": "Analytics cookies",
+  "analyticsDesc": "Allow traffic measurement with your consent. This version of the site has no analytics trackers.",
+  "legalHome": "Back to home",
+  "docVersion": "Singlet edition of 23 November 2026",
+  "docContents": "Contents",
+  "nextDocs": "Other documents",
   featMore: 'More about the employee',
   directMore: 'Contact the team', sheetHandle: 'Drag down or press to close',
   title: 'Singlet — an AI employee for your business',
@@ -1479,8 +1677,7 @@ en: {
   nx3: 'We propose what your AI employee will look like and where to start.',
   nxNote: 'No obligations: on the call we simply figure out whether it will help.',
   fWho: 'Who you are — name and company', fWhat: 'What you want to automate', fHow: 'Telegram, email or phone',
-  fPd: 'I agree to the processing of my personal data',
-  send: 'Check request', sendNote: 'Form preview. Review your request details here.',
+  send: 'Check request', sendNote: 'Form preview. To discuss a pilot, email <a href="mailto:hello@feip.co">hello@feip.co</a>.',
   noJsForm: 'Enable JavaScript to open the form.',
   okT: 'Details checked', okDone: 'Done',
   okThanks: '{name}, in the live version we’ll contact you {how} to schedule a call.', okThanks0: 'In the live version we’ll contact you {how} to schedule a call.',
@@ -1489,7 +1686,7 @@ en: {
   mLead: 'Tell us about the task — we’ll get in touch and set up a short call.',
   faqH: 'Questions. <span class="dim">And answers.</span>',
   dH: 'Didn’t find the answer?', dP: 'Write to us directly — a person from the Singlet team will reply.',
-  dTg: 'Message us on Telegram', dMail: 'Send us an email', todo: 'Contact details will be added before launch',
+  dTg: 'Message us on Telegram', dMail: 'Send us an email',
   footH: 'Hire an employee <span class="dim">who starts the shift today.</span>',
   footBy: 'Singlet is a product by FEIP',
   cpBack: 'All cases', cpOf: 'Case {i} of {n}', cpBefore: 'How it was', cpBeforeS: 'Before automation', cpTask: 'The task', cpDoes: 'What it does', cpDoesS: 'The employee’s concrete actions',
@@ -1832,10 +2029,16 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
       if (f.classList.contains('is-warn') && !onSubmit) return true; setState(f, 'ok'); return true; }
     return true;
   };
-  const fieldName = f => ($('.f__name', f) || {}).textContent || tt('vConsent');
+  const fieldName = f => ($('.f__name', f) || {}).textContent || f.textContent.trim() || tt('vConsent');
   const cut = (s, n) => s.length > n ? s.slice(0, n - 1).trim() + '…' : s;
   $$('.js-form').forEach(form => {
     const fields = $$('[data-v]', form), live = $('[role=status]', form);
+    const submit = $('[type=submit]', form);
+    const consents = $$('input[type=checkbox][required]', form);
+    const syncConsent = () => { submit.disabled = !consents.every(input => input.checked); };
+    form.addEventListener('change', syncConsent);
+    form.addEventListener('reset', () => queueMicrotask(syncConsent));
+    window.addEventListener('pageshow', syncConsent);
     fields.forEach(f => { const inp = $('.f__in', f);
       if (inp) { inp.addEventListener('blur', () => { if (inp.value.trim()) check(f); }); inp.addEventListener('input', () => { if (f.classList.contains('is-err') || f.classList.contains('is-warn')) setState(f, null); }); }
       const c = f.dataset.v === 'chk' && $('input', f); if (c) c.addEventListener('change', () => c.checked && setState(f, null)); });
@@ -1855,7 +2058,7 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
       form.classList.add('done'); const box = form.closest('.modal'); if (box) box.classList.add('done'); $('.ok-screen', form).focus(); });
     $('.okDone', form).addEventListener('click', () => { form.reset(); form.classList.remove('done'); fields.forEach(f => { setState(f, null); f._warned = null; }); const box = form.closest('.modal'); if (box) { box.classList.remove('done'); closeModal(); } else form.focus({ preventScroll: true }); });
     // Пока обработчика нет, форма остаётся неактивной: браузер не записывает поля в строку адреса.
-    $('[type=submit]', form).disabled = false;
+    syncConsent();
     form.inert = false;
   });
 
@@ -1975,6 +2178,91 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
 
   return { modal, closeModal };
 }
+
+// На серверной странице 404 адрес может указывать на произвольный вложенный путь.
+function refreshDocumentLinks(language, base = location.href) {
+  document.querySelectorAll('a[data-document]').forEach(link => {
+    const url = new URL(link.dataset.document + '.html', base);
+    url.searchParams.set('lang', language);
+    link.href = url.href;
+  });
+}
+
+function mountCookiePreferences() {
+  const notice = document.getElementById('cookie-notice');
+  const dialog = document.getElementById('cookie-dialog');
+  const toggle = document.getElementById('cookie-analytics');
+  const grip = dialog.querySelector('.cookie-grip');
+  const key = 'singlet-cookie-preferences';
+  const version = 1;
+  function read() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(key));
+      return saved?.version === version && typeof saved.analytics === 'boolean' ? saved : null;
+    } catch { return null; }
+  }
+  let choice = read();
+  let opener;
+  function render() {
+    notice.hidden = Boolean(choice) || dialog.open;
+    toggle.checked = choice?.analytics === true;
+  }
+  function save(analytics) {
+    choice = { version, analytics, decidedAt: new Date().toISOString() };
+    try { localStorage.setItem(key, JSON.stringify(choice)); } catch { /* Выбор действует до ухода со страницы. */ }
+    if (dialog.open) dialog.close();
+    render();
+  }
+  document.querySelectorAll('[data-cookie-open]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      opener = button;
+      dialog.showModal();
+      render();
+      dialog.querySelector('.cookie-close').focus({ preventScroll: true });
+      document.dispatchEvent(new Event('singlet-cookie-settings'));
+    });
+  });
+  notice.querySelector('[data-cookie-accept]').onclick = () => save(true);
+  notice.querySelector('[data-cookie-essential]').onclick = () => save(false);
+  dialog.querySelector('[data-cookie-save]').onclick = () => save(toggle.checked);
+  dialog.querySelectorAll('[data-cookie-close]').forEach(button => button.addEventListener('click', () => dialog.close()));
+  dialog.addEventListener('close', () => {
+    render();
+    if (opener?.getClientRects().length) opener.focus({ preventScroll: true });
+  });
+  let drag = null;
+  let moved = false;
+  grip.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    moved = false;
+    drag = { y: event.clientY, id: event.pointerId };
+    grip.setPointerCapture(event.pointerId);
+  });
+  grip.addEventListener('pointermove', event => {
+    if (event.pointerId !== drag?.id) return;
+    const dy = Math.max(0, event.clientY - drag.y);
+    moved ||= dy > 6;
+    dialog.style.translate = '0 ' + dy + 'px';
+  });
+  function stopDrag(event) {
+    if (event.pointerId !== drag?.id) return;
+    const dismiss = event.type === 'pointerup' && event.clientY - drag.y > Math.min(90, dialog.offsetHeight / 4);
+    drag = null;
+    dialog.style.removeProperty('translate');
+    if (dismiss) dialog.close();
+  }
+  grip.addEventListener('click', event => {
+    if (moved && event.detail) { event.stopImmediatePropagation(); moved = false; }
+  }, true);
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => grip.addEventListener(type, stopDrag));
+  addEventListener('storage', event => {
+    if (event.key === key || event.key === null) { choice = read(); render(); }
+  });
+  addEventListener('pageshow', event => { if (event.persisted) { choice = read(); render(); } });
+  render();
+}
+mountCookiePreferences();
 
 (() => {
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -2772,16 +3060,11 @@ const faqList = $('#faqList');
 const renderFAQ = shown => { faqList.innerHTML = FAQ[LANG].map(([cat, qs]) => `<div class="card qcat rv${shown ? ' in' : ''}"><small>${cat}</small>${qs.map(([qq, a]) => `<div class="q"><button type="button" aria-expanded="false">${qq}<span class="cv"></span></button><div class="an"><div><p>${a}</p></div></div></div>`).join('')}</div>`).join(''); if (!shown) $$('.rv', faqList).forEach(el => io.observe(el)); };
 faqList.addEventListener('click', e => { const b = e.target.closest('.q button'); if (!b) return; const qq = b.parentElement, o = !qq.classList.contains('open'); qq.classList.toggle('open', o); b.setAttribute('aria-expanded', o); });
 
-/* ═════════ всплывающая подсказка ═════════ */
-const toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); document.body.append(toastEl); let toastT = 0;
-const toast = msg => { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), 2600); };
-document.addEventListener('click', e => { const a = e.target.closest('[data-todo]'); if (a) { e.preventDefault(); toast(tt('todo')); } });
-
 const { modal, closeModal } = mountSingletPilot({
   tt, fill, beforeOpen: () => setMenu(false, false), extraRegions: [cpage, isl],
 });
 document.addEventListener('keydown', e => {
-  if (e.defaultPrevented) return;
+  if (e.defaultPrevented || document.getElementById('cookie-dialog').open) return;
   const pickerOpen = isl.classList.contains('open'), menuOpen = menu.classList.contains('open');
   if (e.key === 'Tab' && (pickerOpen || menuOpen)) {
     const items = pickerOpen ? $$('button,a[href]', islPanel) : $$('button,a[href]', hdr).concat(menuLinks);
@@ -2870,6 +3153,7 @@ const applyLang = first => {
   document.documentElement.lang = LANG; setMeta();
   $$('[data-t]').forEach(el => { const v = tt(el.dataset.t), html = Array.isArray(v) ? v.map(x => `<span class="chip"><i></i>${x}</span>`).join('') : v; if (el.classList.contains('ws')) splitWords(el, html); else el.innerHTML = html; });
   $$('[data-ta]').forEach(el => el.setAttribute('aria-label', tt(el.dataset.ta)));
+  refreshDocumentLinks(LANG);
   splitStm();
   langEl.dataset.l = LANG; $$('button', langEl).forEach(b => b.setAttribute('aria-pressed', b.dataset.l === LANG));
   updateMenuButton();
@@ -2943,7 +3227,7 @@ const ownScroll = (n, dy, root) => { for (; n && n.nodeType === 1 && n !== root 
   if (o !== 'auto' && o !== 'scroll') continue; const mx = n.scrollHeight - n.clientHeight, st = getComputedStyle(n).flexDirection === 'column-reverse' ? n.scrollTop + mx : n.scrollTop;
   if (dy < 0 ? st > 1 : st < mx - 1) return true; } return false; };
 if (!RM) addEventListener('wheel', e => {
-  if (e.ctrlKey || document.documentElement.classList.contains('pre-on') || modal.classList.contains('open') || menu.classList.contains('open') || isl.classList.contains('open')) { wsc.on = false; return; }
+  if (e.ctrlKey || e.target.closest("#cookie-dialog, #cookie-notice") || document.documentElement.classList.contains('pre-on') || modal.classList.contains('open') || menu.classList.contains('open') || isl.classList.contains('open')) { wsc.on = false; return; }
   const m = e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? innerHeight : 1, dy = e.deltaY * m;
   if (Math.abs(e.deltaX * m) > Math.abs(dy)) return;
   // тачпад уже даёт плавную прокрутку с инерцией — её не трогаем (скролл остаётся на видеокарте); вид ввода

@@ -1054,6 +1054,76 @@ html.pre-on .hero .rv{opacity:0!important;transform:translateY(24px)!important}
 p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
 @media(max-width:860px){.isl-box{--eh:min(calc(var(--vh,1vh)*95 - var(--isl-bottom)),var(--isl-space))}}
 
+/* Контакты и документы во всех футерах. */
+.foot-info{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;margin-top:clamp(32px,5vw,72px);padding-top:28px;border-top:1px solid var(--line2)}
+.foot-info h3{font-size:16px;font-weight:500;margin-bottom:12px;color:var(--fg)}
+.foot-links{display:grid;justify-items:start;font-style:normal;color:var(--fg2);font-size:15px;line-height:1.45}
+.foot-links a,.foot-links button{color:inherit;text-align:left;background:none;border:0;font:inherit;padding:6px 0;cursor:pointer}
+.foot-links :is(a,button):hover,.foot-links :is(a,button):focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+.foot-operator{margin-top:28px;color:var(--fg2);font-size:14px;line-height:1.6}
+.foot-b{margin-top:12px}
+.cpage .foot{--fg:#f4f1ea;--fg2:#b0ada6;--line2:#41403b;background:#0c0c0b;color:var(--fg);padding-bottom:84px}
+.cpage .foot .rv,.legal-page .foot .rv{opacity:1;transform:none}
+.f--chk a,.cookie-card p a,.legal-copy a{color:inherit;text-decoration:underline;text-underline-offset:.16em}
+.f--chk a:hover,.legal-copy a:hover{color:#8a390a}
+.js-form button[type=submit]:disabled{background:#75736d;color:white;cursor:not-allowed;transform:none}
+
+.cookie-card{box-sizing:border-box;color:#f4f1ea;background:#1b1b18;border:1px solid #46453e;border-radius:21px;padding:24px;font:400 15px/1.45 var(--f);box-shadow:0 12px 50px #0004}
+.cookie-card h2{font-size:24px;line-height:1.15;letter-spacing:-.028em;font-weight:500}
+.cookie-card p{margin:10px 0 0;color:#d1cec6}
+.cookie-notice{position:fixed;z-index:98;left:var(--pad);bottom:max(16px,env(safe-area-inset-bottom));width:min(530px,calc(100% - 2 * var(--pad)));max-height:65svh;overflow:auto;overscroll-behavior:contain}
+.cookie-notice[hidden],.cookie-card [hidden],.foot [hidden],html.pre-on .cookie-notice,body:has(#modal.open,#menu.open,#isl.open) .cookie-notice{display:none}
+.cookie-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:18px}
+.cookie-card .btn{font-size:14px;height:40px;min-height:40px;padding:0 16px;justify-content:center}
+.cookie-primary{background:#f4f1ea;color:#171715}
+.cookie-secondary{background:#3e3d37;color:white}
+.cookie-link,.cookie-close,.cookie-grip{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.cookie-link{min-height:40px;padding:0 8px;text-decoration:underline;text-underline-offset:3px;margin-left:auto}
+.cookie-card :focus-visible{outline:2px solid #ff965b;outline-offset:2px}
+#cookie-dialog{position:fixed;inset:0;margin:auto;width:min(480px,calc(100% - 32px));max-height:85svh;overflow:auto;overscroll-behavior:contain}
+#cookie-dialog::backdrop{background:#080807b3}
+html:has(#cookie-dialog[open]){overflow:hidden}
+.cookie-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cookie-close{height:40px;width:40px;flex:none;font-size:27px;border:1px solid #56544e;border-radius:50%;line-height:1}
+.cookie-option{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 12px;border-top:1px solid #484740;padding:17px 0}
+.cookie-options{margin:18px 0 10px}
+.cookie-option h3,.cookie-option label{font-size:17px;font-weight:500;cursor:inherit}
+.cookie-option p{grid-column:1/-1;margin:0}
+.cookie-option small{color:#c1beb6;font-size:13px}
+#cookie-analytics{appearance:none;width:44px;height:26px;border:1px solid #88847c;border-radius:14px;background:#46443d;cursor:pointer;position:relative}
+#cookie-analytics:before{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:white}
+#cookie-analytics:checked{background:#b94606}
+#cookie-analytics:checked:before{transform:translateX(18px)}
+.cookie-grip{display:none}
+@media(max-width:700px){
+  .foot-info{grid-template-columns:1fr;gap:22px;padding-top:23px}.foot-info h3{margin-bottom:7px}
+  .cookie-notice{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));width:auto;bottom:max(8px,env(safe-area-inset-bottom));padding:16px;border-radius:16px;font-size:14px}
+  .cookie-notice h2{font-size:20px}.cookie-actions{gap:6px;margin-top:12px}.cookie-card .btn{padding:0 12px}.cookie-link{margin-left:0}
+  #cookie-dialog{inset:auto 0 0;width:100%;max-height:84svh;margin:0;padding:0 max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));border-radius:22px 22px 0 0}
+  .cookie-grip{display:grid;place-items:center;width:100%;height:34px;touch-action:none}
+  .cookie-grip:after{content:'';width:38px;height:4px;border-radius:8px;background:#77746d}
+  #cookie-dialog [data-cookie-save]{width:100%;height:56px}
+}
+
+.legal-main{background:var(--paper);color:#171715;padding:clamp(108px,10vw,156px) 0 clamp(68px,8vw,120px)}
+.legal-layout{display:grid;grid-template-columns:minmax(200px,.65fr) minmax(0,2fr);gap:clamp(28px,6vw,100px);align-items:start}
+.legal-index{position:sticky;top:90px;max-width:310px}
+.legal-home{display:inline-flex;align-items:center;gap:8px;color:#534f48;min-height:40px}
+.legal-index details{border-top:1px solid #c6c3ba;margin-top:15px;padding-top:14px}
+.legal-index summary{font-weight:500;cursor:pointer}
+.legal-index .foot-links{margin-top:8px;color:#55524a}
+.legal-index .foot-links a:hover,.legal-index .foot-links [aria-current=page]{color:#1a1916;text-decoration:underline;text-underline-offset:3px}
+.legal-layout article{max-width:800px;min-width:0;overflow-wrap:anywhere}
+.legal-layout h1{font-size:clamp(36px,4.4vw,72px);font-weight:500;letter-spacing:-.028em;line-height:1.04}
+.legal-edition{color:#656159;font-size:15px;margin:18px 0 30px}
+.legal-copy{border-top:1px solid #c6c3ba;padding-top:24px;font-size:clamp(16px,1.25vw,19px);line-height:1.6}
+.legal-copy h2{font-size:clamp(24px,2.25vw,36px);font-weight:500;line-height:1.2;letter-spacing:-.024em;margin:1.45em 0 .55em}
+.legal-copy h2:first-child{margin-top:0}
+.legal-copy p,.legal-copy ul{margin:0 0 .9em}.legal-copy ul{padding-left:1.3em;list-style:disc}.legal-copy li+li{margin-top:.45em}
+@media(max-width:800px){.legal-main{padding-top:83px}.legal-layout{grid-template-columns:1fr;gap:27px}.legal-index{position:static;width:100%;max-width:none}.legal-index details{margin-top:6px;padding-top:10px}.legal-edition{margin:14px 0 22px}}
+
+.form-note a{text-decoration:underline;text-underline-offset:.16em}
+
 .not-found {
   color-scheme: dark;
   --spread: #ffb66b;
@@ -1341,6 +1411,23 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
         <nav class="foot-l"><a class="ul" data-site-link="#demo" href="https://psrv-design.github.io/singlet-site/#demo" data-t="nDemo">Демо</a><a class="ul" data-site-link="#features" href="https://psrv-design.github.io/singlet-site/#features" data-t="nFeat">Возможности</a><a class="ul" data-site-link="#process" href="https://psrv-design.github.io/singlet-site/#process" data-t="nProc">Запуск</a><a class="ul" data-site-link="#cases" href="https://psrv-design.github.io/singlet-site/#cases" data-t="nCases">Кейсы</a><a class="ul" data-site-link="#faq" href="https://psrv-design.github.io/singlet-site/#faq" data-t="nFaq">Вопросы</a></nav>
       </div>
     </div>
+    <div class="foot-info">
+      <section><h3 data-t="contactTitle">Связаться с FEIP</h3><address class="foot-links">
+          <a href="tel:+74232026978" data-t="phoneValue">+7 (423) 202-69-78</a>
+          <a href="mailto:hello@feip.co" data-t="mailValue">hello@feip.co</a>
+          <a href="https://max.ru/id2540249980_bot" data-t="maxBot">ДВИП Бот в MAX</a>
+          <a href="https://t.me/hello_feip_bot" data-t="tgValue">@hello_feip_bot</a>
+          <a href="https://go.2gis.com/bqpb1" data-t="address">Владивосток, ул. Станюковича, 46, 2 этаж</a>
+      </address></section>
+      <section><h3 data-t="documents">Документы</h3><nav class="foot-links" data-ta="documents" aria-label="Документы">
+          <a href="https://psrv-design.github.io/singlet-site/privacy.html" data-document="privacy" data-t="privacy">Политика обработки персональных данных</a>
+          <a href="https://psrv-design.github.io/singlet-site/agree.html" data-document="agree" data-t="agree">Согласие на обработку персональных данных</a>
+          <a href="https://psrv-design.github.io/singlet-site/eula.html" data-document="eula" data-t="eula">Пользовательское соглашение</a>
+          <a href="https://psrv-design.github.io/singlet-site/cookie-consent.html" data-document="cookie-consent" data-t="cookie-consent">Согласие на использование файлов cookie</a>
+          <button type="button" data-cookie-open data-t="cookieSettings" hidden>Настройки cookie</button>
+      </nav></section>
+    </div>
+    <div class="foot-operator" data-t="operatorLine">ООО «Дальневосточный интеллектуальный потенциал»<br>ИНН 2540249980, ОГРН 1192536008378</div>
     <div class="foot-b"><span data-t="footBy">Singlet — продукт FEIP</span><span>© 2026</span></div>
     <div class="reels px" id="wmFoot" data-reel="SINGLET" data-n="9" data-dur="2.2s" data-stg=".1s" aria-hidden="true"></div>
   </div>
@@ -1357,17 +1444,36 @@ p,li,h1,h2,h3,.h2,.h3,small,b{text-wrap:pretty}
           <div class="f" data-v="name"><input class="f__in" id="mName" name="name" type="text" placeholder=" " data-ta="fWho" aria-describedby="mName-m" autocomplete="name" required aria-label="Кто вы — имя и компания"><label class="f__lb" for="mName"><span class="f__name" data-t="fWho">Кто вы — имя и компания</span><span class="f__msg" id="mName-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
           <div class="f f--area" data-v="req"><textarea class="f__in" id="mMsg" name="msg" placeholder=" " data-ta="fWhat" aria-describedby="mMsg-m" required aria-label="Что хотите автоматизировать"></textarea><label class="f__lb" for="mMsg"><span class="f__name" data-t="fWhat">Что хотите автоматизировать</span><span class="f__msg" id="mMsg-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
           <div class="f" data-v="contact"><input class="f__in" id="mCt" name="contact" type="text" placeholder=" " data-ta="fHow" aria-describedby="mCt-m" autocapitalize="off" spellcheck="false" required aria-label="Telegram, почта или телефон"><label class="f__lb" for="mCt"><span class="f__name" data-t="fHow">Telegram, почта или телефон</span><span class="f__msg" id="mCt-m"></span></label><span class="f__ic" aria-hidden="true"></span></div>
-          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="fPd">Согласен на обработку персональных данных</span></label>
+          <label class="f f--chk" data-v="chk"><input type="checkbox" name="pd" required><span class="box"></span><span data-t="privacyCheck">Согласен на <a href="https://psrv-design.github.io/singlet-site/agree.html" data-document="agree" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="https://psrv-design.github.io/singlet-site/privacy.html" data-document="privacy" target="_blank" rel="noopener">Политикой</a></span></label>
+          <label class="f f--chk" data-v="chk"><input type="checkbox" name="terms" required><span class="box"></span><span data-t="termsCheck">Принимаю условия <a href="https://psrv-design.github.io/singlet-site/eula.html" data-document="eula" target="_blank" rel="noopener">пользовательского соглашения</a></span></label>
         </div>
         <div class="sr" role="status" aria-live="polite"></div>
       </div>
       <div class="ok-screen" tabindex="-1"><div class="ok-ic"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-15"/></svg></div><h3 class="okT" data-t="okT">Данные проверены</h3><p class="okP"></p><div class="ok-sum"></div><button type="button" class="btn b-ink okDone" data-t="okDone">Готово</button></div>
     </div>
-    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Здесь можно проверить данные заявки.</p></div>
+    <div class="mf" id="mFoot"><button type="submit" class="btn b-acc full" data-t="send" disabled>Проверить заявку</button><p class="form-note" data-t="sendNote">Демо формы. Чтобы обсудить пилот, напишите на <a href="mailto:hello@feip.co">hello@feip.co</a>.</p></div>
   </form>
 </div>
+<section id="cookie-notice" class="cookie-card cookie-notice" aria-labelledby="cookie-title" hidden>
+  <h2 id="cookie-title" data-t="cookieTitle">Файлы cookie</h2>
+  <p data-t="cookieText">Обязательные файлы cookie и локальные настройки нужны для работы сайта. Аналитические cookie разрешаются только с вашего согласия. Подробнее — в <a href="https://psrv-design.github.io/singlet-site/cookie-consent.html" data-document="cookie-consent">Согласии на использование файлов cookie</a> и <a href="https://psrv-design.github.io/singlet-site/privacy.html" data-document="privacy">Политике обработки персональных данных</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" class="btn cookie-primary" data-cookie-accept data-t="cookieAll">Принять все</button>
+    <button type="button" class="btn cookie-secondary" data-cookie-essential data-t="cookieEssential">Только обязательные</button>
+    <button type="button" class="cookie-link" data-cookie-open data-t="configure">Настроить</button>
+  </div>
+</section>
+<dialog id="cookie-dialog" class="cookie-card" aria-labelledby="cookie-settings-title">
+  <button class="cookie-grip" type="button" data-cookie-close data-ta="sheetHandle" aria-label="Потяните вниз или нажмите, чтобы закрыть"></button>
+  <div class="cookie-dialog-head"><h2 id="cookie-settings-title" data-t="cookieSettings">Настройки cookie</h2><button type="button" class="cookie-close" data-cookie-close data-ta="aClose" aria-label="Закрыть">×</button></div>
+  <div class="cookie-options">
+    <div class="cookie-option"><h3 data-t="necessary">Обязательные cookie</h3><small data-t="alwaysOn">Всегда включены</small><p data-t="necessaryDesc">Сохраняют выбор cookie и язык сайта на этом устройстве.</p></div>
+    <div class="cookie-option"><label for="cookie-analytics" data-t="analytics">Аналитические cookie</label><input id="cookie-analytics" type="checkbox" role="switch" aria-describedby="cookie-analytics-desc"><p id="cookie-analytics-desc" data-t="analyticsDesc">Позволяют анализировать посещаемость с вашего согласия. В этой версии сайта счётчики аналитики не подключены.</p></div>
+  </div>
+  <button type="button" class="btn cookie-primary" data-cookie-save data-t="cookieSave">Сохранить настройки</button>
+</dialog>
 <script>
-const NOT_FOUND = {"ru": {"sheetHandle": "Потяните вниз или нажмите, чтобы закрыть", "title": "Страница не найдена — Singlet", "aTop": "Singlet — на главную", "aLang": "Язык сайта", "aMenu": "Меню", "aClose": "Закрыть", "pilot": "Обсудить пилот", "pilotSub": "Созвон без обязательств", "nDemo": "Демо", "nFeat": "Возможности", "nProc": "Запуск", "nCases": "Кейсы", "nApply": "Заявка", "nFaq": "Вопросы", "fWho": "Кто вы — имя и компания", "fWhat": "Что хотите автоматизировать", "fHow": "Telegram, почта или телефон", "fPd": "Согласен на обработку персональных данных", "send": "Проверить заявку", "sendNote": "Демо формы. Здесь можно проверить данные заявки.", "okT": "Данные проверены", "okDone": "Готово", "okThanks": "{name}, в рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "okThanks0": "В рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "howTg": "в Telegram {v}", "howMail": "на почту {v}", "howPhone": "по номеру {v}", "rWho": "Кто вы", "rHow": "Контакт", "rWhat": "Задача", "mLead": "Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.", "footH": "Наймите сотрудника, \u003cspan class=\"dim\">который выходит на&nbsp;смену сегодня.\u003c/span>", "footBy": "Singlet — продукт FEIP", "cpBack": "Все кейсы", "mAllSub": "11 внедрений Singlet", "vNameE": "Представьтесь", "vNameS": "Слишком коротко", "vReq": "Опишите задачу", "vCt": "Укажите контакт", "vMail": "Проверьте почту", "vMaybe": "Может, {d}?", "vPhone": "Проверьте номер", "vNickCyr": "Ник — латиницей", "vNickLen": "Ник — от 5 символов", "vNickFirst": "Ник — с буквы", "vNickSym": "Ник — без символов", "vNickEnd": "Ник — не на «_»", "vCheck": "Проверьте поля: ", "vConsent": "Согласие", "heading": "Страница взяла \u003cspan class=\"dim\">выходной.\u003c/span>", "lead": "Singlet всё ещё на смене и ловит баги. Поможете?", "home": "На главную", "cases": "Все кейсы", "game": "Охота на баги", "arena": "Игровое поле «Охота на баги»", "readyTitle": "Баги вышли на смену", "goal": "Гигабаг ждёт на пятой волне.", "start": "Начать смену", "wave": "Волна", "score": "Очки", "best": "Рекорд", "lives": "Жизни", "move": "Движение", "space": "Пробел", "shoot": "Огонь", "touch": "Ведите самолёт пальцем. Огонь автоматический.", "pause": "Пауза", "resume": "Продолжить", "restart": "Заново", "gameOver": "Смена окончена", "retry": "Ещё смена", "victory": "Смена спасена", "victoryNote": "Гигабаг побеждён. Можно играть дальше на новых волнах.", "endless": "Играть дальше", "noJs": "Игра доступна при включённом JavaScript.", "weapon": "Оружие", "single": "Пульс", "spread": "Тройной залп", "beam": "Луч", "fanBeam": "Веер лучей", "overclock": "Разгон", "drone": "Дроны", "shield": "Щит", "magnet": "Магнит", "repair": "Ремонт", "burst": "Ядерный патч", "cleared": "Волна {wave} пройдена", "nextWave": "Волна {wave}", "seconds": "{n} с", "damage": "Самолёт задет", "shieldHit": "Щит поглотил удар", "finalScore": "Ваш результат: {score} очков.", "boss": "Гигабаг", "bossHealth": "Здоровье Гигабага", "bossPhase": "Фаза {n} из 3", "bossArrives": "Ядро Гигабага открывается после удара щупальцами.", "coreOpen": "Ядро открыто. Огонь!", "bossWarning": "Уйдите с отмеченных полос", "bossDefeated": "Гигабаг побеждён", "powerups": "Бонусы и сочетания", "comboHint": "Бонусы работают вместе. Луч и тройной залп дают веер сквозных лучей, а разгон ускоряет его стрельбу.", "legendSpread": "Тройной залп — три выстрела веером", "legendBeam": "Луч — пробивает несколько целей", "legendOverclock": "Разгон — увеличивает скорострельность", "legendDrone": "Дроны — стреляют с двух сторон", "legendShield": "Щит — поглощает один удар", "legendMagnet": "Магнит — подтягивает бонусы", "legendRepair": "Ремонт — возвращает одну жизнь", "legendBurst": "Ядерный патч — очищает поле и ранит босса"}, "en": {"sheetHandle": "Drag down or press to close", "title": "Page not found — Singlet", "aTop": "Singlet — home", "aLang": "Site language", "aMenu": "Menu", "aClose": "Close", "pilot": "Discuss a pilot", "pilotSub": "A no-obligation call", "nDemo": "Demo", "nFeat": "Capabilities", "nProc": "Launch", "nCases": "Cases", "nApply": "Get in touch", "nFaq": "FAQ", "fWho": "Who you are — name and company", "fWhat": "What you want to automate", "fHow": "Telegram, email or phone", "fPd": "I agree to the processing of my personal data", "send": "Check request", "sendNote": "Form preview. Review your request details here.", "okT": "Details checked", "okDone": "Done", "okThanks": "{name}, in the live version we’ll contact you {how} to schedule a call.", "okThanks0": "In the live version we’ll contact you {how} to schedule a call.", "howTg": "on Telegram {v}", "howMail": "at {v}", "howPhone": "at {v}", "rWho": "Who you are", "rHow": "Contact", "rWhat": "Task", "mLead": "Tell us about the task — we’ll get in touch and set up a short call.", "footH": "Hire an employee \u003cspan class=\"dim\">who starts the shift today.\u003c/span>", "footBy": "Singlet is a product by FEIP", "cpBack": "All cases", "mAllSub": "11 Singlet deployments", "vNameE": "Tell us who you are", "vNameS": "Too short", "vReq": "Describe the task", "vCt": "Enter a contact", "vMail": "Check the email", "vMaybe": "Did you mean {d}?", "vPhone": "Check the number", "vNickCyr": "Username: Latin letters only", "vNickLen": "Username: 5+ characters", "vNickFirst": "Username: start with a letter", "vNickSym": "Username: letters, digits, _", "vNickEnd": "Username can’t end with _", "vCheck": "Please check: ", "vConsent": "Consent", "heading": "This page took \u003cspan class=\"dim\">the day off.\u003c/span>", "lead": "Singlet is still on shift, catching bugs. Want in?", "home": "Back home", "cases": "All cases", "game": "Bug hunt", "arena": "Bug hunt playfield", "readyTitle": "The bugs are on shift", "goal": "Gigabug is waiting on wave five.", "start": "Start shift", "wave": "Wave", "score": "Score", "best": "Best", "lives": "Lives", "move": "Move", "space": "Space", "shoot": "Fire", "touch": "Drag to fly. Your plane fires automatically.", "pause": "Pause", "resume": "Resume", "restart": "Restart", "gameOver": "Shift over", "retry": "Play again", "victory": "Shift saved", "victoryNote": "Gigabug is down. Keep playing through new waves.", "endless": "Keep playing", "noJs": "Enable JavaScript to play.", "weapon": "Weapon", "single": "Pulse", "spread": "Triple shot", "beam": "Beam", "fanBeam": "Fan of beams", "overclock": "Overclock", "drone": "Drones", "shield": "Shield", "magnet": "Magnet", "repair": "Repair", "burst": "Nuclear patch", "cleared": "Wave {wave} cleared", "nextWave": "Wave {wave}", "seconds": "{n}s", "damage": "Plane hit", "shieldHit": "Shield absorbed the hit", "finalScore": "Your score: {score}.", "boss": "Gigabug", "bossHealth": "Gigabug health", "bossPhase": "Phase {n} of 3", "bossArrives": "Gigabug exposes its core after each strike.", "coreOpen": "Core exposed. Fire!", "bossWarning": "Move out of the marked lanes", "bossDefeated": "Gigabug defeated", "powerups": "Power-ups and combos", "comboHint": "Power-ups stack. Beam and triple shot give you a fan of piercing beams. Overclock makes it fire faster.", "legendSpread": "Triple shot — fires in three directions", "legendBeam": "Beam — pierces multiple targets", "legendOverclock": "Overclock — increases your fire rate", "legendDrone": "Drones — fire from both sides", "legendShield": "Shield — absorbs one hit", "legendMagnet": "Magnet — pulls power-ups towards you", "legendRepair": "Repair — restores one life", "legendBurst": "Nuclear patch — clears the field and damages the boss"}};
+const PAGE_STRINGS = {"ru": {"contactTitle": "Связаться с FEIP", "documents": "Документы", "privacy": "Политика обработки персональных данных", "eula": "Пользовательское соглашение", "agree": "Согласие на обработку персональных данных", "cookie-consent": "Согласие на использование файлов cookie", "address": "Владивосток, ул. Станюковича, 46, 2 этаж", "maxBot": "ДВИП Бот в MAX", "phoneValue": "+7 (423) 202-69-78", "mailValue": "hello@feip.co", "tgValue": "@hello_feip_bot", "operatorLine": "ООО «Дальневосточный интеллектуальный потенциал»\u003cbr>ИНН 2540249980, ОГРН 1192536008378", "privacyCheck": "Согласен на \u003ca href=\"agree.html\" data-document=\"agree\" target=\"_blank\" rel=\"noopener\">обработку персональных данных\u003c/a> в соответствии с \u003ca href=\"privacy.html\" data-document=\"privacy\" target=\"_blank\" rel=\"noopener\">Политикой\u003c/a>", "termsCheck": "Принимаю условия \u003ca href=\"eula.html\" data-document=\"eula\" target=\"_blank\" rel=\"noopener\">пользовательского соглашения\u003c/a>", "cookieTitle": "Файлы cookie", "cookieText": "Обязательные файлы cookie и локальные настройки нужны для работы сайта. Аналитические cookie разрешаются только с вашего согласия. Подробнее — в \u003ca href=\"cookie-consent.html\" data-document=\"cookie-consent\">Согласии на использование файлов cookie\u003c/a> и \u003ca href=\"privacy.html\" data-document=\"privacy\">Политике обработки персональных данных\u003c/a>.", "cookieAll": "Принять все", "cookieEssential": "Только обязательные", "configure": "Настроить", "cookieSettings": "Настройки cookie", "cookieSave": "Сохранить настройки", "necessary": "Обязательные cookie", "alwaysOn": "Всегда включены", "necessaryDesc": "Сохраняют выбор cookie и язык сайта на этом устройстве.", "analytics": "Аналитические cookie", "analyticsDesc": "Позволяют анализировать посещаемость с вашего согласия. В этой версии сайта счётчики аналитики не подключены.", "sheetHandle": "Потяните вниз или нажмите, чтобы закрыть", "title": "Страница не найдена — Singlet", "aTop": "Singlet — на главную", "aLang": "Язык сайта", "aMenu": "Меню", "aClose": "Закрыть", "pilot": "Обсудить пилот", "pilotSub": "Созвон без обязательств", "nDemo": "Демо", "nFeat": "Возможности", "nProc": "Запуск", "nCases": "Кейсы", "nApply": "Заявка", "nFaq": "Вопросы", "fWho": "Кто вы — имя и компания", "fWhat": "Что хотите автоматизировать", "fHow": "Telegram, почта или телефон", "send": "Проверить заявку", "sendNote": "Демо формы. Чтобы обсудить пилот, напишите на \u003ca href=\"mailto:hello@feip.co\">hello@feip.co\u003c/a>.", "okT": "Данные проверены", "okDone": "Готово", "okThanks": "{name}, в рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "okThanks0": "В рабочей версии мы свяжемся {how}, чтобы договориться о созвоне.", "howTg": "в Telegram {v}", "howMail": "на почту {v}", "howPhone": "по номеру {v}", "rWho": "Кто вы", "rHow": "Контакт", "rWhat": "Задача", "mLead": "Расскажите о&nbsp;задаче — напишем и&nbsp;договоримся о&nbsp;коротком созвоне.", "footH": "Наймите сотрудника, \u003cspan class=\"dim\">который выходит на&nbsp;смену сегодня.\u003c/span>", "footBy": "Singlet — продукт FEIP", "cpBack": "Все кейсы", "mAllSub": "11 внедрений Singlet", "vNameE": "Представьтесь", "vNameS": "Слишком коротко", "vReq": "Опишите задачу", "vCt": "Укажите контакт", "vMail": "Проверьте почту", "vMaybe": "Может, {d}?", "vPhone": "Проверьте номер", "vNickCyr": "Ник — латиницей", "vNickLen": "Ник — от 5 символов", "vNickFirst": "Ник — с буквы", "vNickSym": "Ник — без символов", "vNickEnd": "Ник — не на «_»", "vCheck": "Проверьте поля: ", "vConsent": "Согласие", "heading": "Страница взяла \u003cspan class=\"dim\">выходной.\u003c/span>", "lead": "Singlet всё ещё на смене и ловит баги. Поможете?", "home": "На главную", "cases": "Все кейсы", "game": "Охота на баги", "arena": "Игровое поле «Охота на баги»", "readyTitle": "Баги вышли на смену", "goal": "Гигабаг ждёт на пятой волне.", "start": "Начать смену", "wave": "Волна", "score": "Очки", "best": "Рекорд", "lives": "Жизни", "move": "Движение", "space": "Пробел", "shoot": "Огонь", "touch": "Ведите самолёт пальцем. Огонь автоматический.", "pause": "Пауза", "resume": "Продолжить", "restart": "Заново", "gameOver": "Смена окончена", "retry": "Ещё смена", "victory": "Смена спасена", "victoryNote": "Гигабаг побеждён. Можно играть дальше на новых волнах.", "endless": "Играть дальше", "noJs": "Игра доступна при включённом JavaScript.", "weapon": "Оружие", "single": "Пульс", "spread": "Тройной залп", "beam": "Луч", "fanBeam": "Веер лучей", "overclock": "Разгон", "drone": "Дроны", "shield": "Щит", "magnet": "Магнит", "repair": "Ремонт", "burst": "Ядерный патч", "cleared": "Волна {wave} пройдена", "nextWave": "Волна {wave}", "seconds": "{n} с", "damage": "Самолёт задет", "shieldHit": "Щит поглотил удар", "finalScore": "Ваш результат: {score} очков.", "boss": "Гигабаг", "bossHealth": "Здоровье Гигабага", "bossPhase": "Фаза {n} из 3", "bossArrives": "Ядро Гигабага открывается после удара щупальцами.", "coreOpen": "Ядро открыто. Огонь!", "bossWarning": "Уйдите с отмеченных полос", "bossDefeated": "Гигабаг побеждён", "powerups": "Бонусы и сочетания", "comboHint": "Бонусы работают вместе. Луч и тройной залп дают веер сквозных лучей, а разгон ускоряет его стрельбу.", "legendSpread": "Тройной залп — три выстрела веером", "legendBeam": "Луч — пробивает несколько целей", "legendOverclock": "Разгон — увеличивает скорострельность", "legendDrone": "Дроны — стреляют с двух сторон", "legendShield": "Щит — поглощает один удар", "legendMagnet": "Магнит — подтягивает бонусы", "legendRepair": "Ремонт — возвращает одну жизнь", "legendBurst": "Ядерный патч — очищает поле и ранит босса"}, "en": {"contactTitle": "Contact FEIP", "documents": "Documents", "privacy": "Personal data processing policy", "eula": "User agreement", "agree": "Consent to personal data processing", "cookie-consent": "Cookie and web analytics consent", "address": "46 Stanyukovicha St, 2nd floor, Vladivostok", "maxBot": "FEIP bot on MAX", "phoneValue": "+7 (423) 202-69-78", "mailValue": "hello@feip.co", "tgValue": "@hello_feip_bot", "operatorLine": "Dalnevostochny Intellektualny Potentsial LLC\u003cbr>Tax ID 2540249980, registration no. 1192536008378", "privacyCheck": "I consent to the \u003ca href=\"agree.html\" data-document=\"agree\" target=\"_blank\" rel=\"noopener\">processing of my personal data\u003c/a> in accordance with the \u003ca href=\"privacy.html\" data-document=\"privacy\" target=\"_blank\" rel=\"noopener\">Privacy Policy\u003c/a>", "termsCheck": "I accept the terms of the \u003ca href=\"eula.html\" data-document=\"eula\" target=\"_blank\" rel=\"noopener\">User Agreement\u003c/a>", "cookieTitle": "Cookies", "cookieText": "Essential cookies and local preferences help the site work. Analytics cookies require your consent. Read the \u003ca href=\"cookie-consent.html\" data-document=\"cookie-consent\">Cookie Consent\u003c/a> and \u003ca href=\"privacy.html\" data-document=\"privacy\">Privacy Policy\u003c/a> for details.", "cookieAll": "Accept all", "cookieEssential": "Essential only", "configure": "Customize", "cookieSettings": "Cookie settings", "cookieSave": "Save settings", "necessary": "Essential cookies", "alwaysOn": "Always on", "necessaryDesc": "Keep your cookie preferences and site language on this device.", "analytics": "Analytics cookies", "analyticsDesc": "Allow traffic measurement with your consent. This version of the site has no analytics trackers.", "sheetHandle": "Drag down or press to close", "title": "Page not found — Singlet", "aTop": "Singlet — home", "aLang": "Site language", "aMenu": "Menu", "aClose": "Close", "pilot": "Discuss a pilot", "pilotSub": "A no-obligation call", "nDemo": "Demo", "nFeat": "Capabilities", "nProc": "Launch", "nCases": "Cases", "nApply": "Get in touch", "nFaq": "FAQ", "fWho": "Who you are — name and company", "fWhat": "What you want to automate", "fHow": "Telegram, email or phone", "send": "Check request", "sendNote": "Form preview. To discuss a pilot, email \u003ca href=\"mailto:hello@feip.co\">hello@feip.co\u003c/a>.", "okT": "Details checked", "okDone": "Done", "okThanks": "{name}, in the live version we’ll contact you {how} to schedule a call.", "okThanks0": "In the live version we’ll contact you {how} to schedule a call.", "howTg": "on Telegram {v}", "howMail": "at {v}", "howPhone": "at {v}", "rWho": "Who you are", "rHow": "Contact", "rWhat": "Task", "mLead": "Tell us about the task — we’ll get in touch and set up a short call.", "footH": "Hire an employee \u003cspan class=\"dim\">who starts the shift today.\u003c/span>", "footBy": "Singlet is a product by FEIP", "cpBack": "All cases", "mAllSub": "11 Singlet deployments", "vNameE": "Tell us who you are", "vNameS": "Too short", "vReq": "Describe the task", "vCt": "Enter a contact", "vMail": "Check the email", "vMaybe": "Did you mean {d}?", "vPhone": "Check the number", "vNickCyr": "Username: Latin letters only", "vNickLen": "Username: 5+ characters", "vNickFirst": "Username: start with a letter", "vNickSym": "Username: letters, digits, _", "vNickEnd": "Username can’t end with _", "vCheck": "Please check: ", "vConsent": "Consent", "heading": "This page took \u003cspan class=\"dim\">the day off.\u003c/span>", "lead": "Singlet is still on shift, catching bugs. Want in?", "home": "Back home", "cases": "All cases", "game": "Bug hunt", "arena": "Bug hunt playfield", "readyTitle": "The bugs are on shift", "goal": "Gigabug is waiting on wave five.", "start": "Start shift", "wave": "Wave", "score": "Score", "best": "Best", "lives": "Lives", "move": "Move", "space": "Space", "shoot": "Fire", "touch": "Drag to fly. Your plane fires automatically.", "pause": "Pause", "resume": "Resume", "restart": "Restart", "gameOver": "Shift over", "retry": "Play again", "victory": "Shift saved", "victoryNote": "Gigabug is down. Keep playing through new waves.", "endless": "Keep playing", "noJs": "Enable JavaScript to play.", "weapon": "Weapon", "single": "Pulse", "spread": "Triple shot", "beam": "Beam", "fanBeam": "Fan of beams", "overclock": "Overclock", "drone": "Drones", "shield": "Shield", "magnet": "Magnet", "repair": "Repair", "burst": "Nuclear patch", "cleared": "Wave {wave} cleared", "nextWave": "Wave {wave}", "seconds": "{n}s", "damage": "Plane hit", "shieldHit": "Shield absorbed the hit", "finalScore": "Your score: {score}.", "boss": "Gigabug", "bossHealth": "Gigabug health", "bossPhase": "Phase {n} of 3", "bossArrives": "Gigabug exposes its core after each strike.", "coreOpen": "Core exposed. Fire!", "bossWarning": "Move out of the marked lanes", "bossDefeated": "Gigabug defeated", "powerups": "Power-ups and combos", "comboHint": "Power-ups stack. Beam and triple shot give you a fan of piercing beams. Overclock makes it fire faster.", "legendSpread": "Triple shot — fires in three directions", "legendBeam": "Beam — pierces multiple targets", "legendOverclock": "Overclock — increases your fire rate", "legendDrone": "Drones — fire from both sides", "legendShield": "Shield — absorbs one hit", "legendMagnet": "Magnet — pulls power-ups towards you", "legendRepair": "Repair — restores one life", "legendBurst": "Nuclear patch — clears the field and damages the boss"}};
 /* Точечное табло, знаки и иконка меню для всех страниц Singlet. */
 function mountSingletBrand(RM) {
   const $ = (s) => document.querySelector(s);
@@ -1469,10 +1575,16 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
       if (f.classList.contains('is-warn') && !onSubmit) return true; setState(f, 'ok'); return true; }
     return true;
   };
-  const fieldName = f => ($('.f__name', f) || {}).textContent || tt('vConsent');
+  const fieldName = f => ($('.f__name', f) || {}).textContent || f.textContent.trim() || tt('vConsent');
   const cut = (s, n) => s.length > n ? s.slice(0, n - 1).trim() + '…' : s;
   $$('.js-form').forEach(form => {
     const fields = $$('[data-v]', form), live = $('[role=status]', form);
+    const submit = $('[type=submit]', form);
+    const consents = $$('input[type=checkbox][required]', form);
+    const syncConsent = () => { submit.disabled = !consents.every(input => input.checked); };
+    form.addEventListener('change', syncConsent);
+    form.addEventListener('reset', () => queueMicrotask(syncConsent));
+    window.addEventListener('pageshow', syncConsent);
     fields.forEach(f => { const inp = $('.f__in', f);
       if (inp) { inp.addEventListener('blur', () => { if (inp.value.trim()) check(f); }); inp.addEventListener('input', () => { if (f.classList.contains('is-err') || f.classList.contains('is-warn')) setState(f, null); }); }
       const c = f.dataset.v === 'chk' && $('input', f); if (c) c.addEventListener('change', () => c.checked && setState(f, null)); });
@@ -1492,7 +1604,7 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
       form.classList.add('done'); const box = form.closest('.modal'); if (box) box.classList.add('done'); $('.ok-screen', form).focus(); });
     $('.okDone', form).addEventListener('click', () => { form.reset(); form.classList.remove('done'); fields.forEach(f => { setState(f, null); f._warned = null; }); const box = form.closest('.modal'); if (box) { box.classList.remove('done'); closeModal(); } else form.focus({ preventScroll: true }); });
     // Пока обработчика нет, форма остаётся неактивной: браузер не записывает поля в строку адреса.
-    $('[type=submit]', form).disabled = false;
+    syncConsent();
     form.inert = false;
   });
 
@@ -1611,6 +1723,200 @@ function mountSingletPilot({ tt, fill, beforeOpen, extraRegions = [] }) {
   $('#grab').addEventListener('click', e => { if (suppressGrabClick && e.detail !== 0) { suppressGrabClick = false; return; } closeModal(); });
 
   return { modal, closeModal };
+}
+
+// На серверной странице 404 адрес может указывать на произвольный вложенный путь.
+function refreshDocumentLinks(language, base = location.href) {
+  document.querySelectorAll('a[data-document]').forEach(link => {
+    const url = new URL(link.dataset.document + '.html', base);
+    url.searchParams.set('lang', language);
+    link.href = url.href;
+  });
+}
+
+function mountCookiePreferences() {
+  const notice = document.getElementById('cookie-notice');
+  const dialog = document.getElementById('cookie-dialog');
+  const toggle = document.getElementById('cookie-analytics');
+  const grip = dialog.querySelector('.cookie-grip');
+  const key = 'singlet-cookie-preferences';
+  const version = 1;
+  function read() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(key));
+      return saved?.version === version && typeof saved.analytics === 'boolean' ? saved : null;
+    } catch { return null; }
+  }
+  let choice = read();
+  let opener;
+  function render() {
+    notice.hidden = Boolean(choice) || dialog.open;
+    toggle.checked = choice?.analytics === true;
+  }
+  function save(analytics) {
+    choice = { version, analytics, decidedAt: new Date().toISOString() };
+    try { localStorage.setItem(key, JSON.stringify(choice)); } catch { /* Выбор действует до ухода со страницы. */ }
+    if (dialog.open) dialog.close();
+    render();
+  }
+  document.querySelectorAll('[data-cookie-open]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      opener = button;
+      dialog.showModal();
+      render();
+      dialog.querySelector('.cookie-close').focus({ preventScroll: true });
+      document.dispatchEvent(new Event('singlet-cookie-settings'));
+    });
+  });
+  notice.querySelector('[data-cookie-accept]').onclick = () => save(true);
+  notice.querySelector('[data-cookie-essential]').onclick = () => save(false);
+  dialog.querySelector('[data-cookie-save]').onclick = () => save(toggle.checked);
+  dialog.querySelectorAll('[data-cookie-close]').forEach(button => button.addEventListener('click', () => dialog.close()));
+  dialog.addEventListener('close', () => {
+    render();
+    if (opener?.getClientRects().length) opener.focus({ preventScroll: true });
+  });
+  let drag = null;
+  let moved = false;
+  grip.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    moved = false;
+    drag = { y: event.clientY, id: event.pointerId };
+    grip.setPointerCapture(event.pointerId);
+  });
+  grip.addEventListener('pointermove', event => {
+    if (event.pointerId !== drag?.id) return;
+    const dy = Math.max(0, event.clientY - drag.y);
+    moved ||= dy > 6;
+    dialog.style.translate = '0 ' + dy + 'px';
+  });
+  function stopDrag(event) {
+    if (event.pointerId !== drag?.id) return;
+    const dismiss = event.type === 'pointerup' && event.clientY - drag.y > Math.min(90, dialog.offsetHeight / 4);
+    drag = null;
+    dialog.style.removeProperty('translate');
+    if (dismiss) dialog.close();
+  }
+  grip.addEventListener('click', event => {
+    if (moved && event.detail) { event.stopImmediatePropagation(); moved = false; }
+  }, true);
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => grip.addEventListener(type, stopDrag));
+  addEventListener('storage', event => {
+    if (event.key === key || event.key === null) { choice = read(); render(); }
+  });
+  addEventListener('pageshow', event => { if (event.persisted) { choice = read(); render(); } });
+  render();
+}
+mountCookiePreferences();
+
+const interiorStorage = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch { /* Privacy mode can disable storage. */ } },
+};
+
+function mountSingletInterior(strings, { beforeOverlay = () => {}, onLanguage = () => {} } = {}) {
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const root = document.documentElement;
+  const hdr = $('#hdr'), menu = $('#menu'), mBtn = $('#menuBtn'), langBar = $('#lang');
+  const main = $('main'), footer = $('.foot');
+  const locationUrl = new URL(location.href);
+  const publishedHome = new URL($('.mark').href);
+  const home = locationUrl.protocol === 'file:' ? new URL('index.html', locationUrl)
+    : new URL(locationUrl.hostname === publishedHome.hostname || locationUrl.pathname.startsWith(publishedHome.pathname)
+      ? publishedHome.pathname : '/', locationUrl);
+  const supported = value => value === 'ru' || value === 'en';
+  const urlLang = locationUrl.searchParams.get('lang');
+  const savedLang = interiorStorage.get('sg-lang');
+  let lang = supported(urlLang) ? urlLang : supported(savedLang) ? savedLang
+    : /^(ru|uk|be|kk)/i.test(navigator.language) ? 'ru' : 'en';
+  const tt = key => strings[lang][key] ?? key;
+
+  function menuIcon() {
+    const open = menu.classList.contains('open');
+    mBtn.innerHTML = singletMenuIcon(open, tt(open ? 'aClose' : 'aMenu'));
+    mBtn.setAttribute('aria-label', tt(open ? 'aClose' : 'aMenu'));
+  }
+
+  function setMenu(open, focus = true) {
+    if (menu.classList.contains('open') === open) return;
+    if (open) beforeOverlay();
+    hdr.classList.toggle('mo', open);
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    menu.inert = !open;
+    mBtn.setAttribute('aria-expanded', String(open));
+    main.inert = open;
+    footer.inert = open;
+    root.classList.toggle('lock', open);
+    menuIcon();
+    if (open) menu.scrollTop = 0;
+    if (focus) (open ? $('nav a', menu) : mBtn).focus({ preventScroll: true });
+  }
+
+  function applyLanguage(next, updateUrl = false) {
+    lang = next;
+    root.lang = lang;
+    langBar.dataset.l = lang;
+    $$('[data-t]').forEach(element => element.innerHTML = tt(element.dataset.t));
+    $$('[data-ta]').forEach(element => element.setAttribute('aria-label', tt(element.dataset.ta)));
+    $$('[data-l]', langBar).forEach(button => button.setAttribute('aria-pressed', String(button.dataset.l === lang)));
+    $$('[data-site-link]').forEach(link => {
+      const url = new URL(home);
+      url.searchParams.set('lang', lang);
+      if (link.dataset.siteLink !== '#top') url.hash = link.dataset.siteLink;
+      link.href = url.href;
+    });
+    if (updateUrl) {
+      const url = new URL(location.href);
+      url.searchParams.set('lang', lang);
+      try { history.replaceState(history.state, '', url.href); } catch { /* Local file origins can deny history changes. */ }
+      interiorStorage.set('sg-lang', lang);
+    }
+    refreshDocumentLinks(lang, home);
+    menuIcon();
+    onLanguage();
+  }
+
+  function start() {
+    mountSingletBrand(motion.matches);
+    const bodyReveals = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      target.classList.add('in');
+      bodyReveals.unobserve(target);
+    }), { threshold: .1 });
+    $$('.rv', footer).forEach(el => bodyReveals.observe(el));
+
+    applyLanguage(lang);
+    $$('[data-l]', langBar).forEach(button => button.addEventListener('click', () => {
+      if (lang !== button.dataset.l) applyLanguage(button.dataset.l, true);
+    }));
+    mBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    $$('#menu a').forEach(link => link.addEventListener('click', () => setMenu(false, false)));
+    mountSingletPilot({
+      tt, fill,
+      beforeOpen: () => { setMenu(false, false); beforeOverlay(); },
+    });
+    document.addEventListener('keydown', event => {
+      if (event.defaultPrevented || !menu.classList.contains('open')) return;
+      if (event.key === 'Escape') {
+        setMenu(false);
+      } else if (event.key === 'Tab') {
+        const items = $$('button, a[href]', hdr).concat($$('a[href]', menu));
+        const index = items.indexOf(document.activeElement);
+        if (event.shiftKey && index <= 0 || !event.shiftKey && index === items.length - 1) {
+          event.preventDefault();
+          items[event.shiftKey ? items.length - 1 : 0].focus();
+        }
+      }
+    });
+
+    document.addEventListener('singlet-cookie-settings', beforeOverlay);
+  }
+  return { tt, start };
 }
 
 /* Симуляция аркады. Координаты неизменны при смене размера экрана. */
@@ -2419,84 +2725,20 @@ function mountArcadeArt(canvas) {
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const mobileQuery = matchMedia('(max-width: 860px)');
   const root = document.documentElement;
-  const hdr = $('#hdr'), menu = $('#menu'), mBtn = $('#menuBtn'), langBar = $('#lang');
-  const main = $('#not-found'), footer = $('.foot');
+  const hdr = $('#hdr');
   const notice = $('#notice'), announcement = $('#announcement');
   const field = $('#arcade-field'), arena = $('#arena'), arcade = $('#arcade');
   const overlay = $('#overlay'), play = $('#play'), pauseButton = $('#pause'), restart = $('#restart');
   const loadout = $('#buffs'), bossHud = $('#boss-hud'), bossHealth = $('#boss-health'), phase = $('#boss-phase');
   const hud = Object.fromEntries(['wave', 'score', 'best', 'lives', 'weapon'].map(name => [name, $('#' + name)]));
-  const storage = {
-    get(key) { try { return localStorage.getItem(key); } catch { return null; } },
-    set(key, value) { try { localStorage.setItem(key, value); } catch { /* Privacy mode can disable storage. */ } },
-  };
-
-  const locationUrl = new URL(location.href);
-  const publishedHome = new URL($('.mark').href);
-  const home = locationUrl.protocol === 'file:' ? new URL('index.html', locationUrl)
-    : new URL(locationUrl.hostname === publishedHome.hostname || locationUrl.pathname.startsWith(publishedHome.pathname)
-      ? publishedHome.pathname : '/', locationUrl);
-  const supported = value => value === 'ru' || value === 'en';
-  const urlLang = locationUrl.searchParams.get('lang');
-  const savedLang = storage.get('sg-lang');
-  let lang = supported(urlLang) ? urlLang : supported(savedLang) ? savedLang
-    : /^(ru|uk|be|kk)/i.test(navigator.language) ? 'ru' : 'en';
-  const tt = key => NOT_FOUND[lang][key] ?? key;
-
   const art = mountArcadeArt(field);
   const movement = new Set(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','KeyW','KeyA','KeyS','KeyD','Space']);
   const keys = new Set();
-  let best = Math.max(0, Number.parseInt(storage.get('sg-404-best'), 10) || 0);
+  let best = Math.max(0, Number.parseInt(interiorStorage.get('sg-404-best'), 10) || 0);
   let round = null;
   let mode = 'ready';
   let pointer = null, frame = 0, lastFrame = 0, spoken = 0;
   let loadoutSignature = '';
-
-  function menuIcon() {
-    const open = menu.classList.contains('open');
-    mBtn.innerHTML = singletMenuIcon(open, tt(open ? 'aClose' : 'aMenu'));
-    mBtn.setAttribute('aria-label', tt(open ? 'aClose' : 'aMenu'));
-  }
-
-  function setMenu(open, focus = true) {
-    if (menu.classList.contains('open') === open) return;
-    if (open) pauseGame(false);
-    hdr.classList.toggle('mo', open);
-    menu.classList.toggle('open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    menu.inert = !open;
-    mBtn.setAttribute('aria-expanded', String(open));
-    main.inert = open;
-    footer.inert = open;
-    root.classList.toggle('lock', open);
-    menuIcon();
-    if (open) menu.scrollTop = 0;
-    if (focus) (open ? $('nav a', menu) : mBtn).focus({ preventScroll: true });
-  }
-
-  function applyLanguage(next, updateUrl = false) {
-    lang = next;
-    root.lang = lang;
-    langBar.dataset.l = lang;
-    $$('[data-t]').forEach(element => element.innerHTML = tt(element.dataset.t));
-    $$('[data-ta]').forEach(element => element.setAttribute('aria-label', tt(element.dataset.ta)));
-    $$('[data-l]', langBar).forEach(button => button.setAttribute('aria-pressed', String(button.dataset.l === lang)));
-    $$('[data-site-link]').forEach(link => {
-      const url = new URL(home);
-      url.searchParams.set('lang', lang);
-      if (link.dataset.siteLink !== '#top') url.hash = link.dataset.siteLink;
-      link.href = url.href;
-    });
-    if (updateUrl) {
-      const url = new URL(location.href);
-      url.searchParams.set('lang', lang);
-      try { history.replaceState(history.state, '', url.href); } catch { /* Local file origins can deny history changes. */ }
-      storage.set('sg-lang', lang);
-    }
-    loadoutSignature = '';
-    menuIcon();
-    renderState();
-  }
 
   function clearInput() {
     keys.clear();
@@ -2507,7 +2749,7 @@ function mountArcadeArt(canvas) {
   function saveBest() {
     if (!round || round.score <= best) return;
     best = round.score;
-    storage.set('sg-404-best', String(best));
+    interiorStorage.set('sg-404-best', String(best));
   }
 
   function setText(element, value) {
@@ -2660,37 +2902,11 @@ function mountArcadeArt(canvas) {
     frame = requestAnimationFrame(tick);
   }
 
-  mountSingletBrand(motion.matches);
-  const bodyReveals = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
-    if (!isIntersecting) return;
-    target.classList.add('in');
-    bodyReveals.unobserve(target);
-  }), { threshold: .1 });
-  $$('.rv', footer).forEach(el => bodyReveals.observe(el));
-
-  applyLanguage(lang);
-  $$('[data-l]', langBar).forEach(button => button.addEventListener('click', () => {
-    if (lang !== button.dataset.l) applyLanguage(button.dataset.l, true);
-  }));
-  mBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
-  $$('#menu a').forEach(link => link.addEventListener('click', () => setMenu(false, false)));
-  mountSingletPilot({
-    tt, fill,
-    beforeOpen: () => { setMenu(false, false); pauseGame(false); },
+  const { tt, start: startPage } = mountSingletInterior(PAGE_STRINGS, {
+    beforeOverlay: () => pauseGame(false),
+    onLanguage: () => { loadoutSignature = ''; renderState(); },
   });
-  document.addEventListener('keydown', event => {
-    if (event.defaultPrevented || !menu.classList.contains('open')) return;
-    if (event.key === 'Escape') {
-      setMenu(false);
-    } else if (event.key === 'Tab') {
-      const items = $$('button, a[href]', hdr).concat($$('a[href]', menu));
-      const index = items.indexOf(document.activeElement);
-      if (event.shiftKey && index <= 0 || !event.shiftKey && index === items.length - 1) {
-        event.preventDefault();
-        items[event.shiftKey ? items.length - 1 : 0].focus();
-      }
-    }
-  });
+  startPage();
 
   const syncTouchControls = () => root.classList.toggle('touch-input', navigator.maxTouchPoints > 0 && (mobileQuery.matches || matchMedia('(hover: none)').matches));
   syncTouchControls();
